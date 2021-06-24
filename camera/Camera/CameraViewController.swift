@@ -29,7 +29,13 @@ class CameraViewController: UIViewController {
     var index = 0
     let imagePickerController = UIImagePickerController()
 
+    var iso = 32
+    var shutter = 5
+    var wb = 5000
+    var tint = 0
+    var fps = 24
     
+
     var videoRecordingStarted: Bool = false {
         didSet{
             if videoRecordingStarted {
@@ -80,19 +86,41 @@ class CameraViewController: UIViewController {
         super.viewDidLoad()
         ref = Database.database(url: "https://camera-scan-e5684-default-rtdb.europe-west1.firebasedatabase.app/").reference()
         ni.title = "text"
-        cameraConfig = camConf(fps: 24)
+        cameraConfig = camConf(fps: 8)
 
         cameraButton.tintColor = UIColor.black
         registerNotification()
         
         print(LocalStorage.getString(key: LocalStorage.currentSession))
         
-        let updateSession = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: {(timer) in
+        let updateParam = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: {(timer) in
             self.currentSession.text = LocalStorage.getString(key: LocalStorage.currentSession)
+
+            let iso = LocalStorage.getInt(key: LocalStorage.isoVal)
+            let shutter = LocalStorage.getInt(key: LocalStorage.shutterVal)
+            let wb = LocalStorage.getInt(key: LocalStorage.wbVal)
+            let tint = LocalStorage.getInt(key: LocalStorage.tintVal)
+            let fps = LocalStorage.getInt(key: LocalStorage.fpsVal)
             
+            if iso == 0 || shutter == 0 || wb == 0 || fps == 0 { return }
+            
+            if iso != self.iso || shutter != self.shutter || wb != self.wb || tint != self.tint || fps != self.fps {
+                self.iso = iso
+                self.shutter = shutter
+                self.wb = wb
+                self.tint = tint
+                self.fps = fps
+                self.cameraConfig.setupISO(iso: Float(self.iso), time: self.shutter, wb: self.wb, tint: self.tint, handler: {(error) in
+                    if error != nil {
+                        print("error: \(String(describing: error))")
+                    }
+                    self.cameraConfig.rearCamera?.configureDesiredFrameRate(self.fps)
+                })
+            }
         })
-        updateSession.tolerance = 0.15
-        
+        updateParam.tolerance = 0.15
+
+        UIApplication.shared.isIdleTimerDisabled = true
         monitoringData()
     }
     
@@ -166,7 +194,7 @@ class CameraViewController: UIViewController {
                         }
                         UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, #selector(self.video(_:didFinishSavingWithError:contextInfo:)), nil)
                         LocalStorage.appendArray(key: LocalStorage.sessionArray,
-                                value: [LocalStorage.getString(key: LocalStorage.currentSession), url.path])
+                                value: [self.currentSession.text, url.path])
                         if LocalStorage.getBool(key: LocalStorage.isMainDevice) {
                             let session = LocalStorage.randomSessionId(length: 4)
                             self.ref.child(self.currentSessionId).setValue(session)
@@ -191,6 +219,42 @@ class CameraViewController: UIViewController {
                     LocalStorage.set(key: LocalStorage.isMainDevice, val: true)
                 }
             }
+        })
+        
+        ref.child("cameraConf/iso").observe(DataEventType.value, with: {(snapshot) in
+            let value = snapshot.value
+            if let val = value as? Int {
+                LocalStorage.set(key: LocalStorage.isoVal, val: val)
+            }
+            
+        })
+        ref.child("cameraConf/shutter").observe(DataEventType.value, with: {(snapshot) in
+            let value = snapshot.value
+            if let val = value as? Int {
+                LocalStorage.set(key: LocalStorage.shutterVal, val: val)
+            }
+            
+        })
+        ref.child("cameraConf/wb").observe(DataEventType.value, with: {(snapshot) in
+            let value = snapshot.value
+            if let val = value as? Int {
+                LocalStorage.set(key: LocalStorage.wbVal, val: val)
+            }
+            
+        })
+        ref.child("cameraConf/tint").observe(DataEventType.value, with: {(snapshot) in
+            let value = snapshot.value
+            if let val = value as? Int {
+                LocalStorage.set(key: LocalStorage.tintVal, val: val)
+            }
+            
+        })
+        ref.child("cameraConf/fps").observe(DataEventType.value, with: {(snapshot) in
+            let value = snapshot.value
+            if let val = value as? Int {
+                LocalStorage.set(key: LocalStorage.fpsVal, val: val)
+            }
+            
         })
     }
 }

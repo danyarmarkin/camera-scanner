@@ -122,15 +122,15 @@ extension CameraConfiguration {
                 throw CameraControllerError.noCamerasAvailable
             }
             
-            if let audioDevice = self.audioDevice {
-                self.audioInput = try AVCaptureDeviceInput(device: audioDevice)
-                if captureSession.canAddInput(self.audioInput!) {
-                    captureSession.addInput(self.audioInput!)
-                } else {
-                    print("error 3")
-                    throw CameraControllerError.inputsAreInvalid
-                }
-            }
+//            if let audioDevice = self.audioDevice {
+//                self.audioInput = try AVCaptureDeviceInput(device: audioDevice)
+//                if captureSession.canAddInput(self.audioInput!) {
+//                    captureSession.addInput(self.audioInput!)
+//                } else {
+//                    print("error 3")
+//                    throw CameraControllerError.inputsAreInvalid
+//                }
+//            }
         }
         
         //Configure outputs with capture session
@@ -313,7 +313,7 @@ extension AVCaptureDevice {
 
 extension CameraConfiguration {
     
-    func setupISO(iso: Float = 0, time: Int = 0, handler: @escaping (Error?)-> Void ) {
+    func setupISO(iso: Float = 0, time: Int = 0, wb: Int = 2500, tint: Int = 0, handler: @escaping (Error?)-> Void ) {
         func configureDeviceInputs() throws {
             guard let captureSession = self.captureSession else {
                 throw CameraControllerError.captureSessionIsMissing
@@ -322,6 +322,14 @@ extension CameraConfiguration {
 //            captureSession.sessionPreset = .hd4K3840x2160
             print(rearCamera?.formats.first?.minISO ?? 0)
             print(rearCamera?.formats.first?.maxISO ?? 0)
+            
+            print("max WB = \(rearCamera?.maxWhiteBalanceGain ?? 0)")
+            try rearCamera?.lockForConfiguration()
+            rearCamera?.whiteBalanceMode = .locked
+            let tempTint: AVCaptureDevice.WhiteBalanceTemperatureAndTintValues = AVCaptureDevice.WhiteBalanceTemperatureAndTintValues(temperature: Float(wb), tint: Float(tint))
+            let gains = rearCamera?.deviceWhiteBalanceGains(for: tempTint)
+            rearCamera?.setWhiteBalanceModeLocked(with: gains!, completionHandler: nil)
+            rearCamera?.unlockForConfiguration()
             
             for input in captureSession.inputs {
                 captureSession.removeInput(input)

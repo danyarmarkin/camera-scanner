@@ -30,6 +30,8 @@ class SessionSettingsTableViewController: UITableViewController {
         })
         updateSessions.tolerance = 0.2
 
+        UIApplication.shared.isIdleTimerDisabled = true
+
 //        let videosArray = PHAsset.fetchAssets(with: .video, options: nil)
 //        videosArray[0]
 //        exportVideo()

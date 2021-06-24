@@ -6,13 +6,19 @@ import Foundation
 
 class LocalStorage {
     static let defaults = UserDefaults.standard
+    
     static let isoVal = "com.kanistra.camera.iso"
     static let fpsVal = "com.kanistra.camera.fps"
+    static let shutterVal = "com.kanistra.camera.shutter"
+    static let wbVal = "com.kanistra.camera.wb"
+    static let tintVal = "com.kanistra.camera.tint"
+    
     static let lampsOffVal = "com.kanistra.camera.lamps-off"
     static let currentSession = "com.kanistra.camera.current-session"
     static let sessionArray = "com.kanistra.camera.session-array"
     static let isMainDevice = "com.kanistra.camera.is-main-device"
     static let deviceName = "com.kanistra.camera.device-name"
+    
 
     static func set(key: String, val: Any) {
         defaults.set(val, forKey: key)

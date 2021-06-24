@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>31153091402-lo0vlkmtpo70ga1979vgf7soqjhobt4n.apps.googleusercontent.com</string>
+	<string>31153091402-uf7r9lpnanphhvb202649sg5rv930sv0.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.31153091402-lo0vlkmtpo70ga1979vgf7soqjhobt4n</string>
+	<string>com.googleusercontent.apps.31153091402-uf7r9lpnanphhvb202649sg5rv930sv0</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDvsOERgqtQAN3qwZYQB2t2ZBdTKgoZPK4</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.kanistra.camera</string>
+	<string>kanistra.camera</string>
 	<key>PROJECT_ID</key>
 	<string>camera-scan-e5684</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:31153091402:ios:5c6fa1ab2087af0666c7b3</string>
+	<string>1:31153091402:ios:5acf250d0321dbda66c7b3</string>
+	<key>DATABASE_URL</key>
+	<string>https://camera-scan-e5684-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
 </plist>

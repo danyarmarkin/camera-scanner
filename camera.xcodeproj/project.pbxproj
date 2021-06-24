@@ -14,7 +14,6 @@
 		EC2AFF4F2679EE5F007864CE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF4D2679EE5F007864CE /* CustomButton.swift */; };
 		EC2AFF512679EE77007864CE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF502679EE76007864CE /* UIViewControllerExtensions.swift */; };
 		EC2AFF532679F1F6007864CE /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF522679F1F5007864CE /* CameraViewController.swift */; };
-		EC2AFF55267A12DA007864CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC2AFF54267A12DA007864CE /* GoogleService-Info.plist */; };
 		EC2AFF58267A1377007864CE /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = EC2AFF57267A1377007864CE /* FirebaseStorage */; };
 		EC2AFF5A267A1377007864CE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = EC2AFF59267A1377007864CE /* FirebaseDatabase */; };
 		EC2AFF5C267A1377007864CE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EC2AFF5B267A1377007864CE /* FirebaseFirestore */; };
@@ -29,6 +28,7 @@
 		EC76B6222674CBC3001709CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC76B6202674CBC3001709CB /* LaunchScreen.storyboard */; };
 		EC76B62D2674CBC3001709CB /* cameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B62C2674CBC3001709CB /* cameraTests.swift */; };
 		EC76B6382674CBC3001709CB /* cameraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B6372674CBC3001709CB /* cameraUITests.swift */; };
+		EC8D0DB02684D32B009413E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +56,6 @@
 		EC2AFF4D2679EE5F007864CE /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		EC2AFF502679EE76007864CE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		EC2AFF522679F1F5007864CE /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		EC2AFF54267A12DA007864CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC2AFF5D267B5992007864CE /* VideoSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSeparator.swift; sourceTree = "<group>"; };
 		EC5C6F90267D72F800E9E130 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		EC5C6F94267D744500E9E130 /* SessionSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +73,7 @@
 		EC76B6332674CBC3001709CB /* cameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC76B6372674CBC3001709CB /* cameraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraUITests.swift; sourceTree = "<group>"; };
 		EC76B6392674CBC3001709CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +128,7 @@
 		EC5C6F96267F450D00E9E130 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				EC2AFF54267A12DA007864CE /* GoogleService-Info.plist */,
+				EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */,
 				22585578D698BD41E9C947F1 /* LocalStorage.swift */,
 			);
 			path = Database;
@@ -319,7 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC76B6222674CBC3001709CB /* LaunchScreen.storyboard in Resources */,
-				EC2AFF55267A12DA007864CE /* GoogleService-Info.plist in Resources */,
+				EC8D0DB02684D32B009413E9 /* GoogleService-Info.plist in Resources */,
 				EC76B61F2674CBC3001709CB /* Assets.xcassets in Resources */,
 				EC76B61D2674CBC3001709CB /* Main.storyboard in Resources */,
 			);
@@ -535,13 +535,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N63LG7U2HW;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
 				INFOPLIST_FILE = camera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.camera;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = kanistra.camera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -554,13 +555,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N63LG7U2HW;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
 				INFOPLIST_FILE = camera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.camera;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = kanistra.camera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
