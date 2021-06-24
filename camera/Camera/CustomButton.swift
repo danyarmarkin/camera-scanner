@@ -18,7 +18,7 @@ class CustomButton: UIButton {
         //let rect = CGRect(origin: self.frame.origin, size: CGSize(width: 100, height: 100))
         //self.frame = rect
         self.layer.cornerRadius = 50
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.gray
         self.layer.borderWidth = 4
         self.layer.borderColor = UIColor.red.cgColor
         self.setTitle("", for: .normal)

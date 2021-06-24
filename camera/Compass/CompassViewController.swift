@@ -32,6 +32,10 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
         motion.startGyroUpdates()
         motion.startAccelerometerUpdates()
 //        startAccelerometers()
+//        LocalStorage.set(key: LocalStorage.currentSession, val: "HDOV")
+        print("view did load")
+
+        LocalStorage.set(key: LocalStorage.currentSession, val: LocalStorage.randomSessionId(length: 4))
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {

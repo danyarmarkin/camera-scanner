@@ -40,12 +40,14 @@ class CameraConfiguration: NSObject {
     var videoOutput: AVCaptureMovieFileOutput?
     var audioInput: AVCaptureDeviceInput?
     var outputType: OutputType?
+    
+    var url: URL!
 }
 // MARK: Extension 1
 
 extension CameraConfiguration {
     
-    func setup(handler: @escaping (Error?)-> Void ) {
+    func setup(iso: Float = 0, time: Int = 0, handler: @escaping (Error?)-> Void ) {
         
         func createCaptureSession() {
             self.captureSession = AVCaptureSession()
@@ -78,14 +80,29 @@ extension CameraConfiguration {
                 throw CameraControllerError.captureSessionIsMissing
             }
             
+            
             captureSession.sessionPreset = .hd4K3840x2160
+            print(rearCamera?.formats.first?.minISO ?? 0)
+            print(rearCamera?.formats.first?.maxISO ?? 0)
+            
+            for input in captureSession.inputs {
+                captureSession.removeInput(input)
+            }
+            
+            if iso > 0 && time > 0 {
+                try rearCamera?.lockForConfiguration()
+                rearCamera?.setExposureModeCustom(duration: CMTimeMake(value: Int64(time), timescale: 1000), iso: iso, completionHandler: nil)
+                rearCamera?.unlockForConfiguration()
+            }
             
             if let rearCamera = self.rearCamera {
                 self.rearCameraInput = try AVCaptureDeviceInput(device: rearCamera)
+                
                 if captureSession.canAddInput(self.rearCameraInput!) {
                     captureSession.addInput(self.rearCameraInput!)
                     self.currentCameraPosition = .rear
                 } else {
+                    print("error 1")
                     throw CameraControllerError.inputsAreInvalid
                 }
             }
@@ -96,6 +113,7 @@ extension CameraConfiguration {
                     captureSession.addInput(self.frontCameraInput!)
                     self.currentCameraPosition = .front
                 } else {
+                    print("error 2")
                     throw CameraControllerError.inputsAreInvalid
                 }
             }
@@ -109,6 +127,7 @@ extension CameraConfiguration {
                 if captureSession.canAddInput(self.audioInput!) {
                     captureSession.addInput(self.audioInput!)
                 } else {
+                    print("error 3")
                     throw CameraControllerError.inputsAreInvalid
                 }
             }
@@ -123,20 +142,20 @@ extension CameraConfiguration {
             self.photoOutput = AVCapturePhotoOutput()
             self.photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecType.jpeg ])], completionHandler: nil)
             if captureSession.canAddOutput(self.photoOutput!) {
+                captureSession.automaticallyConfiguresCaptureDeviceForWideColor = false
+                captureSession.stopRunning()
                 captureSession.addOutput(self.photoOutput!)
             }
             self.outputType = .photo
             captureSession.startRunning()
         }
         
-        // -MARK: CONFIGURE FPS
+        // -MARK: CONFIGURE Video Output
         
         func configureVideoOutput() throws {
-            rearCamera?.configureDesiredFrameRate(24)
             guard let captureSession = self.captureSession else {
                 throw CameraControllerError.captureSessionIsMissing
             }
-
             self.videoOutput = AVCaptureMovieFileOutput()
             if captureSession.canAddOutput(self.videoOutput!) {
                 captureSession.addOutput(self.videoOutput!)
@@ -149,7 +168,7 @@ extension CameraConfiguration {
                 createCaptureSession()
                 try configureCaptureDevices()
                 try configureDeviceInputs()
-                try configurePhotoOutput()
+//                try configurePhotoOutput()
                 try configureVideoOutput()
             } catch {
                 DispatchQueue.main.async {
@@ -175,45 +194,6 @@ extension CameraConfiguration {
         self.previewLayer?.frame = CGRect(x: 0, y: 0, width: view.frame.width , height: view.frame.height)
     }
     
-    func switchCameras() throws {
-        guard let currentCameraPosition = currentCameraPosition, let captureSession = self.captureSession, captureSession.isRunning else { throw CameraControllerError.captureSessionIsMissing }
-        captureSession.beginConfiguration()
-        let inputs = captureSession.inputs
-        
-        func switchToFrontCamera() throws {
-            guard let rearCameraInput = self.rearCameraInput, inputs.contains(rearCameraInput),let frontCamera = self.frontCamera else { throw CameraControllerError.invalidOperation }
-            captureSession.removeInput(rearCameraInput)
-            self.frontCameraInput = try AVCaptureDeviceInput(device: frontCamera)
-            if captureSession.canAddInput(self.frontCameraInput!) {
-                captureSession.addInput(self.frontCameraInput!)
-                self.currentCameraPosition = .front
-            }
-            
-            else { throw CameraControllerError.invalidOperation }
-        }
-        
-        func switchToRearCamera() throws {
-            guard let frontCameraInput = self.frontCameraInput, inputs.contains(frontCameraInput), let rearCamera = self.rearCamera else { throw CameraControllerError.invalidOperation }
-            captureSession.removeInput(frontCameraInput)
-            self.rearCameraInput = try AVCaptureDeviceInput(device: rearCamera)
-            if captureSession.canAddInput(rearCameraInput!) {
-                captureSession.addInput(rearCameraInput!)
-                self.currentCameraPosition = .rear
-            }
-            
-            else { throw CameraControllerError.invalidOperation }
-        }
-        
-        switch currentCameraPosition {
-        case .front:
-            try switchToRearCamera()
-            
-        case .rear:
-            try switchToFrontCamera()
-        }
-        captureSession.commitConfiguration()
-    }
-    
     func captureImage(completion: @escaping (UIImage?, Error?) -> Void) {
         guard let captureSession = self.captureSession, captureSession.isRunning else {
             completion(nil, CameraControllerError.captureSessionIsMissing)
@@ -230,10 +210,13 @@ extension CameraConfiguration {
             completion(nil, CameraControllerError.captureSessionIsMissing)
             return
         }
-        
+        self.videoOutput?.setOutputSettings([AVVideoCodecKey : AVVideoCodecType.hevc], for: (self.videoOutput?.connection(with: .video))!)
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let fileUrl = paths[0].appendingPathComponent("output.mov")
+        print("path = \(paths)")
+        let fileUrl = paths[0].appendingPathComponent("\(LocalStorage.getString(key: LocalStorage.currentSession)).mov")
         try? FileManager.default.removeItem(at: fileUrl)
+        url = fileUrl
+//        print("URL = \(url)")
         videoOutput!.startRecording(to: fileUrl, recordingDelegate: self)
         self.videoRecordCompletionBlock = completion
     }
@@ -244,7 +227,20 @@ extension CameraConfiguration {
             return
         }
         self.videoOutput?.stopRecording()
+        
+        
     }
+    
+    func separateVideo() {
+        let vs = VideoSeparator()
+        vs.separate(videoURL: url, time: 500)
+        
+//        for img in imgs {
+//            UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
+//            print("save img")
+//        }
+    }
+    
 }
  // MARK: AVCapturePhotoCaptureDelegate
 extension CameraConfiguration: AVCapturePhotoCaptureDelegate {
@@ -286,13 +282,11 @@ extension CameraConfiguration: AVCaptureVideoDataOutputSampleBufferDelegate {
 
 extension AVCaptureDevice {
 
-    /// http://stackoverflow.com/questions/21612191/set-a-custom-avframeraterange-for-an-avcapturesession#27566730
     func configureDesiredFrameRate(_ desiredFrameRate: Int) {
-
         var isFPSSupported = false
 
         do {
-
+            
             if let videoSupportedFrameRateRanges = activeFormat.videoSupportedFrameRateRanges as? [AVFrameRateRange] {
                 for range in videoSupportedFrameRateRanges {
                     if (range.maxFrameRate >= Double(desiredFrameRate) && range.minFrameRate <= Double(desiredFrameRate)) {
@@ -314,4 +308,57 @@ extension AVCaptureDevice {
         }
     }
 
+}
+
+
+extension CameraConfiguration {
+    
+    func setupISO(iso: Float = 0, time: Int = 0, handler: @escaping (Error?)-> Void ) {
+        func configureDeviceInputs() throws {
+            guard let captureSession = self.captureSession else {
+                throw CameraControllerError.captureSessionIsMissing
+            }
+            
+//            captureSession.sessionPreset = .hd4K3840x2160
+            print(rearCamera?.formats.first?.minISO ?? 0)
+            print(rearCamera?.formats.first?.maxISO ?? 0)
+            
+            for input in captureSession.inputs {
+                captureSession.removeInput(input)
+            }
+            
+            if iso > 0 && time > 0 {
+                try rearCamera?.lockForConfiguration()
+                rearCamera?.setExposureModeCustom(duration: CMTimeMake(value: Int64(time), timescale: 1000), iso: iso, completionHandler: nil)
+                rearCamera?.unlockForConfiguration()
+            }
+            
+            if let rearCamera = self.rearCamera {
+                self.rearCameraInput = try AVCaptureDeviceInput(device: rearCamera)
+                
+                if captureSession.canAddInput(self.rearCameraInput!) {
+                    captureSession.addInput(self.rearCameraInput!)
+                    self.currentCameraPosition = .rear
+                } else {
+                    print("error 1")
+                    throw CameraControllerError.inputsAreInvalid
+                }
+            }
+        }
+        
+        DispatchQueue(label: "setup").async {
+            do {
+                try configureDeviceInputs()
+            } catch {
+                DispatchQueue.main.async {
+                    handler(error)
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                handler(nil)
+            }
+        }
+    }
 }

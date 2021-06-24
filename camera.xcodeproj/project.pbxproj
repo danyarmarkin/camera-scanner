@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2258532C40EACFD88397B535 /* CompassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22585ECA62D40B067F2FEBE3 /* CompassViewController.swift */; };
+		225857798682AF9DB5DF9AB0 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22585578D698BD41E9C947F1 /* LocalStorage.swift */; };
 		22585A80DAE8C821C8C7832D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258528DBF17C41B071E5C20 /* SettingsViewController.swift */; };
-		EC2AE2A62676391400E55970 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AE2A52676391400E55970 /* TableViewController.swift */; };
 		EC2AFF4E2679EE5F007864CE /* CameraConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF4C2679EE5F007864CE /* CameraConfiguration.swift */; };
 		EC2AFF4F2679EE5F007864CE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF4D2679EE5F007864CE /* CustomButton.swift */; };
 		EC2AFF512679EE77007864CE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF502679EE76007864CE /* UIViewControllerExtensions.swift */; };
@@ -18,6 +18,9 @@
 		EC2AFF58267A1377007864CE /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = EC2AFF57267A1377007864CE /* FirebaseStorage */; };
 		EC2AFF5A267A1377007864CE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = EC2AFF59267A1377007864CE /* FirebaseDatabase */; };
 		EC2AFF5C267A1377007864CE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EC2AFF5B267A1377007864CE /* FirebaseFirestore */; };
+		EC2AFF5E267B5992007864CE /* VideoSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF5D267B5992007864CE /* VideoSeparator.swift */; };
+		EC5C6F91267D72F800E9E130 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C6F90267D72F800E9E130 /* SessionTableViewCell.swift */; };
+		EC5C6F95267D744500E9E130 /* SessionSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C6F94267D744500E9E130 /* SessionSettingsTableViewController.swift */; };
 		EC76B6162674CBC3001709CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B6152674CBC3001709CB /* AppDelegate.swift */; };
 		EC76B6182674CBC3001709CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B6172674CBC3001709CB /* SceneDelegate.swift */; };
 		EC76B61A2674CBC3001709CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B6192674CBC3001709CB /* ViewController.swift */; };
@@ -47,13 +50,16 @@
 
 /* Begin PBXFileReference section */
 		2258528DBF17C41B071E5C20 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		22585578D698BD41E9C947F1 /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		22585ECA62D40B067F2FEBE3 /* CompassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassViewController.swift; sourceTree = "<group>"; };
-		EC2AE2A52676391400E55970 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		EC2AFF4C2679EE5F007864CE /* CameraConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraConfiguration.swift; sourceTree = "<group>"; };
 		EC2AFF4D2679EE5F007864CE /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		EC2AFF502679EE76007864CE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		EC2AFF522679F1F5007864CE /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		EC2AFF54267A12DA007864CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EC2AFF5D267B5992007864CE /* VideoSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSeparator.swift; sourceTree = "<group>"; };
+		EC5C6F90267D72F800E9E130 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
+		EC5C6F94267D744500E9E130 /* SessionSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSettingsTableViewController.swift; sourceTree = "<group>"; };
 		EC76B6122674CBC3001709CB /* camera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = camera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC76B6152674CBC3001709CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC76B6172674CBC3001709CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +104,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC5C6F92267D738700E9E130 /* Session_Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EC5C6F90267D72F800E9E130 /* SessionTableViewCell.swift */,
+				EC5C6F94267D744500E9E130 /* SessionSettingsTableViewController.swift */,
+			);
+			path = Session_Settings;
+			sourceTree = "<group>";
+		};
+		EC5C6F93267D73C600E9E130 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				EC2AFF502679EE76007864CE /* UIViewControllerExtensions.swift */,
+				EC2AFF522679F1F5007864CE /* CameraViewController.swift */,
+				EC2AFF4C2679EE5F007864CE /* CameraConfiguration.swift */,
+				EC2AFF4D2679EE5F007864CE /* CustomButton.swift */,
+				EC2AFF5D267B5992007864CE /* VideoSeparator.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		EC5C6F96267F450D00E9E130 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				EC2AFF54267A12DA007864CE /* GoogleService-Info.plist */,
+				22585578D698BD41E9C947F1 /* LocalStorage.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		EC5C6F97267F452E00E9E130 /* Compass */ = {
+			isa = PBXGroup;
+			children = (
+				22585ECA62D40B067F2FEBE3 /* CompassViewController.swift */,
+			);
+			path = Compass;
+			sourceTree = "<group>";
+		};
+		EC5C6F98267F455700E9E130 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				EC76B6202674CBC3001709CB /* LaunchScreen.storyboard */,
+				EC76B61B2674CBC3001709CB /* Main.storyboard */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
 		EC76B6092674CBC3001709CB = {
 			isa = PBXGroup;
 			children = (
@@ -121,21 +174,17 @@
 		EC76B6142674CBC3001709CB /* camera */ = {
 			isa = PBXGroup;
 			children = (
-				EC2AFF502679EE76007864CE /* UIViewControllerExtensions.swift */,
 				EC76B6152674CBC3001709CB /* AppDelegate.swift */,
-				EC2AE2A52676391400E55970 /* TableViewController.swift */,
 				EC76B6172674CBC3001709CB /* SceneDelegate.swift */,
-				EC2AFF54267A12DA007864CE /* GoogleService-Info.plist */,
-				EC76B6192674CBC3001709CB /* ViewController.swift */,
-				EC76B61B2674CBC3001709CB /* Main.storyboard */,
-				EC76B61E2674CBC3001709CB /* Assets.xcassets */,
-				EC76B6202674CBC3001709CB /* LaunchScreen.storyboard */,
-				EC76B6232674CBC3001709CB /* Info.plist */,
-				22585ECA62D40B067F2FEBE3 /* CompassViewController.swift */,
-				EC2AFF522679F1F5007864CE /* CameraViewController.swift */,
-				EC2AFF4C2679EE5F007864CE /* CameraConfiguration.swift */,
-				EC2AFF4D2679EE5F007864CE /* CustomButton.swift */,
+				EC5C6F98267F455700E9E130 /* Layouts */,
+				EC5C6F92267D738700E9E130 /* Session_Settings */,
+				EC5C6F97267F452E00E9E130 /* Compass */,
+				EC5C6F93267D73C600E9E130 /* Camera */,
 				2258528DBF17C41B071E5C20 /* SettingsViewController.swift */,
+				EC76B6192674CBC3001709CB /* ViewController.swift */,
+				EC76B61E2674CBC3001709CB /* Assets.xcassets */,
+				EC76B6232674CBC3001709CB /* Info.plist */,
+				EC5C6F96267F450D00E9E130 /* Database */,
 			);
 			path = camera;
 			sourceTree = "<group>";
@@ -299,14 +348,17 @@
 			files = (
 				EC2AFF532679F1F6007864CE /* CameraViewController.swift in Sources */,
 				EC76B61A2674CBC3001709CB /* ViewController.swift in Sources */,
+				EC5C6F91267D72F800E9E130 /* SessionTableViewCell.swift in Sources */,
 				EC2AFF512679EE77007864CE /* UIViewControllerExtensions.swift in Sources */,
+				EC2AFF5E267B5992007864CE /* VideoSeparator.swift in Sources */,
 				EC76B6162674CBC3001709CB /* AppDelegate.swift in Sources */,
 				EC76B6182674CBC3001709CB /* SceneDelegate.swift in Sources */,
-				EC2AE2A62676391400E55970 /* TableViewController.swift in Sources */,
 				EC2AFF4F2679EE5F007864CE /* CustomButton.swift in Sources */,
 				2258532C40EACFD88397B535 /* CompassViewController.swift in Sources */,
 				EC2AFF4E2679EE5F007864CE /* CameraConfiguration.swift in Sources */,
 				22585A80DAE8C821C8C7832D /* SettingsViewController.swift in Sources */,
+				225857798682AF9DB5DF9AB0 /* LocalStorage.swift in Sources */,
+				EC5C6F95267D744500E9E130 /* SessionSettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
