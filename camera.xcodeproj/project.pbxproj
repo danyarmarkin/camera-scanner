@@ -29,6 +29,9 @@
 		EC76B62D2674CBC3001709CB /* cameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B62C2674CBC3001709CB /* cameraTests.swift */; };
 		EC76B6382674CBC3001709CB /* cameraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B6372674CBC3001709CB /* cameraUITests.swift */; };
 		EC8D0DB02684D32B009413E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */; };
+		ECE1EB332685E73700B34F47 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1EB322685E73700B34F47 /* SettingsTableViewController.swift */; };
+		ECE1EB3B2685E98300B34F47 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1EB3A2685E98300B34F47 /* NumberTableViewCell.swift */; };
+		ECE1EB3D2685E98F00B34F47 /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1EB3C2685E98F00B34F47 /* SliderTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +77,9 @@
 		EC76B6372674CBC3001709CB /* cameraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraUITests.swift; sourceTree = "<group>"; };
 		EC76B6392674CBC3001709CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ECE1EB322685E73700B34F47 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		ECE1EB3A2685E98300B34F47 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTableViewCell.swift; sourceTree = "<group>"; };
+		ECE1EB3C2685E98F00B34F47 /* SliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +182,7 @@
 			children = (
 				EC76B6152674CBC3001709CB /* AppDelegate.swift */,
 				EC76B6172674CBC3001709CB /* SceneDelegate.swift */,
+				ECE1EB312685E70F00B34F47 /* Settings */,
 				EC5C6F98267F455700E9E130 /* Layouts */,
 				EC5C6F92267D738700E9E130 /* Session_Settings */,
 				EC5C6F97267F452E00E9E130 /* Compass */,
@@ -205,6 +212,16 @@
 				EC76B6392674CBC3001709CB /* Info.plist */,
 			);
 			path = cameraUITests;
+			sourceTree = "<group>";
+		};
+		ECE1EB312685E70F00B34F47 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ECE1EB322685E73700B34F47 /* SettingsTableViewController.swift */,
+				ECE1EB3A2685E98300B34F47 /* NumberTableViewCell.swift */,
+				ECE1EB3C2685E98F00B34F47 /* SliderTableViewCell.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,11 +366,14 @@
 				EC2AFF532679F1F6007864CE /* CameraViewController.swift in Sources */,
 				EC76B61A2674CBC3001709CB /* ViewController.swift in Sources */,
 				EC5C6F91267D72F800E9E130 /* SessionTableViewCell.swift in Sources */,
+				ECE1EB3B2685E98300B34F47 /* NumberTableViewCell.swift in Sources */,
 				EC2AFF512679EE77007864CE /* UIViewControllerExtensions.swift in Sources */,
 				EC2AFF5E267B5992007864CE /* VideoSeparator.swift in Sources */,
 				EC76B6162674CBC3001709CB /* AppDelegate.swift in Sources */,
+				ECE1EB332685E73700B34F47 /* SettingsTableViewController.swift in Sources */,
 				EC76B6182674CBC3001709CB /* SceneDelegate.swift in Sources */,
 				EC2AFF4F2679EE5F007864CE /* CustomButton.swift in Sources */,
+				ECE1EB3D2685E98F00B34F47 /* SliderTableViewCell.swift in Sources */,
 				2258532C40EACFD88397B535 /* CompassViewController.swift in Sources */,
 				EC2AFF4E2679EE5F007864CE /* CameraConfiguration.swift in Sources */,
 				22585A80DAE8C821C8C7832D /* SettingsViewController.swift in Sources */,
