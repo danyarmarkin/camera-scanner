@@ -32,7 +32,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         shutter.delegate = self
         whiteBalance.delegate = self
         tint.delegate = self
-        monitoringData()
+//        monitoringData()
         let name = LocalStorage.getString(key: LocalStorage.deviceName)
         if name != "" { deviceNameTextField.text = name }
         UIApplication.shared.isIdleTimerDisabled = true

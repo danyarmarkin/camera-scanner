@@ -104,7 +104,7 @@ class CameraViewController: UIViewController {
             
             if iso == 0 || shutter == 0 || wb == 0 || fps == 0 { return }
             
-            if iso != self.iso || shutter != self.shutter || wb != self.wb || tint != self.tint || fps != self.fps {
+            if (iso != self.iso || shutter != self.shutter || wb != self.wb || tint != self.tint || fps != self.fps) && !LocalStorage.getBool(key: LocalStorage.sliderOn) {
                 self.iso = iso
                 self.shutter = shutter
                 self.wb = wb

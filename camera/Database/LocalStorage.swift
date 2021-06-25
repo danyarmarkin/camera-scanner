@@ -12,6 +12,7 @@ class LocalStorage {
     static let shutterVal = "com.kanistra.camera.shutter"
     static let wbVal = "com.kanistra.camera.wb"
     static let tintVal = "com.kanistra.camera.tint"
+    static let sliderOn = "com.kanistra.camera.slider-on"
     
     static let lampsOffVal = "com.kanistra.camera.lamps-off"
     static let currentSession = "com.kanistra.camera.current-session"

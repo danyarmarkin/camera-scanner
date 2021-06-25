@@ -36,6 +36,7 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
         print("view did load")
 
         LocalStorage.set(key: LocalStorage.currentSession, val: LocalStorage.randomSessionId(length: 4))
+        LocalStorage.set(key: LocalStorage.sliderOn, val: false)
 
         UIApplication.shared.isIdleTimerDisabled = true
     }
