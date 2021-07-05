@@ -23,6 +23,7 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var currentSession: UILabel!
     @IBOutlet weak var cameraButton: CustomButton!
     @IBOutlet weak var previewImageView: UIImageView!
+    @IBOutlet weak var videoDuration: UILabel!
     
     let localStorage = LocalStorage()
     
@@ -36,6 +37,9 @@ class CameraViewController: UIViewController {
     var wb = 5000
     var tint = 0
     var fps = 24
+    
+    var durationTimer = Timer()
+    var duration = 0
     
     var devicesAmount = 1
     var deviceIndex = 1
@@ -123,7 +127,6 @@ class CameraViewController: UIViewController {
             }
         })
         updateParam.tolerance = 0.15
-
         UIApplication.shared.isIdleTimerDisabled = true
         monitoringData()
     }
@@ -191,18 +194,31 @@ class CameraViewController: UIViewController {
                 
                 if val == 0 && self.videoRecordingStarted {
                     self.videoRecordingStarted = false
+                    self.durationTimer.invalidate()
+                    self.videoDuration.text = "0:00"
+                    self.duration = 0
                     self.cameraConfig.stopRecording { (error) in
                         print(error ?? "Video recording error")
                     }
                     print(0)
                 } else if val == 1 && !self.videoRecordingStarted {
+                    self.durationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {(timer) in
+                        self.duration += 1
+                        let seconds = self.duration % 60
+                        if seconds < 10 {
+                            self.videoDuration.text = "\(Int(floor(Double(self.duration / 60)))):0\(seconds)"
+                        } else {
+                            self.videoDuration.text = "\(Int(floor(Double(self.duration / 60)))):\(seconds)"
+                        }
+                    })
+                    self.durationTimer.tolerance = 0.01
                     self.videoRecordingStarted = true
                     self.cameraConfig.recordVideo { (url, error) in
                         guard let url = url else {
                             print(error ?? "Video recording error")
                             return
                         }
-                        UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, #selector(self.video(_:didFinishSavingWithError:contextInfo:)), nil)
+//                        UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, #selector(self.video(_:didFinishSavingWithError:contextInfo:)), nil)
                         self.previousSession = self.currentSession.text ?? "AAAA"
                         LocalStorage.appendArray(key: LocalStorage.sessionArray,
                                                  value: [self.currentSession.text ?? "AAAA", url.path])

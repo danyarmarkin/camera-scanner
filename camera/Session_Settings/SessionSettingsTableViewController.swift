@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import AVFoundation
 //import Photos
 
 class SessionSettingsTableViewController: UITableViewController {
     
-    var sessionsData = [["HFUI"], ["KMKS"], ["IFIB"], ["FHWI"], ["QOJC"], ["PAFF"]]
+    var sessionsData = [["AAAA"]]
     var trashData: [String] = ["AAAA"]
+    var previewData: Dictionary<String, UIImage> = ["AAAA": UIImage.init(systemName: "paperplane.fill")!]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,11 +63,18 @@ class SessionSettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SessionTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SessionTableViewCell
         let session = sessionsData[indexPath[1]][0]
+        if sessionsData == [["AAAA"]] {
+            cell.configure(text: session, switchVal: false)
+            return cell
+        }
+        if !previewData.keys.contains(session) {
+            previewData[session] = preview(videoURL: session)
+        }
         if trashData.contains(session) {
             print("trash: \(session)")
-            cell.configure(text: session, switchVal: false)
+            cell.configure(text: session, switchVal: false, previewImage: previewData[session]!, duration: videoDuration(videoURL: session))
         } else {
-            cell.configure(text: session, switchVal: true)
+            cell.configure(text: session, switchVal: true, previewImage: previewData[session]!, duration: videoDuration(videoURL: session))
         }
         return cell
     }
@@ -88,6 +97,7 @@ class SessionSettingsTableViewController: UITableViewController {
             deleteVideo(url: sessionsData[indexPath[1]][0])
             LocalStorage.removeArrayStringElement(key: LocalStorage.trashList, value: sessionsData[indexPath[1]][0])
             LocalStorage.removeArrayElement(key: LocalStorage.sessionArray, index: indexPath[1])
+            previewData.removeValue(forKey: sessionsData[indexPath[1]][0])
             sessionsData.remove(at: indexPath[1])
             if LocalStorage.getArray(key: LocalStorage.sessionArray).count == 0 {
                 LocalStorage.set(key: LocalStorage.sessionArray, val: [["No Elements"]])
@@ -156,5 +166,34 @@ class SessionSettingsTableViewController: UITableViewController {
 //        super.tableView(tableView, didSelectRowAt: indexPath)
         print("\(indexPath) clicked")
         exportVideo(url: sessionsData[indexPath[1]][0])
+    }
+}
+
+
+extension SessionSettingsTableViewController {
+    func preview(videoURL: String) -> UIImage{
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+//        print("path = \(paths)")
+        let fileUrl = paths[0].appendingPathComponent("\(videoURL).mov")
+        let asset = AVAsset(url: fileUrl)
+        print(fileUrl)
+//        let durationInSeconds = asset.duration.seconds
+        let generator = AVAssetImageGenerator.init(asset: asset)
+        generator.appliesPreferredTrackTransform = true
+        generator.requestedTimeToleranceBefore = CMTime.zero
+        generator.requestedTimeToleranceAfter = CMTime.zero
+        let cgImage = try! generator.copyCGImage(at: CMTimeMake(value: Int64(1), timescale: 1000), actualTime: nil)
+        let image = UIImage(cgImage: cgImage)
+        return image
+    }
+    
+    func videoDuration(videoURL: String) -> Int{
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+//        print("path = \(paths)")
+        let fileUrl = paths[0].appendingPathComponent("\(videoURL).mov")
+        let asset = AVAsset(url: fileUrl)
+        print(fileUrl)
+        let durationInSeconds = asset.duration.seconds
+        return Int(durationInSeconds)
     }
 }
