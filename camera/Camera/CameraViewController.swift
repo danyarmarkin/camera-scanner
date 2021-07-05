@@ -105,7 +105,7 @@ class CameraViewController: UIViewController, UITableViewDelegate {
         cameraButton.tintColor = UIColor.black
         registerNotification()
         
-        batteryTableView.delegate = self
+//        batteryTableView.delegate = self
         
         print(LocalStorage.getString(key: LocalStorage.currentSession))
         
