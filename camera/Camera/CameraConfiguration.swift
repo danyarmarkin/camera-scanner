@@ -228,7 +228,6 @@ extension CameraConfiguration {
         }
         self.videoOutput?.stopRecording()
         
-        
     }
     
     func separateVideo() {

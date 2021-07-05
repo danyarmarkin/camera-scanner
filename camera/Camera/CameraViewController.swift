@@ -10,7 +10,7 @@ import Foundation
 import CoreMedia
 import Firebase
 
-class CameraViewController: UIViewController {
+class CameraViewController: UIViewController, UITableViewDelegate {
     
     var ref: DatabaseReference!
     let videoRecordingStartedId = "isStartVideo"
@@ -24,6 +24,12 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var cameraButton: CustomButton!
     @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var videoDuration: UILabel!
+    @IBOutlet weak var isoView: UILabel!
+    @IBOutlet weak var shutterView: UILabel!
+    @IBOutlet weak var wbView: UILabel!
+    @IBOutlet weak var tintView: UILabel!
+    @IBOutlet weak var fpsView: UILabel!
+    @IBOutlet weak var batteryTableView: UITableView!
     
     let localStorage = LocalStorage()
     
@@ -99,6 +105,8 @@ class CameraViewController: UIViewController {
         cameraButton.tintColor = UIColor.black
         registerNotification()
         
+        batteryTableView.delegate = self
+        
         print(LocalStorage.getString(key: LocalStorage.currentSession))
         
         let updateParam = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: {(timer) in
@@ -118,6 +126,11 @@ class CameraViewController: UIViewController {
                 self.wb = wb
                 self.tint = tint
                 self.fps = fps
+                self.isoView.text = "ISO\n\n\(iso)"
+                self.shutterView.text = "Shutter\n\n\(Int(1000/shutter))"
+                self.wbView.text = "WB\n\n\(wb)"
+                self.tintView.text = "Tint\n\n\(tint)"
+                self.fpsView.text = "FPS\n\n\(fps)"
                 self.cameraConfig.setupISO(iso: Float(self.iso), time: self.shutter, wb: self.wb, tint: self.tint, handler: {(error) in
                     if error != nil {
                         print("error: \(String(describing: error))")
@@ -147,6 +160,10 @@ class CameraViewController: UIViewController {
     
     @objc fileprivate func showToastForRecordingStopped() {
         showToast(message: "Recording Stopped", fontSize: 12.0)
+    }
+    
+    @objc fileprivate func showToastForAddToTrashList() {
+        showToast(message: "Session \(self.previousSession) added to trash list", fontSize: 12.0)
     }
     
     @objc func video(_ video: String, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
@@ -226,6 +243,7 @@ class CameraViewController: UIViewController {
                             let session = LocalStorage.randomSessionId(length: 4)
                             self.ref.child(self.currentSessionId).setValue(session)
                         }
+                        self.showToastForSaved()
                     }
                     print(1)
                 }
@@ -237,9 +255,6 @@ class CameraViewController: UIViewController {
         ref.child(currentSessionId).observe(DataEventType.value, with: {(snapshot) in
             let value = snapshot.value
             if var val = value as? String {
-//                if self.currentSession.text != self.previousSession {
-//                    self.previousSession = self.currentSession.text ?? "AAAA"
-//                }
                 val = "\(val)-\(self.deviceIndex)\(self.devicesAmount)"
                 self.currentSession.text = val
                 self.currentSession.tintColor = .black
@@ -330,7 +345,7 @@ class CameraViewController: UIViewController {
             if let val = value as? Int {
                 if val == 1 {
                     LocalStorage.appendArray(key: LocalStorage.trashList, value: self.previousSession ?? "AAAA")
-                    print("added previous session (\(self.previousSession) to trash list")
+                    self.showToastForAddToTrashList()
                 }
             }
         })
@@ -375,4 +390,5 @@ extension CameraViewController {
 
     }
 }
+
 

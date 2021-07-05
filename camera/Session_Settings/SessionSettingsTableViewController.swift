@@ -63,7 +63,7 @@ class SessionSettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SessionTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SessionTableViewCell
         let session = sessionsData[indexPath[1]][0]
-        if sessionsData == [["AAAA"]] {
+        if session.count <= 4 {
             cell.configure(text: session, switchVal: false)
             return cell
         }
@@ -182,9 +182,13 @@ extension SessionSettingsTableViewController {
         generator.appliesPreferredTrackTransform = true
         generator.requestedTimeToleranceBefore = CMTime.zero
         generator.requestedTimeToleranceAfter = CMTime.zero
-        let cgImage = try! generator.copyCGImage(at: CMTimeMake(value: Int64(1), timescale: 1000), actualTime: nil)
-        let image = UIImage(cgImage: cgImage)
-        return image
+        do {
+            let cgImage = try generator.copyCGImage(at: CMTimeMake(value: Int64(1), timescale: 1000), actualTime: nil)
+            let image = UIImage(cgImage: cgImage)
+            return image
+        } catch {
+            return UIImage.init(systemName: "paperplane.fill")!
+        }
     }
     
     func videoDuration(videoURL: String) -> Int{
