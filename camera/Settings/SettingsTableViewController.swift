@@ -37,11 +37,12 @@ class SettingsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 5
+        return 6
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if section == 5 { return 1 }
         return 2
     }
 
@@ -49,6 +50,12 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var numberCell = tableView.dequeueReusableCell(withIdentifier: "NumberCell", for: indexPath) as! NumberTableViewCell
         var sliderCell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as! SliderTableViewCell
+        var isMainDeviceCell = tableView.dequeueReusableCell(withIdentifier: "main_device_cell", for: indexPath) as! MainDeviceTableViewCell
+        
+        if indexPath == [5, 0] {
+            isMainDeviceCell.configure()
+            return isMainDeviceCell
+        }
         
         switch indexPath[1] {
         case 0:
@@ -146,6 +153,8 @@ class SettingsTableViewController: UITableViewController {
             return "Tint"
         case 4:
             return "FPS"
+        case 5:
+            return "Device"
         default:
             return "no name section"
         }

@@ -6,6 +6,7 @@ import Foundation
 import UIKit
 import CoreLocation
 import CoreMotion
+import Firebase
 
 class CompassViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var compassBar: UIProgressView!
@@ -16,11 +17,14 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
     var currentVal: Float = 0
     var isStart = true
     var isRev = false
+    var ref: DatabaseReference!
 
     var motion = CMMotionManager()
     var timer: Timer!
 
     var locationManager: CLLocationManager!
+    
+    let devices = DeviceControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,15 +32,18 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.startUpdatingHeading()
-
+        LocalStorage.set(key: LocalStorage.deviceName, val: UIDevice.current.name + "-" + UIDevice.current.model)
+        ref = Database.database(url: "https://camera-scan-e5684-default-rtdb.europe-west1.firebasedatabase.app/").reference()
+        ref.child("devices").child(LocalStorage.getString(key: LocalStorage.deviceName)).setValue(1)
+        devices.configure(ref: ref)
+        devices.monitorDevices()
+        registerLive()
         motion.startGyroUpdates()
         motion.startAccelerometerUpdates()
-//        startAccelerometers()
-//        LocalStorage.set(key: LocalStorage.currentSession, val: "HDOV")
-        print("view did load")
-
         LocalStorage.set(key: LocalStorage.currentSession, val: LocalStorage.randomSessionId(length: 4))
         LocalStorage.set(key: LocalStorage.sliderOn, val: false)
+        
+//        LocalStorage.set(key: LocalStorage.sessionArray, val: [["YGJB"], ["UHUI"]])
 
         UIApplication.shared.isIdleTimerDisabled = true
     }
@@ -84,6 +91,28 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
 //        print(motion.accelerometerData?.acceleration.y)
 //        print(motion.accelerometerData?.acceleration.z)
 //        print("---")
+    }
+    func registerLive() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(enterBackground),
+                                               name: UIApplication.didEnterBackgroundNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(enterFocus),
+                                               name: UIApplication.didBecomeActiveNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(enterBackground),
+                                               name: UIApplication.didFinishLaunchingNotification,
+                                               object: nil)
+    }
+    
+    @objc func enterBackground() {
+        devices.unregisterDevice()
+    }
+    
+    @objc func enterFocus() {
+        devices.registerDevice()
     }
 
 }

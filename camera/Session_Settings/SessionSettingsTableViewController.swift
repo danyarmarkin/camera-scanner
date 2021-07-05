@@ -11,6 +11,7 @@ import UIKit
 class SessionSettingsTableViewController: UITableViewController {
     
     var sessionsData = [["HFUI"], ["KMKS"], ["IFIB"], ["FHWI"], ["QOJC"], ["PAFF"]]
+    var trashData: [String] = ["AAAA"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +21,21 @@ class SessionSettingsTableViewController: UITableViewController {
 //        LocalStorage.removeArrayElement(key: LocalStorage.sessionArray, index: 0)
         let updateSessions = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: {(timer) in
             let val = LocalStorage.getArray(key: LocalStorage.sessionArray)
-            if let v = val as? [[String]] {
-                if v != self.sessionsData {
+            let trashList = LocalStorage.getArray(key: LocalStorage.trashList)
+            if let v = val as? [[String]]{
+                if v != self.sessionsData{
                     self.sessionsData = v
                     self.tableView.reloadData()
                 }
             }
-            let v = val[0]
+            if let trash = trashList as? [String] {
+                if trash != self.trashData {
+                    print("updating trash list")
+                    self.trashData = trash
+                    print(trash)
+                    self.tableView.reloadData()
+                }
+            }
         })
         updateSessions.tolerance = 0.2
 
@@ -51,15 +60,19 @@ class SessionSettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SessionTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SessionTableViewCell
-        
-        cell.configure(text: sessionsData[indexPath[1]][0])
-
-//        print(indexPath)
-
+        let session = sessionsData[indexPath[1]][0]
+        if trashData.contains(session) {
+            print("trash: \(session)")
+            cell.configure(text: session, switchVal: false)
+        } else {
+            cell.configure(text: session, switchVal: true)
+        }
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat.init(100.0)
+    }
     
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -72,8 +85,14 @@ class SessionSettingsTableViewController: UITableViewController {
     // MARK: Delete Rows
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            deleteVideo(url: sessionsData[indexPath[1]][0])
+            LocalStorage.removeArrayStringElement(key: LocalStorage.trashList, value: sessionsData[indexPath[1]][0])
             LocalStorage.removeArrayElement(key: LocalStorage.sessionArray, index: indexPath[1])
             sessionsData.remove(at: indexPath[1])
+            if LocalStorage.getArray(key: LocalStorage.sessionArray).count == 0 {
+                LocalStorage.set(key: LocalStorage.sessionArray, val: [["No Elements"]])
+                sessionsData = [["No Elements"]]
+            }
 //            self.tableView.reloadData()
             print("reloaded")
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -121,6 +140,16 @@ class SessionSettingsTableViewController: UITableViewController {
 
         self.present(activityVC, animated: true, completion: nil)
 
+    }
+    
+    func deleteVideo(url: String) {
+        var filePath = url
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let fileUrl = paths[0].appendingPathComponent("\(url).mov")
+        filePath = fileUrl.path
+        print("path = \(filePath)")
+        let fm = FileManager()
+        try? fm.removeItem(atPath: filePath)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
