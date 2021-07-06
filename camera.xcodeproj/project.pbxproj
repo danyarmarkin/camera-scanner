@@ -18,6 +18,8 @@
 		EC2AFF5A267A1377007864CE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = EC2AFF59267A1377007864CE /* FirebaseDatabase */; };
 		EC2AFF5C267A1377007864CE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EC2AFF5B267A1377007864CE /* FirebaseFirestore */; };
 		EC2AFF5E267B5992007864CE /* VideoSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF5D267B5992007864CE /* VideoSeparator.swift */; };
+		EC580EA6268E6954003BB38E /* Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC580EA5268E6954003BB38E /* Live.swift */; };
+		EC580EAC2694ADB1003BB38E /* SessionGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC580EAB2694ADB1003BB38E /* SessionGroupTableViewCell.swift */; };
 		EC5C6F91267D72F800E9E130 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C6F90267D72F800E9E130 /* SessionTableViewCell.swift */; };
 		EC5C6F95267D744500E9E130 /* SessionSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C6F94267D744500E9E130 /* SessionSettingsTableViewController.swift */; };
 		EC76B6162674CBC3001709CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B6152674CBC3001709CB /* AppDelegate.swift */; };
@@ -29,6 +31,8 @@
 		EC76B62D2674CBC3001709CB /* cameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B62C2674CBC3001709CB /* cameraTests.swift */; };
 		EC76B6382674CBC3001709CB /* cameraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B6372674CBC3001709CB /* cameraUITests.swift */; };
 		EC8D0DB02684D32B009413E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */; };
+		EC982ACD268A4D5300805C39 /* DeviceControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC982ACC268A4D5300805C39 /* DeviceControl.swift */; };
+		EC982ACF268A56E900805C39 /* MainDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC982ACE268A56E900805C39 /* MainDeviceTableViewCell.swift */; };
 		ECE1EB332685E73700B34F47 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1EB322685E73700B34F47 /* SettingsTableViewController.swift */; };
 		ECE1EB3B2685E98300B34F47 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1EB3A2685E98300B34F47 /* NumberTableViewCell.swift */; };
 		ECE1EB3D2685E98F00B34F47 /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1EB3C2685E98F00B34F47 /* SliderTableViewCell.swift */; };
@@ -60,6 +64,8 @@
 		EC2AFF502679EE76007864CE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		EC2AFF522679F1F5007864CE /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		EC2AFF5D267B5992007864CE /* VideoSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSeparator.swift; sourceTree = "<group>"; };
+		EC580EA5268E6954003BB38E /* Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Live.swift; sourceTree = "<group>"; };
+		EC580EAB2694ADB1003BB38E /* SessionGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionGroupTableViewCell.swift; sourceTree = "<group>"; };
 		EC5C6F90267D72F800E9E130 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		EC5C6F94267D744500E9E130 /* SessionSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSettingsTableViewController.swift; sourceTree = "<group>"; };
 		EC76B6122674CBC3001709CB /* camera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = camera.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +83,8 @@
 		EC76B6372674CBC3001709CB /* cameraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraUITests.swift; sourceTree = "<group>"; };
 		EC76B6392674CBC3001709CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EC982ACC268A4D5300805C39 /* DeviceControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControl.swift; sourceTree = "<group>"; };
+		EC982ACE268A56E900805C39 /* MainDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDeviceTableViewCell.swift; sourceTree = "<group>"; };
 		ECE1EB322685E73700B34F47 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		ECE1EB3A2685E98300B34F47 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTableViewCell.swift; sourceTree = "<group>"; };
 		ECE1EB3C2685E98F00B34F47 /* SliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTableViewCell.swift; sourceTree = "<group>"; };
@@ -115,6 +123,7 @@
 			children = (
 				EC5C6F90267D72F800E9E130 /* SessionTableViewCell.swift */,
 				EC5C6F94267D744500E9E130 /* SessionSettingsTableViewController.swift */,
+				EC580EAB2694ADB1003BB38E /* SessionGroupTableViewCell.swift */,
 			);
 			path = Session_Settings;
 			sourceTree = "<group>";
@@ -136,6 +145,7 @@
 			children = (
 				EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */,
 				22585578D698BD41E9C947F1 /* LocalStorage.swift */,
+				EC982ACC268A4D5300805C39 /* DeviceControl.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -192,6 +202,7 @@
 				EC76B61E2674CBC3001709CB /* Assets.xcassets */,
 				EC76B6232674CBC3001709CB /* Info.plist */,
 				EC5C6F96267F450D00E9E130 /* Database */,
+				EC580EA5268E6954003BB38E /* Live.swift */,
 			);
 			path = camera;
 			sourceTree = "<group>";
@@ -220,6 +231,7 @@
 				ECE1EB322685E73700B34F47 /* SettingsTableViewController.swift */,
 				ECE1EB3A2685E98300B34F47 /* NumberTableViewCell.swift */,
 				ECE1EB3C2685E98F00B34F47 /* SliderTableViewCell.swift */,
+				EC982ACE268A56E900805C39 /* MainDeviceTableViewCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -373,11 +385,15 @@
 				ECE1EB332685E73700B34F47 /* SettingsTableViewController.swift in Sources */,
 				EC76B6182674CBC3001709CB /* SceneDelegate.swift in Sources */,
 				EC2AFF4F2679EE5F007864CE /* CustomButton.swift in Sources */,
+				EC580EAC2694ADB1003BB38E /* SessionGroupTableViewCell.swift in Sources */,
 				ECE1EB3D2685E98F00B34F47 /* SliderTableViewCell.swift in Sources */,
+				EC982ACD268A4D5300805C39 /* DeviceControl.swift in Sources */,
+				EC982ACF268A56E900805C39 /* MainDeviceTableViewCell.swift in Sources */,
 				2258532C40EACFD88397B535 /* CompassViewController.swift in Sources */,
 				EC2AFF4E2679EE5F007864CE /* CameraConfiguration.swift in Sources */,
 				22585A80DAE8C821C8C7832D /* SettingsViewController.swift in Sources */,
 				225857798682AF9DB5DF9AB0 /* LocalStorage.swift in Sources */,
+				EC580EA6268E6954003BB38E /* Live.swift in Sources */,
 				EC5C6F95267D744500E9E130 /* SessionSettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

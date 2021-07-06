@@ -10,17 +10,28 @@ import Foundation
 import CoreMedia
 import Firebase
 
-class CameraViewController: UIViewController {
+class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate {
     
     var ref: DatabaseReference!
     let videoRecordingStartedId = "isStartVideo"
     let currentSessionId = "currentSession"
     let mainDeviceId = "mainDevice"
     
+    var previousSession = "AAAA"
+    
     @IBOutlet weak var ni: UINavigationItem!
     @IBOutlet weak var currentSession: UILabel!
     @IBOutlet weak var cameraButton: CustomButton!
     @IBOutlet weak var previewImageView: UIImageView!
+    @IBOutlet weak var videoDuration: UILabel!
+    @IBOutlet weak var isoView: UILabel!
+    @IBOutlet weak var shutterView: UILabel!
+    @IBOutlet weak var wbView: UILabel!
+    @IBOutlet weak var tintView: UILabel!
+    @IBOutlet weak var fpsView: UILabel!
+    @IBOutlet weak var trashButton: UIButton!
+    @IBOutlet weak var objectNameTextField: UITextField!
+    var isTrashButtonActive = false
     
     let localStorage = LocalStorage()
     
@@ -35,7 +46,13 @@ class CameraViewController: UIViewController {
     var tint = 0
     var fps = 24
     
-
+    var durationTimer = Timer()
+    var duration = 0
+    
+    var devicesAmount = 1
+    var deviceIndex = 1
+    var objectName = "object"
+    
     var videoRecordingStarted: Bool = false {
         didSet{
             if videoRecordingStarted {
@@ -91,10 +108,12 @@ class CameraViewController: UIViewController {
         cameraButton.tintColor = UIColor.black
         registerNotification()
         
+        objectNameTextField.delegate = self
+        
         print(LocalStorage.getString(key: LocalStorage.currentSession))
         
         let updateParam = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: {(timer) in
-            self.currentSession.text = LocalStorage.getString(key: LocalStorage.currentSession)
+//            self.currentSession.text = LocalStorage.getString(key: LocalStorage.currentSession)
 
             let iso = LocalStorage.getInt(key: LocalStorage.isoVal)
             let shutter = LocalStorage.getInt(key: LocalStorage.shutterVal)
@@ -110,6 +129,11 @@ class CameraViewController: UIViewController {
                 self.wb = wb
                 self.tint = tint
                 self.fps = fps
+                self.isoView.text = "ISO\n\n\(iso)"
+                self.shutterView.text = "Shutter\n\n\(Int(1000/shutter))"
+                self.wbView.text = "WB\n\n\(wb)"
+                self.tintView.text = "Tint\n\n\(tint)"
+                self.fpsView.text = "FPS\n\n\(fps)"
                 self.cameraConfig.setupISO(iso: Float(self.iso), time: self.shutter, wb: self.wb, tint: self.tint, handler: {(error) in
                     if error != nil {
                         print("error: \(String(describing: error))")
@@ -119,7 +143,6 @@ class CameraViewController: UIViewController {
             }
         })
         updateParam.tolerance = 0.15
-
         UIApplication.shared.isIdleTimerDisabled = true
         monitoringData()
     }
@@ -142,6 +165,10 @@ class CameraViewController: UIViewController {
         showToast(message: "Recording Stopped", fontSize: 12.0)
     }
     
+    @objc fileprivate func showToastForAddToTrashList() {
+        showToast(message: "Session \(self.previousSession) added to trash list", fontSize: 12.0)
+    }
+    
     @objc func video(_ video: String, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             // we got back an error!
@@ -154,18 +181,31 @@ class CameraViewController: UIViewController {
         print(video)
         
     }
-    var ind = 1
-    @IBAction func onISOChanged(_ sender: Any) {
-        cameraConfig.separateVideo()
+    @IBAction func onobject(_ sender: UITextField) {
+        ref.child("objectName").setValue(sender.text)
     }
     
     // MARK: Camera button clicked
 
     @IBAction func onDidCameraButtonClicked(_ sender: Any) {
+        self.ref.child("movePrivousSessionToTrashList").setValue(0)
         if videoRecordingStarted {
             ref.child(videoRecordingStartedId).setValue(0)
         } else if !videoRecordingStarted {
             ref.child(videoRecordingStartedId).setValue(1)
+        }
+        isTrashButtonActive = false
+        trashButton.backgroundColor = .systemGreen
+    }
+    @IBAction func sendSessionToTrashList(_ sender: Any) {
+        if isTrashButtonActive {
+            self.ref.child("trashList").child(previousSession).setValue(0)
+            isTrashButtonActive = false
+            trashButton.backgroundColor = .systemGreen
+        } else {
+            self.ref.child("trashList").child(previousSession).setValue(1)
+            isTrashButtonActive = true
+            trashButton.backgroundColor = .systemOrange
         }
     }
     
@@ -180,37 +220,99 @@ class CameraViewController: UIViewController {
         ref.child(videoRecordingStartedId).observe(DataEventType.value, with: { (snapshot) in
             let value = snapshot.value
             if let val = value as? Int {
+                
                 if val == 0 && self.videoRecordingStarted {
                     self.videoRecordingStarted = false
+                    self.durationTimer.invalidate()
+                    self.videoDuration.text = "0:00"
+                    self.duration = 0
                     self.cameraConfig.stopRecording { (error) in
                         print(error ?? "Video recording error")
                     }
+                    print(0)
                 } else if val == 1 && !self.videoRecordingStarted {
+                    self.durationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {(timer) in
+                        self.duration += 1
+                        let seconds = self.duration % 60
+                        if seconds < 10 {
+                            self.videoDuration.text = "\(Int(floor(Double(self.duration / 60)))):0\(seconds)"
+                        } else {
+                            self.videoDuration.text = "\(Int(floor(Double(self.duration / 60)))):\(seconds)"
+                        }
+                    })
+                    self.durationTimer.tolerance = 0.01
                     self.videoRecordingStarted = true
                     self.cameraConfig.recordVideo { (url, error) in
                         guard let url = url else {
                             print(error ?? "Video recording error")
                             return
                         }
-                        UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, #selector(self.video(_:didFinishSavingWithError:contextInfo:)), nil)
+//                        UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, #selector(self.video(_:didFinishSavingWithError:contextInfo:)), nil)
+                        self.previousSession = LocalStorage.getString(key: LocalStorage.currentSession)
                         LocalStorage.appendArray(key: LocalStorage.sessionArray,
-                                value: [self.currentSession.text, url.path])
+                                                 value: [LocalStorage.getString(key: LocalStorage.currentSession),
+                                                         url.path])
                         if LocalStorage.getBool(key: LocalStorage.isMainDevice) {
                             let session = LocalStorage.randomSessionId(length: 4)
                             self.ref.child(self.currentSessionId).setValue(session)
                         }
+                        self.showToastForSaved()
                     }
+                    print(1)
                 }
             }
         })
+        
+        // MARK: Devices & session Control
 
         ref.child(currentSessionId).observe(DataEventType.value, with: {(snapshot) in
             let value = snapshot.value
             if let val = value as? String {
-                self.currentSession.text = val
-                LocalStorage.set(key: LocalStorage.currentSession, val: val)
+                LocalStorage.set(key: LocalStorage.sessionId, val: val)
+                self.updateSession()
             }
         })
+        
+        ref.child("devices").child(LocalStorage.getString(key: LocalStorage.deviceName)).observe(DataEventType.value, with: {(snapshot) in
+            let value = snapshot.value
+            
+            if let val = value as? Int {
+                self.deviceIndex = val
+            }
+            if !self.videoRecordingStarted {
+                self.updateSession()
+                self.currentSession.tintColor = nil
+            } else {
+                self.updateSession()
+                self.currentSession.tintColor = .systemRed
+            }
+        })
+        
+        ref.child("devicesAmount").observe(DataEventType.value, with: {(snapshot) in
+            let value = snapshot.value
+            
+            if let val = value as? Int {
+                self.devicesAmount = val
+            }
+            if !self.videoRecordingStarted {
+                self.updateSession()
+                self.currentSession.tintColor = nil
+            } else {
+                self.updateSession()
+                self.currentSession.tintColor = .systemRed
+            }
+        })
+        
+        ref.child("objectName").observe(DataEventType.value, with: {(snapshot) in
+            let value = snapshot.value
+            if let val = value as? String {
+                self.objectName = val
+                self.updateSession()
+            }
+        })
+        
+        // MARK: Date Control
+         
 
         ref.child(mainDeviceId).observe(DataEventType.value, with: {(snapshot) in
             let value = snapshot.value
@@ -256,6 +358,28 @@ class CameraViewController: UIViewController {
             }
             
         })
+        
+        ref.child("movePrivousSessionToTrashList").observe(DataEventType.value, with: {(snapshot) in
+            let value = snapshot.value
+            if let val = value as? Int {
+                if val == 1 {
+                    LocalStorage.appendArray(key: LocalStorage.trashList, value: self.previousSession)
+                    self.showToastForAddToTrashList()
+                }
+            }
+        })
+    }
+    
+    func updateSession() {
+        let val = "_\(LocalStorage.getString(key: LocalStorage.sessionId))_\(deviceIndex)\(devicesAmount)"
+        objectNameTextField.text = objectName
+        currentSession.text = val
+        LocalStorage.set(key: LocalStorage.currentSession, val: objectName + val)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
@@ -297,4 +421,5 @@ extension CameraViewController {
 
     }
 }
+
 
