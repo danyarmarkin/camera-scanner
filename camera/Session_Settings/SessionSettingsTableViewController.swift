@@ -53,15 +53,27 @@ class SessionSettingsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if section == 0 {
+            return 2
+        }
         return sessionsData.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath[0] == 0 {
+            let cell: SessionGroupTableViewCell = tableView.dequeueReusableCell(withIdentifier: "session_group_cell") as! SessionGroupTableViewCell
+            if indexPath[1] == 0 {
+                cell.configure(name: "Export all good session", color: .systemBlue)
+            } else {
+                cell.configure(name: "Delete trash list", color: .systemRed)
+            }
+            return cell
+        }
         let cell: SessionTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SessionTableViewCell
         let session = sessionsData[indexPath[1]][0]
         if session.count <= 4 {
@@ -81,16 +93,23 @@ class SessionSettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat.init(100.0)
+        if indexPath[0] == 0 {
+            return 64.0
+        }
+        return 100.0
     }
     
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
+        if indexPath[0] == 0 { return false }
         return true
     }
     
-
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 { return "Actions" }
+        return "Sessions"
+    }
     
     // MARK: Delete Rows
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -165,9 +184,13 @@ class SessionSettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        super.tableView(tableView, didSelectRowAt: indexPath)
-//        print("\(indexPath) clicked")
-        exportVideo(url: sessionsData[indexPath[1]][0])
+        if indexPath == [0, 0] {  // export good sessions
+            
+        } else if indexPath == [0, 1] {
+            
+        } else {
+            exportVideo(url: sessionsData[indexPath[1]][0])
+        }
     }
     
     func monitoringData() {
