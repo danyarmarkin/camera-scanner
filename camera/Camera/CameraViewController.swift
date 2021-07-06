@@ -29,7 +29,9 @@ class CameraViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var wbView: UILabel!
     @IBOutlet weak var tintView: UILabel!
     @IBOutlet weak var fpsView: UILabel!
-    @IBOutlet weak var batteryTableView: UITableView!
+    @IBOutlet weak var trashButton: UIButton!
+    
+    var isTrashButtonActive = false
     
     let localStorage = LocalStorage()
     
@@ -178,10 +180,6 @@ class CameraViewController: UIViewController, UITableViewDelegate {
         print(video)
         
     }
-    var ind = 1
-    @IBAction func onISOChanged(_ sender: Any) {
-        cameraConfig.separateVideo()
-    }
     
     // MARK: Camera button clicked
 
@@ -192,9 +190,19 @@ class CameraViewController: UIViewController, UITableViewDelegate {
         } else if !videoRecordingStarted {
             ref.child(videoRecordingStartedId).setValue(1)
         }
+        isTrashButtonActive = false
+        trashButton.backgroundColor = .systemGreen
     }
-    @IBAction func toTrash(_ sender: Any) {
-        self.ref.child("trashList").child(previousSession).setValue(1)
+    @IBAction func sendSessionToTrashList(_ sender: Any) {
+        if isTrashButtonActive {
+            self.ref.child("trashList").child(previousSession).setValue(0)
+            isTrashButtonActive = false
+            trashButton.backgroundColor = .systemGreen
+        } else {
+            self.ref.child("trashList").child(previousSession).setValue(1)
+            isTrashButtonActive = true
+            trashButton.backgroundColor = .systemOrange
+        }
     }
     
     override func accessibilityElementDidBecomeFocused() {
