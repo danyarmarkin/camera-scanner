@@ -7,9 +7,12 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 //import Photos
 
 class SessionSettingsTableViewController: UITableViewController {
+    
+    var ref: DatabaseReference!
     
     var sessionsData = [["AAAA"]]
     var trashData: [String] = ["AAAA"]
@@ -17,10 +20,10 @@ class SessionSettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        ref = Database.database(url: "https://camera-scan-e5684-default-rtdb.europe-west1.firebasedatabase.app/").reference()
+        
         self.navigationItem.rightBarButtonItem = self.editButtonItem
-
-//        LocalStorage.removeArrayElement(key: LocalStorage.sessionArray, index: 0)
         let updateSessions = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: {(timer) in
             let val = LocalStorage.getArray(key: LocalStorage.sessionArray)
             let trashList = LocalStorage.getArray(key: LocalStorage.trashList)
@@ -42,10 +45,8 @@ class SessionSettingsTableViewController: UITableViewController {
         updateSessions.tolerance = 0.2
 
         UIApplication.shared.isIdleTimerDisabled = true
-
-//        let videosArray = PHAsset.fetchAssets(with: .video, options: nil)
-//        videosArray[0]
-//        exportVideo()
+        
+        monitoringData()
     }
 
     // MARK: - Table view data source
@@ -94,6 +95,7 @@ class SessionSettingsTableViewController: UITableViewController {
     // MARK: Delete Rows
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            ref.child("trashList").child(sessionsData[indexPath[1]][0]).setValue(nil)
             deleteVideo(url: sessionsData[indexPath[1]][0])
             LocalStorage.removeArrayStringElement(key: LocalStorage.trashList, value: sessionsData[indexPath[1]][0])
             LocalStorage.removeArrayElement(key: LocalStorage.sessionArray, index: indexPath[1])
@@ -133,7 +135,7 @@ class SessionSettingsTableViewController: UITableViewController {
 //        let filePath = Bundle.main.path(forResource: url, ofType: "mov") ?? nil
 
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        print("path = \(paths)")
+//        print("path = \(paths)")
         let fileUrl = paths[0].appendingPathComponent("\(url).mov")
         filePath = fileUrl.path
 
@@ -164,8 +166,36 @@ class SessionSettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        super.tableView(tableView, didSelectRowAt: indexPath)
-        print("\(indexPath) clicked")
+//        print("\(indexPath) clicked")
         exportVideo(url: sessionsData[indexPath[1]][0])
+    }
+    
+    func monitoringData() {
+        ref.child("trashList").observe(DataEventType.value, with: {(snapshot) in
+            let value = snapshot.value
+            if let val = value as? Dictionary<String, Int> {
+                for i in val {
+                    print("========")
+                    if !self.trashData.contains(i.key) && i.value == 1{
+                        self.trashData.append(i.key)
+                        LocalStorage.appendArray(key: LocalStorage.trashList, value: i.key)
+                        print("new value \(i.key)")
+                    }
+                    
+                    if self.trashData.contains(i.key) && i.value == 0 {
+                        for j in 0...self.trashData.count - 1 {
+                            if self.trashData[j] == i.key {
+                                self.trashData.remove(at: j)
+                                LocalStorage.removeArrayStringElement(key: LocalStorage.trashList, value: i.key)
+                                break
+                            }
+                        }
+                        print("remove \(i.key)")
+                    }
+                }
+                self.tableView.reloadData()
+            }
+        })
     }
 }
 
@@ -176,7 +206,7 @@ extension SessionSettingsTableViewController {
 //        print("path = \(paths)")
         let fileUrl = paths[0].appendingPathComponent("\(videoURL).mov")
         let asset = AVAsset(url: fileUrl)
-        print(fileUrl)
+//        print(fileUrl)
 //        let durationInSeconds = asset.duration.seconds
         let generator = AVAssetImageGenerator.init(asset: asset)
         generator.appliesPreferredTrackTransform = true
@@ -196,7 +226,7 @@ extension SessionSettingsTableViewController {
 //        print("path = \(paths)")
         let fileUrl = paths[0].appendingPathComponent("\(videoURL).mov")
         let asset = AVAsset(url: fileUrl)
-        print(fileUrl)
+//        print(fileUrl)
         let durationInSeconds = asset.duration.seconds
         return Int(durationInSeconds)
     }
