@@ -29,7 +29,6 @@ class CameraViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var wbView: UILabel!
     @IBOutlet weak var tintView: UILabel!
     @IBOutlet weak var fpsView: UILabel!
-    @IBOutlet weak var batteryTableView: UITableView!
     
     let localStorage = LocalStorage()
     
