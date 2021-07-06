@@ -95,6 +95,7 @@ class SessionSettingsTableViewController: UITableViewController {
     // MARK: Delete Rows
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            ref.child("trashList").child(sessionsData[indexPath[1]][0]).setValue(nil)
             deleteVideo(url: sessionsData[indexPath[1]][0])
             LocalStorage.removeArrayStringElement(key: LocalStorage.trashList, value: sessionsData[indexPath[1]][0])
             LocalStorage.removeArrayElement(key: LocalStorage.sessionArray, index: indexPath[1])
