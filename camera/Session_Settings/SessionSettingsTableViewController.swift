@@ -148,27 +148,22 @@ class SessionSettingsTableViewController: UITableViewController {
         return true
     }
 
-    func exportVideo(url: String = "file:///var/mobile/Containers/Data/Application/8AD37CFE-0366-4D43-AED5-7799A4457854/Documents/SRRO.mov") {
-
-        var filePath = url
-//        let filePath = Bundle.main.path(forResource: url, ofType: "mov") ?? nil
-
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-//        print("path = \(paths)")
-        let fileUrl = paths[0].appendingPathComponent("\(url).mov")
-        filePath = fileUrl.path
-
-        if filePath == nil {
-            print("url unavailable")
+    func exportVideo(url: [String] = ["file:///var/mobile/Containers/Data/Application/8AD37CFE-0366-4D43-AED5-7799A4457854/Documents/SRRO.mov"]) {
+        var objectsToShare: [NSURL]! = []
+        if url.count == 0 {
             return
         }
-        let videoLink = NSURL(fileURLWithPath: filePath)
+        for i in 0...url.count - 1 {
+            var filePath = url[i]
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            let fileUrl = paths[0].appendingPathComponent("\(url[i]).mov")
+            filePath = fileUrl.path
+            let videoLink = NSURL(fileURLWithPath: filePath)
+            objectsToShare.append(videoLink)
+        }
 
-        let objectsToShare = [videoLink] //comment!, imageData!, myWebsite!]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-
         activityVC.setValue("Session", forKey: "subject")
-
         self.present(activityVC, animated: true, completion: nil)
 
     }
@@ -185,11 +180,18 @@ class SessionSettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == [0, 0] {  // export good sessions
+            var exportSessions: [String] = []
+            for i in sessionsData {
+                if !trashData.contains(i[0]) {
+                    exportSessions.append(i[0])
+                }
+            }
+            exportVideo(url: exportSessions)
             
-        } else if indexPath == [0, 1] {
+        } else if indexPath == [0, 1] {  // delete trash list
             
         } else {
-            exportVideo(url: sessionsData[indexPath[1]][0])
+            exportVideo(url: [ sessionsData[indexPath[1]][0] ])
         }
     }
     

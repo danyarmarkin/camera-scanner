@@ -81,7 +81,7 @@ extension CameraConfiguration {
             }
             
             
-            captureSession.sessionPreset = .hd4K3840x2160
+            captureSession.sessionPreset =  .hd4K3840x2160
             print(rearCamera?.formats.first?.minISO ?? 0)
             print(rearCamera?.formats.first?.maxISO ?? 0)
             
@@ -97,8 +97,8 @@ extension CameraConfiguration {
             
             if let rearCamera = self.rearCamera {
                 self.rearCameraInput = try AVCaptureDeviceInput(device: rearCamera)
-                
                 if captureSession.canAddInput(self.rearCameraInput!) {
+                    
                     captureSession.addInput(self.rearCameraInput!)
                     self.currentCameraPosition = .rear
                 } else {
@@ -210,7 +210,9 @@ extension CameraConfiguration {
             completion(nil, CameraControllerError.captureSessionIsMissing)
             return
         }
-        self.videoOutput?.setOutputSettings([AVVideoCodecKey : AVVideoCodecType.hevc], for: (self.videoOutput?.connection(with: .video))!)
+        // MARK: Set Codec
+        print("video codec types = \(self.videoOutput!.availableVideoCodecTypes)")
+        self.videoOutput?.setOutputSettings([AVVideoCodecKey : AVVideoCodecType.jpeg], for: (self.videoOutput?.connection(with: .video))!)
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         print("path = \(paths)")
         let fileUrl = paths[0].appendingPathComponent("\(LocalStorage.getString(key: LocalStorage.currentSession)).mov")
