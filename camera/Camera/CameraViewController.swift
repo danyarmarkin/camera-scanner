@@ -194,7 +194,7 @@ class CameraViewController: UIViewController, UITableViewDelegate {
         }
     }
     @IBAction func toTrash(_ sender: Any) {
-        self.ref.child("movePrivousSessionToTrashList").setValue(1)
+        self.ref.child("trashList").child(previousSession).setValue(1)
     }
     
     override func accessibilityElementDidBecomeFocused() {
