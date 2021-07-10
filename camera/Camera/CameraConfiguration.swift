@@ -212,7 +212,8 @@ extension CameraConfiguration {
         }
         // MARK: Set Codec
         print("video codec types = \(self.videoOutput!.availableVideoCodecTypes)")
-        self.videoOutput?.setOutputSettings([AVVideoCodecKey : AVVideoCodecType.jpeg], for: (self.videoOutput?.connection(with: .video))!)
+        self.videoOutput?.setOutputSettings([AVVideoCodecKey : AVVideoCodecType.jpeg],
+                                            for: (self.videoOutput?.connection(with: .video))!)
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         print("path = \(paths)")
         let fileUrl = paths[0].appendingPathComponent("\(LocalStorage.getString(key: LocalStorage.currentSession)).mov")
