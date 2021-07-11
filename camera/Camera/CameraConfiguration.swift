@@ -121,16 +121,6 @@ extension CameraConfiguration {
             else {
                 throw CameraControllerError.noCamerasAvailable
             }
-            
-//            if let audioDevice = self.audioDevice {
-//                self.audioInput = try AVCaptureDeviceInput(device: audioDevice)
-//                if captureSession.canAddInput(self.audioInput!) {
-//                    captureSession.addInput(self.audioInput!)
-//                } else {
-//                    print("error 3")
-//                    throw CameraControllerError.inputsAreInvalid
-//                }
-//            }
         }
         
         //Configure outputs with capture session
