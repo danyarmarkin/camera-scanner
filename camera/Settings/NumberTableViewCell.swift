@@ -47,7 +47,7 @@ class NumberTableViewCell: UITableViewCell, UITextFieldDelegate {
             break
         case .shutter:
             if let val = sender.text {
-                let value = round(Float(1000 / Int(val)!))
+                let value = Int(val) ?? 200
                 LocalStorage.set(key: LocalStorage.shutterVal, val: value)
                 ref.child("\(cameraConfId)/shutter").setValue(value)
             }

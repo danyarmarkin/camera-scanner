@@ -329,7 +329,7 @@
 			);
 			mainGroup = EC76B6092674CBC3001709CB;
 			packageReferences = (
-				EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
 			);
 			productRefGroup = EC76B6132674CBC3001709CB /* Products */;
 			projectDirPath = "";
@@ -731,7 +731,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -744,17 +744,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		EC2AFF57267A1377007864CE /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseStorage;
 		};
 		EC2AFF59267A1377007864CE /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseDatabase;
 		};
 		EC2AFF5B267A1377007864CE /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */

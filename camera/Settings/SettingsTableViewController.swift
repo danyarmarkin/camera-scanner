@@ -17,8 +17,8 @@ class SettingsTableViewController: UITableViewController {
     var configSettings = [["max": 700,
                            "min": 34,
                            "val": 50],["max": 500,
-                                       "min": 1,
-                                       "val": 5],["max": 8000,
+                                       "min": 5,
+                                       "val": 200],["max": 8000,
                                                    "min": 2000,
                                                    "val": 3500],["max": 50,
                                                                "min": -50,
@@ -75,7 +75,7 @@ class SettingsTableViewController: UITableViewController {
             break
         
         case 1:
-            cell.configure(type: UITableViewCell.cellType.shutter, val: Int(round(Float(1000 / configSettings[ind]["val"]!))))
+            cell.configure(type: UITableViewCell.cellType.shutter, val: configSettings[ind]["val"]!)
             break
             
         case 2:

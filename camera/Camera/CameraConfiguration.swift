@@ -91,7 +91,7 @@ extension CameraConfiguration {
             
             if iso > 0 && time > 0 {
                 try rearCamera?.lockForConfiguration()
-                rearCamera?.setExposureModeCustom(duration: CMTimeMake(value: Int64(time), timescale: 1000), iso: iso, completionHandler: nil)
+                rearCamera?.setExposureModeCustom(duration: CMTimeMake(value: 1, timescale: Int32(time)), iso: iso, completionHandler: nil)
                 rearCamera?.unlockForConfiguration()
             }
             
@@ -346,7 +346,7 @@ extension CameraConfiguration {
             
             if iso > 0 && time > 0 {
                 try rearCamera?.lockForConfiguration()
-                rearCamera?.setExposureModeCustom(duration: CMTimeMake(value: Int64(time), timescale: 1000), iso: iso, completionHandler: nil)
+                rearCamera?.setExposureModeCustom(duration: CMTimeMake(value: 1, timescale: Int32(time)), iso: iso, completionHandler: nil)
                 rearCamera?.unlockForConfiguration()
             }
             

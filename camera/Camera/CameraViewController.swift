@@ -130,7 +130,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                 self.tint = tint
                 self.fps = fps
                 self.isoView.text = "ISO\n\n\(iso)"
-                self.shutterView.text = "Shutter\n\n\(Int(1000/shutter))"
+                self.shutterView.text = "Shutter\n\n\(shutter)"
                 self.wbView.text = "WB\n\n\(wb)"
                 self.tintView.text = "Tint\n\n\(tint)"
                 self.fpsView.text = "FPS\n\n\(fps)"
