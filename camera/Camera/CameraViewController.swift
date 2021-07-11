@@ -214,6 +214,12 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         print(video)
         
     }
+    
+    @IBAction func reloadSession(_ sender: Any) {
+        let session = LocalStorage.randomSessionId(length: 4)
+        self.ref.child(self.currentSessionId).setValue(session)
+    }
+    
     @IBAction func onobject(_ sender: UITextField) {
         ref.child("objectName").setValue(sender.text)
     }
