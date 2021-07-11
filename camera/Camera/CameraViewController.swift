@@ -53,6 +53,8 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     var deviceIndex = 1
     var objectName = "object"
     
+    var sessionSuffix = "_01012000_143900"
+    
     var videoRecordingStarted: Bool = false {
         didSet{
             if videoRecordingStarted {
@@ -141,6 +143,37 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                     self.cameraConfig.rearCamera?.configureDesiredFrameRate(self.fps)
                 })
             }
+            
+            if LocalStorage.getBool(key: LocalStorage.isMainDevice) && !self.videoRecordingStarted{
+                let date = Date()
+                let calendar = Calendar.current
+                
+                let day = calendar.component(.day, from: date)
+                let month = calendar.component(.month, from: date)
+                let year = calendar.component(.year, from: date)
+                
+                let hour = calendar.component(.hour, from: date)
+                let minute = calendar.component(.minute, from: date)
+                let second = calendar.component(.second, from: date)
+                
+                var rDay = "\(day)"
+                var rMonth = "\(month)"
+                var rYear = "\(year)"
+                var rHour = "\(hour)"
+                var rMinute = "\(minute)"
+                var rSecond = "\(second)"
+                
+                if day < 10 {rDay = "0" + rDay}
+                if month < 10 {rMonth = "0" + rMonth}
+                if year < 10 {rYear = "0" + rYear}
+                if hour < 10 {rHour = "0" + rHour}
+                if minute < 10 {rMinute = "0" + rMinute}
+                if second < 10 {rSecond = "0" + rSecond}
+                
+                self.sessionSuffix = "_\(rDay)\(rMonth)\(rYear)_\(rHour)\(rMinute)\(rSecond)"
+                self.ref.child("sessionSuffix").setValue(self.sessionSuffix)
+                self.updateSession(setname: false)
+            }
         })
         updateParam.tolerance = 0.15
         UIApplication.shared.isIdleTimerDisabled = true
@@ -181,6 +214,12 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         print(video)
         
     }
+    
+    @IBAction func reloadSession(_ sender: Any) {
+        let session = LocalStorage.randomSessionId(length: 4)
+        self.ref.child(self.currentSessionId).setValue(session)
+    }
+    
     @IBAction func onobject(_ sender: UITextField) {
         ref.child("objectName").setValue(sender.text)
     }
@@ -201,16 +240,18 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         if previousSession.suffix(1) == "A" {
             return
         }
+        let s = previousSession.split(separator: "_")
+        let max = Int(s[s.count - 3].suffix(1))!
         if isTrashButtonActive {
-            for i in 1...Int(previousSession.suffix(1))! {
-                let session = sessionWithParams(num: i, max: Int(previousSession.suffix(1))!)
+            for i in 1...max {
+                let session = sessionWithParams(num: i, max: max, suffix: "_\(s[s.count - 2])_\(s[s.count - 1])")
                 self.ref.child("trashList").child(session).setValue(0)
                 isTrashButtonActive = false
                 trashButton.backgroundColor = .systemGreen
             }
         } else {
-            for i in 1...Int(previousSession.suffix(1))! {
-                let session = sessionWithParams(num: i, max: Int(previousSession.suffix(1))!)
+            for i in 1...max {
+                let session = sessionWithParams(num: i, max: max, suffix: "_\(s[s.count - 2])_\(s[s.count - 1])")
                 self.ref.child("trashList").child(session).setValue(1)
                 isTrashButtonActive = true
                 trashButton.backgroundColor = .systemOrange
@@ -231,6 +272,13 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
             if let val = value as? Int {
                 
                 if val == 0 && self.videoRecordingStarted {
+                    LocalStorage.appendArray(key: LocalStorage.sessionArray,
+                                             value: [LocalStorage.getString(key: LocalStorage.currentSession)])
+                    self.previousSession = LocalStorage.getString(key: LocalStorage.currentSession)
+                    if LocalStorage.getBool(key: LocalStorage.isMainDevice) {
+                        let session = LocalStorage.randomSessionId(length: 4)
+                        self.ref.child(self.currentSessionId).setValue(session)
+                    }
                     self.videoRecordingStarted = false
                     self.durationTimer.invalidate()
                     self.videoDuration.text = "0:00"
@@ -255,15 +303,6 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                         guard let url = url else {
                             print(error ?? "Video recording error")
                             return
-                        }
-//                        UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, #selector(self.video(_:didFinishSavingWithError:contextInfo:)), nil)
-                        self.previousSession = LocalStorage.getString(key: LocalStorage.currentSession)
-                        LocalStorage.appendArray(key: LocalStorage.sessionArray,
-                                                 value: [LocalStorage.getString(key: LocalStorage.currentSession),
-                                                         url.path])
-                        if LocalStorage.getBool(key: LocalStorage.isMainDevice) {
-                            let session = LocalStorage.randomSessionId(length: 4)
-                            self.ref.child(self.currentSessionId).setValue(session)
                         }
                         self.showToastForSaved()
                     }
@@ -377,12 +416,22 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                 }
             }
         })
+        
+        ref.child("sessionSuffix").observe(DataEventType.value, with: {(snapshot) in
+            let value = snapshot.value
+            if let val = value as? String {
+                self.sessionSuffix = val
+                self.updateSession(setname: false)
+            }
+        })
     }
     
-    func updateSession() {
-        let val = "_\(LocalStorage.getString(key: LocalStorage.sessionId))_\(deviceIndex)\(devicesAmount)"
-        objectNameTextField.text = objectName
-        currentSession.text = val
+    func updateSession(setname: Bool = true) {
+        let val = "_\(LocalStorage.getString(key: LocalStorage.sessionId))_\(deviceIndex)\(devicesAmount)\(sessionSuffix)"
+        if setname {
+            objectNameTextField.text = objectName
+            currentSession.text = "_\(LocalStorage.getString(key: LocalStorage.sessionId))_\(deviceIndex)\(devicesAmount)"
+        }
         LocalStorage.set(key: LocalStorage.currentSession, val: objectName + val)
     }
     
@@ -391,8 +440,8 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         return true
     }
     
-    func sessionWithParams(num: Int, max: Int) -> String {
-        let val = "\(previousSession.prefix(previousSession.count - 3))_\(num)\(max)"
+    func sessionWithParams(num: Int, max: Int, suffix: String) -> String {
+        let val = "\(previousSession.prefix(previousSession.count - 19))_\(num)\(max)\(suffix)"
         return val
     }
 }
