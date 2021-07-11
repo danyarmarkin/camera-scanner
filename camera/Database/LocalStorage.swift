@@ -72,6 +72,9 @@ class LocalStorage {
         var val1: [String] = []
         if val is [String] {
             let countTo = val.count - 1
+            if countTo == -1 {
+                return
+            }
             for i in 0...countTo {
                 if !(val[i] as! String == value) {
                     val1.append(val[i] as! String)

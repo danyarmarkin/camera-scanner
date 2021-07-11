@@ -42,7 +42,7 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
         motion.startAccelerometerUpdates()
         LocalStorage.set(key: LocalStorage.currentSession, val: LocalStorage.randomSessionId(length: 4))
         LocalStorage.set(key: LocalStorage.sliderOn, val: false)
-        
+        LocalStorage.set(key: LocalStorage.trashList, val: [])
 //        LocalStorage.set(key: LocalStorage.sessionArray, val: [["YGJB"], ["UHUI"]])
 
         UIApplication.shared.isIdleTimerDisabled = true
