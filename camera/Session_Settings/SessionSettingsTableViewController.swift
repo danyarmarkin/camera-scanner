@@ -174,21 +174,29 @@ class SessionSettingsTableViewController: UITableViewController {
     }
     
     func deleteTrashList() {
-        var ind = 0
-        for i in sessionsData {
-            if trashData.contains(i[0]) {
-                ref.child("trashList").child(i[0]).setValue(nil)
-                deleteVideo(url: i[0])
-                LocalStorage.removeArrayStringElement(key: LocalStorage.trashList, value: i[0])
-                LocalStorage.removeArrayElement(key: LocalStorage.sessionArray, index: ind)
-                previewData.removeValue(forKey: i[0])
-                sessionsData.remove(at: ind)
-                print("reloaded \(i)")
-                tableView.deleteRows(at: [[1, ind]], with: .fade)
-                ind -= 1
+        let refreshAlert = UIAlertController(title: "Confirm deletion", message: "All data (trash list) will be lost.", preferredStyle: UIAlertController.Style.alert)
+
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            var ind = 0
+            for i in self.sessionsData {
+                if self.trashData.contains(i[0]) {
+                    self.ref.child("trashList").child(i[0]).setValue(nil)
+                    self.deleteVideo(url: i[0])
+                    LocalStorage.removeArrayStringElement(key: LocalStorage.trashList, value: i[0])
+                    LocalStorage.removeArrayElement(key: LocalStorage.sessionArray, index: ind)
+                    self.previewData.removeValue(forKey: i[0])
+                    self.sessionsData.remove(at: ind)
+                    print("reloaded \(i)")
+                    self.tableView.deleteRows(at: [[1, ind]], with: .fade)
+                    ind -= 1
+                }
+                ind += 1
             }
-            ind += 1
-        }
+        }))
+
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in print("cancel")}))
+
+        present(refreshAlert, animated: true, completion: nil)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

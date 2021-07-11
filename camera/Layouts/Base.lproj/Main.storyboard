@@ -383,21 +383,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="100" id="1Fw-Wc-D66" customClass="SessionTableViewCell" customModule="camera" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="100"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="130" id="1Fw-Wc-D66" customClass="SessionTableViewCell" customModule="camera" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Fw-Wc-D66" id="AVu-5b-NUJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="object_AAAA_13_010121_1439" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DP-L5-LXf">
-                                            <rect key="frame" x="16" y="68.666666666666671" width="234" height="20.333333333333329"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="object_AAAA_13_010121_1439" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DP-L5-LXf">
+                                            <rect key="frame" x="16" y="68.666666666666671" width="234" height="50.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWj-ZQ-Wpb">
-                                            <rect key="frame" x="342.66666666666669" y="0.0" width="12.333333333333314" height="100"/>
+                                            <rect key="frame" x="342.66666666666669" y="0.0" width="12.333333333333314" height="130"/>
                                             <state key="normal" image="chevron.forward" catalog="system"/>
                                         </button>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAo-32-Xxc">
@@ -463,14 +463,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="session_group_cell" id="jgi-Hy-isu" customClass="SessionGroupTableViewCell" customModule="camera" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="124.33333396911621" width="375" height="43.333332061767578"/>
+                                <rect key="frame" x="0.0" y="154.33333396911621" width="375" height="42.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jgi-Hy-isu" id="aAJ-15-lrD">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.333332061767578"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="42.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session group name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miV-Tb-VP5">
-                                            <rect key="frame" x="16" y="10.999999999999998" width="155" height="21.333333333333329"/>
+                                            <rect key="frame" x="16" y="11.000000000000002" width="155" height="20.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
