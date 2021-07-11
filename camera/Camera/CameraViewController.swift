@@ -198,14 +198,23 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         trashButton.backgroundColor = .systemGreen
     }
     @IBAction func sendSessionToTrashList(_ sender: Any) {
+        if previousSession.suffix(1) == "A" {
+            return
+        }
         if isTrashButtonActive {
-            self.ref.child("trashList").child(previousSession).setValue(0)
-            isTrashButtonActive = false
-            trashButton.backgroundColor = .systemGreen
+            for i in 1...Int(previousSession.suffix(1))! {
+                let session = sessionWithParams(num: i, max: Int(previousSession.suffix(1))!)
+                self.ref.child("trashList").child(session).setValue(0)
+                isTrashButtonActive = false
+                trashButton.backgroundColor = .systemGreen
+            }
         } else {
-            self.ref.child("trashList").child(previousSession).setValue(1)
-            isTrashButtonActive = true
-            trashButton.backgroundColor = .systemOrange
+            for i in 1...Int(previousSession.suffix(1))! {
+                let session = sessionWithParams(num: i, max: Int(previousSession.suffix(1))!)
+                self.ref.child("trashList").child(session).setValue(1)
+                isTrashButtonActive = true
+                trashButton.backgroundColor = .systemOrange
+            }
         }
     }
     
@@ -380,6 +389,11 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func sessionWithParams(num: Int, max: Int) -> String {
+        let val = "\(previousSession.prefix(previousSession.count - 3))_\(num)\(max)"
+        return val
     }
 }
 

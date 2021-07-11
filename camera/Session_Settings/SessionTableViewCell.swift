@@ -43,14 +43,16 @@ class SessionTableViewCell: UITableViewCell {
     }
 
     @IBAction func onTrash(_ sender: UISwitch) {
+        let session: String! = sessionName.text
+        let max = Int((session?.suffix(1))!)!
         if !sender.isOn {
-//            LocalStorage.appendArray(key: LocalStorage.trashList, value: sessionName.text ?? "AAAA")
-            ref.child("trashList").child(sessionName.text ?? "AAAA").setValue(1)
-            print("added session \(sessionName.text ?? "AAAA") to trash list")
+            for i in 1...max {
+                ref.child("trashList").child("\(session.prefix(session.count - 2))\(i)\(max)").setValue(1)
+            }
         } else {
-//            LocalStorage.removeArrayStringElement(key: LocalStorage.trashList, value: sessionName.text ?? "AAAA")
-            ref.child("trashList").child(sessionName.text ?? "AAAA").setValue(0)
-            print("revoved session \(sessionName.text ?? "AAAA") from trash list")
+            for i in 1...max {
+                ref.child("trashList").child("\(session.prefix(session.count - 2))\(i)\(max)").setValue(0)
+            }
         }
     }
     

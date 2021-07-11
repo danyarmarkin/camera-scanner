@@ -120,11 +120,6 @@ class SessionSettingsTableViewController: UITableViewController {
             LocalStorage.removeArrayElement(key: LocalStorage.sessionArray, index: indexPath[1])
             previewData.removeValue(forKey: sessionsData[indexPath[1]][0])
             sessionsData.remove(at: indexPath[1])
-            if LocalStorage.getArray(key: LocalStorage.sessionArray).count == 0 {
-                LocalStorage.set(key: LocalStorage.sessionArray, val: [["No Elements"]])
-                sessionsData = [["No Elements"]]
-            }
-//            self.tableView.reloadData()
             print("reloaded")
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
@@ -177,6 +172,24 @@ class SessionSettingsTableViewController: UITableViewController {
         let fm = FileManager()
         try? fm.removeItem(atPath: filePath)
     }
+    
+    func deleteTrashList() {
+        var ind = 0
+        for i in sessionsData {
+            if trashData.contains(i[0]) {
+                ref.child("trashList").child(i[0]).setValue(nil)
+                deleteVideo(url: i[0])
+                LocalStorage.removeArrayStringElement(key: LocalStorage.trashList, value: i[0])
+                LocalStorage.removeArrayElement(key: LocalStorage.sessionArray, index: ind)
+                previewData.removeValue(forKey: i[0])
+                sessionsData.remove(at: ind)
+                print("reloaded \(i)")
+                tableView.deleteRows(at: [[1, ind]], with: .fade)
+                ind -= 1
+            }
+            ind += 1
+        }
+    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == [0, 0] {  // export good sessions
@@ -189,7 +202,7 @@ class SessionSettingsTableViewController: UITableViewController {
             exportVideo(url: exportSessions)
             
         } else if indexPath == [0, 1] {  // delete trash list
-            
+            deleteTrashList()
         } else {
             exportVideo(url: [ sessionsData[indexPath[1]][0] ])
         }
@@ -200,7 +213,6 @@ class SessionSettingsTableViewController: UITableViewController {
             let value = snapshot.value
             if let val = value as? Dictionary<String, Int> {
                 for i in val {
-                    print("========")
                     if !self.trashData.contains(i.key) && i.value == 1{
                         self.trashData.append(i.key)
                         LocalStorage.appendArray(key: LocalStorage.trashList, value: i.key)

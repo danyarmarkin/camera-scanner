@@ -210,9 +210,17 @@ extension CameraConfiguration {
             completion(nil, CameraControllerError.captureSessionIsMissing)
             return
         }
-        // MARK: Set Codec
+        
+        // MARK: Camera Settings
         print("video codec types = \(self.videoOutput!.availableVideoCodecTypes)")
-        self.videoOutput?.setOutputSettings([AVVideoCodecKey : AVVideoCodecType.jpeg], for: (self.videoOutput?.connection(with: .video))!)
+        self.videoOutput?.setOutputSettings(
+            [AVVideoCodecKey : AVVideoCodecType.hevc,
+             AVVideoCompressionPropertiesKey: [
+//                AVVideoAverageBitRateKey: 20 * 1024 * 1024,
+                AVVideoQualityKey: 1,
+             ]
+            ],
+                                            for: (self.videoOutput?.connection(with: .video))!)
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         print("path = \(paths)")
         let fileUrl = paths[0].appendingPathComponent("\(LocalStorage.getString(key: LocalStorage.currentSession)).mov")
