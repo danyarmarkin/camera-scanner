@@ -33,8 +33,8 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-
+        self.view.window?.overrideUserInterfaceStyle = .dark
+        overrideUserInterfaceStyle = .dark
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.startUpdatingHeading()

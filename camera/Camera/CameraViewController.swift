@@ -103,7 +103,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     // MARK: View did load
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        overrideUserInterfaceStyle = .dark
         registerLive()
         ref = Database.database(url: "https://camera-scan-e5684-default-rtdb.europe-west1.firebasedatabase.app/").reference()
         ni.title = "text"
