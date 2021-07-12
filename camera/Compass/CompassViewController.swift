@@ -7,6 +7,7 @@ import UIKit
 import CoreLocation
 import CoreMotion
 import Firebase
+import AVFoundation
 
 class CompassViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var compassBar: UIProgressView!
@@ -26,8 +27,13 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
     
     let devices = DeviceControl()
     
+    var outputVolumeObserve: NSKeyValueObservation?
+    let audioSession = AVAudioSession.sharedInstance()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -42,10 +48,27 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
         motion.startAccelerometerUpdates()
         LocalStorage.set(key: LocalStorage.currentSession, val: LocalStorage.randomSessionId(length: 4))
         LocalStorage.set(key: LocalStorage.sliderOn, val: false)
+        LocalStorage.set(key: LocalStorage.trashList, val: [])
         
-//        LocalStorage.set(key: LocalStorage.sessionArray, val: [["YGJB"], ["UHUI"]])
+        listenVolumeButton()
 
         UIApplication.shared.isIdleTimerDisabled = true
+    }
+    
+    func listenVolumeButton() {
+       do {
+        try audioSession.setActive(true)
+       } catch {
+        print("some error")
+       }
+       audioSession.addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.new, context: nil)
+    }
+
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+      if keyPath == "outputVolume" {
+        print("Hello")
+      }
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
@@ -112,6 +135,7 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @objc func enterFocus() {
+        listenVolumeButton()
         devices.registerDevice()
     }
 

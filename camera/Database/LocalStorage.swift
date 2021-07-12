@@ -23,6 +23,8 @@ class LocalStorage {
     static let deviceName = "com.kanistra.camera.device-name" //string (iPhone (Danila))
     static let devices = "com.kanistra.camera.devices" //array
     static let devicesAmount = "com.kanistra.camera.devices-amount" //int
+    static let videoQuality = "com.kanistra.camera.video-quality"  // Float 0.0 - 1.0
+    static let isVideoStarted = "com.kanistra.camera.is-video-started" // bool
     
     static let trashList = "com.kanistra.camera.trash-list" // dict
     
@@ -72,6 +74,9 @@ class LocalStorage {
         var val1: [String] = []
         if val is [String] {
             let countTo = val.count - 1
+            if countTo == -1 {
+                return
+            }
             for i in 0...countTo {
                 if !(val[i] as! String == value) {
                     val1.append(val[i] as! String)

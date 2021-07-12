@@ -91,7 +91,7 @@ extension CameraConfiguration {
             
             if iso > 0 && time > 0 {
                 try rearCamera?.lockForConfiguration()
-                rearCamera?.setExposureModeCustom(duration: CMTimeMake(value: Int64(time), timescale: 1000), iso: iso, completionHandler: nil)
+                rearCamera?.setExposureModeCustom(duration: CMTimeMake(value: 1, timescale: Int32(time)), iso: iso, completionHandler: nil)
                 rearCamera?.unlockForConfiguration()
             }
             
@@ -121,16 +121,6 @@ extension CameraConfiguration {
             else {
                 throw CameraControllerError.noCamerasAvailable
             }
-            
-//            if let audioDevice = self.audioDevice {
-//                self.audioInput = try AVCaptureDeviceInput(device: audioDevice)
-//                if captureSession.canAddInput(self.audioInput!) {
-//                    captureSession.addInput(self.audioInput!)
-//                } else {
-//                    print("error 3")
-//                    throw CameraControllerError.inputsAreInvalid
-//                }
-//            }
         }
         
         //Configure outputs with capture session
@@ -210,8 +200,18 @@ extension CameraConfiguration {
             completion(nil, CameraControllerError.captureSessionIsMissing)
             return
         }
-        // MARK: Set Codec
+        
+        // MARK: Camera Settings
         print("video codec types = \(self.videoOutput!.availableVideoCodecTypes)")
+        print("quality = \(LocalStorage.getFloat(key: LocalStorage.videoQuality))")
+        self.videoOutput?.setOutputSettings(
+            [AVVideoCodecKey : AVVideoCodecType.hevc,
+             AVVideoCompressionPropertiesKey: [
+                AVVideoAverageBitRateKey: NSNumber(value: LocalStorage.getFloat(key: LocalStorage.videoQuality) * 1024 * 1024) ,
+//                AVVideoQualityKey: NSNumber(value: LocalStorage.getFloat(key: LocalStorage.videoQuality))
+             ]
+            ],
+                                            for: (self.videoOutput?.connection(with: .video))!)
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         print("path = \(paths)")
         let fileUrl = paths[0].appendingPathComponent("\(LocalStorage.getString(key: LocalStorage.currentSession)).mov")
@@ -337,7 +337,7 @@ extension CameraConfiguration {
             
             if iso > 0 && time > 0 {
                 try rearCamera?.lockForConfiguration()
-                rearCamera?.setExposureModeCustom(duration: CMTimeMake(value: Int64(time), timescale: 1000), iso: iso, completionHandler: nil)
+                rearCamera?.setExposureModeCustom(duration: CMTimeMake(value: 1, timescale: Int32(time)), iso: iso, completionHandler: nil)
                 rearCamera?.unlockForConfiguration()
             }
             

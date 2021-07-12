@@ -47,7 +47,7 @@ class NumberTableViewCell: UITableViewCell, UITextFieldDelegate {
             break
         case .shutter:
             if let val = sender.text {
-                let value = round(Float(1000 / Int(val)!))
+                let value = Int(val) ?? 200
                 LocalStorage.set(key: LocalStorage.shutterVal, val: value)
                 ref.child("\(cameraConfId)/shutter").setValue(value)
             }
@@ -71,6 +71,14 @@ class NumberTableViewCell: UITableViewCell, UITextFieldDelegate {
                 let value = Int(val) ?? 24
                 LocalStorage.set(key: LocalStorage.fpsVal, val: value)
                 ref.child("\(cameraConfId)/fps").setValue(value)
+            }
+            break
+        case .quality:
+            if let val = sender.text {
+                let value: Float = Float(val) ?? 100
+                print(Float(value / 100))
+                LocalStorage.set(key: LocalStorage.videoQuality, val: value)
+//                print(LocalStorage.getFloat(key: LocalStorage.videoQuality))
             }
             break
         default:

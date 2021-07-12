@@ -120,11 +120,6 @@ class SessionSettingsTableViewController: UITableViewController {
             LocalStorage.removeArrayElement(key: LocalStorage.sessionArray, index: indexPath[1])
             previewData.removeValue(forKey: sessionsData[indexPath[1]][0])
             sessionsData.remove(at: indexPath[1])
-            if LocalStorage.getArray(key: LocalStorage.sessionArray).count == 0 {
-                LocalStorage.set(key: LocalStorage.sessionArray, val: [["No Elements"]])
-                sessionsData = [["No Elements"]]
-            }
-//            self.tableView.reloadData()
             print("reloaded")
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
@@ -177,6 +172,32 @@ class SessionSettingsTableViewController: UITableViewController {
         let fm = FileManager()
         try? fm.removeItem(atPath: filePath)
     }
+    
+    func deleteTrashList() {
+        let refreshAlert = UIAlertController(title: "Confirm deletion", message: "All data (trash list) will be lost.", preferredStyle: UIAlertController.Style.alert)
+
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            var ind = 0
+            for i in self.sessionsData {
+                if self.trashData.contains(i[0]) {
+                    self.ref.child("trashList").child(i[0]).setValue(nil)
+                    self.deleteVideo(url: i[0])
+                    LocalStorage.removeArrayStringElement(key: LocalStorage.trashList, value: i[0])
+                    LocalStorage.removeArrayElement(key: LocalStorage.sessionArray, index: ind)
+                    self.previewData.removeValue(forKey: i[0])
+                    self.sessionsData.remove(at: ind)
+                    print("reloaded \(i)")
+                    self.tableView.deleteRows(at: [[1, ind]], with: .fade)
+                    ind -= 1
+                }
+                ind += 1
+            }
+        }))
+
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in print("cancel")}))
+
+        present(refreshAlert, animated: true, completion: nil)
+    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == [0, 0] {  // export good sessions
@@ -189,7 +210,7 @@ class SessionSettingsTableViewController: UITableViewController {
             exportVideo(url: exportSessions)
             
         } else if indexPath == [0, 1] {  // delete trash list
-            
+            deleteTrashList()
         } else {
             exportVideo(url: [ sessionsData[indexPath[1]][0] ])
         }
@@ -200,7 +221,6 @@ class SessionSettingsTableViewController: UITableViewController {
             let value = snapshot.value
             if let val = value as? Dictionary<String, Int> {
                 for i in val {
-                    print("========")
                     if !self.trashData.contains(i.key) && i.value == 1{
                         self.trashData.append(i.key)
                         LocalStorage.appendArray(key: LocalStorage.trashList, value: i.key)
@@ -251,8 +271,20 @@ extension SessionSettingsTableViewController {
 //        print("path = \(paths)")
         let fileUrl = paths[0].appendingPathComponent("\(videoURL).mov")
         let asset = AVAsset(url: fileUrl)
+        
 //        print(fileUrl)
         let durationInSeconds = asset.duration.seconds
+        let asset1 = AVURLAsset(url: fileUrl)
+        print(asset1.fileSize ?? 0)
         return Int(durationInSeconds)
+    }
+}
+
+extension AVURLAsset {
+    var fileSize: Int? {
+        let keys: Set<URLResourceKey> = [.totalFileSizeKey, .fileSizeKey]
+        let resourceValues = try? url.resourceValues(forKeys: keys)
+
+        return resourceValues?.fileSize ?? resourceValues?.totalFileSize
     }
 }
