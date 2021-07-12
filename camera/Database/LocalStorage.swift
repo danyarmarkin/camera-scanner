@@ -23,6 +23,8 @@ class LocalStorage {
     static let deviceName = "com.kanistra.camera.device-name" //string (iPhone (Danila))
     static let devices = "com.kanistra.camera.devices" //array
     static let devicesAmount = "com.kanistra.camera.devices-amount" //int
+    static let videoQuality = "com.kanistra.camera.video-quality"  // Float 0.0 - 1.0
+    static let isVideoStarted = "com.kanistra.camera.is-video-started" // bool
     
     static let trashList = "com.kanistra.camera.trash-list" // dict
     

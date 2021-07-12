@@ -37,12 +37,13 @@ class SettingsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 6
+        return 7
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == 5 { return 1 }
+        if section > 4 { return 1 }
+        
         return 2
     }
 
@@ -52,9 +53,14 @@ class SettingsTableViewController: UITableViewController {
         var sliderCell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as! SliderTableViewCell
         var isMainDeviceCell = tableView.dequeueReusableCell(withIdentifier: "main_device_cell", for: indexPath) as! MainDeviceTableViewCell
         
-        if indexPath == [5, 0] {
+        if indexPath == [6, 0] {
             isMainDeviceCell.configure()
             return isMainDeviceCell
+        }
+        
+        if indexPath == [6, 0] {
+            numberCell = configNumberCell(cell: numberCell, ind: indexPath[0])
+            return numberCell
         }
         
         switch indexPath[1] {
@@ -89,6 +95,8 @@ class SettingsTableViewController: UITableViewController {
         case 4:
             cell.configure(type: UITableViewCell.cellType.fps, val: configSettings[ind]["val"]!)
             break
+        case 5:
+            cell.configure(type: .quality, val: Int(LocalStorage.getFloat(key: LocalStorage.videoQuality)))
             
         default:
             break
@@ -153,8 +161,10 @@ class SettingsTableViewController: UITableViewController {
             return "Tint"
         case 4:
             return "FPS"
-        case 5:
+        case 6:
             return "Device"
+        case 5:
+            return "Bit Rate"
         default:
             return "no name section"
         }
@@ -251,11 +261,13 @@ extension UITableViewCell {
         case wb
         case tint
         case fps
+        case quality
     }
     
     static let cellName = [cellType.iso : "ISO",
                            cellType.shutter: "Shutter",
                            cellType.wb : "White Balance (K)",
                            cellType.tint : "Tint",
-                           cellType.fps : "FPS"]
+                           cellType.fps : "FPS",
+                           cellType.quality: "Video Bit Rate"]
 }

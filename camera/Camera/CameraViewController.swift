@@ -9,6 +9,7 @@ import UIKit
 import Foundation
 import CoreMedia
 import Firebase
+import AVFoundation
 
 class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate {
     
@@ -24,13 +25,9 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     @IBOutlet weak var cameraButton: CustomButton!
     @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var videoDuration: UILabel!
-    @IBOutlet weak var isoView: UILabel!
-    @IBOutlet weak var shutterView: UILabel!
-    @IBOutlet weak var wbView: UILabel!
-    @IBOutlet weak var tintView: UILabel!
-    @IBOutlet weak var fpsView: UILabel!
     @IBOutlet weak var trashButton: UIButton!
     @IBOutlet weak var objectNameTextField: UITextField!
+    @IBOutlet weak var status: UILabel!
     var isTrashButtonActive = false
     
     let localStorage = LocalStorage()
@@ -55,12 +52,15 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     
     var sessionSuffix = "_01012000_143900"
     
+    var outputVolumeObserve: NSKeyValueObservation?
+    let audioSession = AVAudioSession.sharedInstance()
+    
     var videoRecordingStarted: Bool = false {
         didSet{
             if videoRecordingStarted {
                 cameraButton.backgroundColor = UIColor.red
             } else {
-                cameraButton.backgroundColor = UIColor.gray
+                cameraButton.backgroundColor = .lightGray
             }
         }
     }
@@ -103,14 +103,17 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     // MARK: View did load
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        registerLive()
         ref = Database.database(url: "https://camera-scan-e5684-default-rtdb.europe-west1.firebasedatabase.app/").reference()
         ni.title = "text"
         cameraConfig = camConf(fps: 8)
 
-        cameraButton.tintColor = UIColor.black
+        cameraButton.tintColor = UIColor.systemBlue
         registerNotification()
         
         objectNameTextField.delegate = self
+        listenVolumeButton()
         
         print(LocalStorage.getString(key: LocalStorage.currentSession))
         
@@ -131,11 +134,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                 self.wb = wb
                 self.tint = tint
                 self.fps = fps
-                self.isoView.text = "ISO\n\n\(iso)"
-                self.shutterView.text = "Shutter\n\n\(shutter)"
-                self.wbView.text = "WB\n\n\(wb)"
-                self.tintView.text = "Tint\n\n\(tint)"
-                self.fpsView.text = "FPS\n\n\(fps)"
+                self.status.text = "ISO \(iso)  SH \(shutter)  WB \(wb)  FPS \(fps)"
                 self.cameraConfig.setupISO(iso: Float(self.iso), time: self.shutter, wb: self.wb, tint: self.tint, handler: {(error) in
                     if error != nil {
                         print("error: \(String(describing: error))")
@@ -234,7 +233,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
             ref.child(videoRecordingStartedId).setValue(1)
         }
         isTrashButtonActive = false
-        trashButton.backgroundColor = .systemGreen
+        
     }
     @IBAction func sendSessionToTrashList(_ sender: Any) {
         if previousSession.suffix(1) == "A" {
@@ -247,7 +246,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                 let session = sessionWithParams(num: i, max: max, suffix: "_\(s[s.count - 2])_\(s[s.count - 1])")
                 self.ref.child("trashList").child(session).setValue(0)
                 isTrashButtonActive = false
-                trashButton.backgroundColor = .systemGreen
+                trashButton.backgroundColor = .lightGray
             }
         } else {
             for i in 1...max {
@@ -280,6 +279,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                         self.ref.child(self.currentSessionId).setValue(session)
                     }
                     self.videoRecordingStarted = false
+                    LocalStorage.set(key: LocalStorage.isVideoStarted, val: false)
                     self.durationTimer.invalidate()
                     self.videoDuration.text = "0:00"
                     self.duration = 0
@@ -288,6 +288,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                     }
                     print(0)
                 } else if val == 1 && !self.videoRecordingStarted {
+                    self.trashButton.backgroundColor = .lightGray
                     self.durationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {(timer) in
                         self.duration += 1
                         let seconds = self.duration % 60
@@ -299,6 +300,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                     })
                     self.durationTimer.tolerance = 0.01
                     self.videoRecordingStarted = true
+                    LocalStorage.set(key: LocalStorage.isVideoStarted, val: true)
                     self.cameraConfig.recordVideo { (url, error) in
                         guard let url = url else {
                             print(error ?? "Video recording error")
@@ -443,6 +445,38 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     func sessionWithParams(num: Int, max: Int, suffix: String) -> String {
         let val = "\(previousSession.prefix(previousSession.count - 19))_\(num)\(max)\(suffix)"
         return val
+    }
+    
+    func listenVolumeButton() {
+       do {
+        try audioSession.setActive(true)
+       } catch {
+        print("some error")
+       }
+       audioSession.addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.new, context: nil)
+    }
+
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+      if keyPath == "outputVolume" {
+        self.ref.child("movePrivousSessionToTrashList").setValue(0)
+        if videoRecordingStarted {
+            ref.child(videoRecordingStartedId).setValue(0)
+        } else if !videoRecordingStarted {
+            ref.child(videoRecordingStartedId).setValue(1)
+        }
+        isTrashButtonActive = false
+      }
+    }
+    
+    func registerLive() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(enterFocus),
+                                               name: UIApplication.didBecomeActiveNotification,
+                                               object: nil)
+    }
+    @objc func enterFocus() {
+        listenVolumeButton()
     }
 }
 

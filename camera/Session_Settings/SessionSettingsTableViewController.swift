@@ -271,8 +271,20 @@ extension SessionSettingsTableViewController {
 //        print("path = \(paths)")
         let fileUrl = paths[0].appendingPathComponent("\(videoURL).mov")
         let asset = AVAsset(url: fileUrl)
+        
 //        print(fileUrl)
         let durationInSeconds = asset.duration.seconds
+        let asset1 = AVURLAsset(url: fileUrl)
+        print(asset1.fileSize ?? 0)
         return Int(durationInSeconds)
+    }
+}
+
+extension AVURLAsset {
+    var fileSize: Int? {
+        let keys: Set<URLResourceKey> = [.totalFileSizeKey, .fileSizeKey]
+        let resourceValues = try? url.resourceValues(forKeys: keys)
+
+        return resourceValues?.fileSize ?? resourceValues?.totalFileSize
     }
 }

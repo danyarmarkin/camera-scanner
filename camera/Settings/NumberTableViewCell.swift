@@ -73,6 +73,14 @@ class NumberTableViewCell: UITableViewCell, UITextFieldDelegate {
                 ref.child("\(cameraConfId)/fps").setValue(value)
             }
             break
+        case .quality:
+            if let val = sender.text {
+                let value: Float = Float(val) ?? 100
+                print(Float(value / 100))
+                LocalStorage.set(key: LocalStorage.videoQuality, val: value)
+//                print(LocalStorage.getFloat(key: LocalStorage.videoQuality))
+            }
+            break
         default:
             print("default")
         }

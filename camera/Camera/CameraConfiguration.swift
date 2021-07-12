@@ -203,11 +203,12 @@ extension CameraConfiguration {
         
         // MARK: Camera Settings
         print("video codec types = \(self.videoOutput!.availableVideoCodecTypes)")
+        print("quality = \(LocalStorage.getFloat(key: LocalStorage.videoQuality))")
         self.videoOutput?.setOutputSettings(
             [AVVideoCodecKey : AVVideoCodecType.hevc,
              AVVideoCompressionPropertiesKey: [
-//                AVVideoAverageBitRateKey: 20 * 1024 * 1024,
-                AVVideoQualityKey: 1,
+                AVVideoAverageBitRateKey: NSNumber(value: LocalStorage.getFloat(key: LocalStorage.videoQuality) * 1024 * 1024) ,
+//                AVVideoQualityKey: NSNumber(value: LocalStorage.getFloat(key: LocalStorage.videoQuality))
              ]
             ],
                                             for: (self.videoOutput?.connection(with: .video))!)
