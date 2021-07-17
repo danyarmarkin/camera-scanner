@@ -48,11 +48,11 @@ class SessionTableViewCell: UITableViewCell {
         let max = Int(s[s.count - 3].suffix(1))!
         if !sender.isOn {
             for i in 1...max {
-                ref.child("trashList").child("\(session.prefix(session.count - 18))\(i)\(max)_\(s[s.count - 2])_\(s[s.count - 1])").setValue(1)
+                ref.child("trashList").child("\(session.prefix(session.count - 16))\(i)\(max)_\(s[s.count - 2])_\(s[s.count - 1])").setValue(1)
             }
         } else {
             for i in 1...max {
-                ref.child("trashList").child("\(session.prefix(session.count - 18))\(i)\(max)_\(s[s.count - 2])_\(s[s.count - 1])").setValue(0)
+                ref.child("trashList").child("\(session.prefix(session.count - 16))\(i)\(max)_\(s[s.count - 2])_\(s[s.count - 1])").setValue(0)
             }
         }
     }

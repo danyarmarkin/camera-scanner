@@ -157,7 +157,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                 
                 var rDay = "\(day)"
                 var rMonth = "\(month)"
-                var rYear = "\(year)"
+                var rYear = "\(year)".suffix(2)
                 var rHour = "\(hour)"
                 var rMinute = "\(minute)"
                 var rSecond = "\(second)"
@@ -443,7 +443,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     }
     
     func sessionWithParams(num: Int, max: Int, suffix: String) -> String {
-        let val = "\(previousSession.prefix(previousSession.count - 19))_\(num)\(max)\(suffix)"
+        let val = "\(previousSession.prefix(previousSession.count - 17))_\(num)\(max)\(suffix)"
         return val
     }
     
