@@ -12,7 +12,9 @@ import AVFoundation
 class CompassViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var compassBar: UIProgressView!
     @IBOutlet weak var compassValue: UILabel!
-
+    @IBOutlet weak var offSlider: UISlider!
+    @IBOutlet weak var offLabel: UILabel!
+    
     var delta: Float = 0
     var preVal: Float = 0
     var currentVal: Float = 0
@@ -53,6 +55,24 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
         listenVolumeButton()
 
         UIApplication.shared.isIdleTimerDisabled = true
+        
+        
+        ref.child("compassData").child("lampsOff").observe(.value, with: {(snapshot) in
+            let value = snapshot.value
+            if let val = value as? Int {
+                self.offLabel.text = "\(val)"
+                self.offSlider.value = Float(val)
+            }
+        })
+        
+        ref.child("mainDevice").observe(DataEventType.value, with: {(snapshot) in
+            let value = snapshot.value
+            if let val = value as? String {
+                if val == LocalStorage.getString(key: LocalStorage.deviceName) {
+                    LocalStorage.set(key: LocalStorage.isMainDevice, val: true)
+                }
+            }
+        })
     }
     
     func listenVolumeButton() {
@@ -107,6 +127,10 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
         currentVal -= deltaPhi
         currentVal -= floor(currentVal / 360) * 360
         
+        if LocalStorage.getBool(key: LocalStorage.isMainDevice) {
+            ref.child("compassData").child("value").setValue(floor(currentVal))
+        }
+        
         compassValue.text = String(currentVal)
         compassBar.progress = currentVal / 360
 
@@ -139,4 +163,11 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
         devices.registerDevice()
     }
 
+    @IBAction func onColibrate(_ sender: Any) {
+        ref.child("compassData").child("calibration").setValue(floor(currentVal))
+    }
+    @IBAction func slider(_ sender: UISlider) {
+        ref.child("compassData").child("lampsOff").setValue(round(sender.value))
+        offLabel.text = "\(Int(round(sender.value)))"
+    }
 }

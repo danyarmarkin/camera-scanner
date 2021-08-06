@@ -31,6 +31,7 @@
 		EC76B6222674CBC3001709CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC76B6202674CBC3001709CB /* LaunchScreen.storyboard */; };
 		EC76B62D2674CBC3001709CB /* cameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B62C2674CBC3001709CB /* cameraTests.swift */; };
 		EC76B6382674CBC3001709CB /* cameraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B6372674CBC3001709CB /* cameraUITests.swift */; };
+		EC82A4F626A2F73E0099DBAB /* BatteryControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82A4F526A2F73E0099DBAB /* BatteryControl.swift */; };
 		EC8D0DB02684D32B009413E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */; };
 		EC982ACD268A4D5300805C39 /* DeviceControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC982ACC268A4D5300805C39 /* DeviceControl.swift */; };
 		EC982ACF268A56E900805C39 /* MainDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC982ACE268A56E900805C39 /* MainDeviceTableViewCell.swift */; };
@@ -84,6 +85,7 @@
 		EC76B6332674CBC3001709CB /* cameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC76B6372674CBC3001709CB /* cameraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraUITests.swift; sourceTree = "<group>"; };
 		EC76B6392674CBC3001709CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC82A4F526A2F73E0099DBAB /* BatteryControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryControl.swift; sourceTree = "<group>"; };
 		EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC982ACC268A4D5300805C39 /* DeviceControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControl.swift; sourceTree = "<group>"; };
 		EC982ACE268A56E900805C39 /* MainDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDeviceTableViewCell.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				EC2AFF4C2679EE5F007864CE /* CameraConfiguration.swift */,
 				EC2AFF4D2679EE5F007864CE /* CustomButton.swift */,
 				EC2AFF5D267B5992007864CE /* VideoSeparator.swift */,
+				EC82A4F526A2F73E0099DBAB /* BatteryControl.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				EC580EAC2694ADB1003BB38E /* SessionGroupTableViewCell.swift in Sources */,
 				ECE1EB3D2685E98F00B34F47 /* SliderTableViewCell.swift in Sources */,
 				EC982ACD268A4D5300805C39 /* DeviceControl.swift in Sources */,
+				EC82A4F626A2F73E0099DBAB /* BatteryControl.swift in Sources */,
 				EC982ACF268A56E900805C39 /* MainDeviceTableViewCell.swift in Sources */,
 				2258532C40EACFD88397B535 /* CompassViewController.swift in Sources */,
 				EC2AFF4E2679EE5F007864CE /* CameraConfiguration.swift in Sources */,

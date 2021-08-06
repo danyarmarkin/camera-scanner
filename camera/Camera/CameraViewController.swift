@@ -20,6 +20,8 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     
     var previousSession = "AAAA"
     
+    @IBOutlet weak var battery: UILabel!
+    @IBOutlet weak var storage: UILabel!
     @IBOutlet weak var ni: UINavigationItem!
     @IBOutlet weak var currentSession: UILabel!
     @IBOutlet weak var cameraButton: CustomButton!
@@ -177,6 +179,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         updateParam.tolerance = 0.15
         UIApplication.shared.isIdleTimerDisabled = true
         monitoringData()
+        BatteryControl.control(label: storage, ref: ref)
     }
     
     override func viewWillAppear(_ animated: Bool) {
