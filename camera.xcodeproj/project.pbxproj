@@ -22,6 +22,7 @@
 		EC580EAC2694ADB1003BB38E /* SessionGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC580EAB2694ADB1003BB38E /* SessionGroupTableViewCell.swift */; };
 		EC5C6F91267D72F800E9E130 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C6F90267D72F800E9E130 /* SessionTableViewCell.swift */; };
 		EC5C6F95267D744500E9E130 /* SessionSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C6F94267D744500E9E130 /* SessionSettingsTableViewController.swift */; };
+		EC7073AC269CC3C1009A674C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7073AB269CC3C1009A674C /* TabBarController.swift */; };
 		EC76B6162674CBC3001709CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B6152674CBC3001709CB /* AppDelegate.swift */; };
 		EC76B6182674CBC3001709CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B6172674CBC3001709CB /* SceneDelegate.swift */; };
 		EC76B61A2674CBC3001709CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B6192674CBC3001709CB /* ViewController.swift */; };
@@ -30,6 +31,7 @@
 		EC76B6222674CBC3001709CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC76B6202674CBC3001709CB /* LaunchScreen.storyboard */; };
 		EC76B62D2674CBC3001709CB /* cameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B62C2674CBC3001709CB /* cameraTests.swift */; };
 		EC76B6382674CBC3001709CB /* cameraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76B6372674CBC3001709CB /* cameraUITests.swift */; };
+		EC82A4F626A2F73E0099DBAB /* BatteryControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82A4F526A2F73E0099DBAB /* BatteryControl.swift */; };
 		EC8D0DB02684D32B009413E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */; };
 		EC982ACD268A4D5300805C39 /* DeviceControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC982ACC268A4D5300805C39 /* DeviceControl.swift */; };
 		EC982ACF268A56E900805C39 /* MainDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC982ACE268A56E900805C39 /* MainDeviceTableViewCell.swift */; };
@@ -68,6 +70,7 @@
 		EC580EAB2694ADB1003BB38E /* SessionGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionGroupTableViewCell.swift; sourceTree = "<group>"; };
 		EC5C6F90267D72F800E9E130 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		EC5C6F94267D744500E9E130 /* SessionSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSettingsTableViewController.swift; sourceTree = "<group>"; };
+		EC7073AB269CC3C1009A674C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		EC76B6122674CBC3001709CB /* camera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = camera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC76B6152674CBC3001709CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC76B6172674CBC3001709CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +85,7 @@
 		EC76B6332674CBC3001709CB /* cameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC76B6372674CBC3001709CB /* cameraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraUITests.swift; sourceTree = "<group>"; };
 		EC76B6392674CBC3001709CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC82A4F526A2F73E0099DBAB /* BatteryControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryControl.swift; sourceTree = "<group>"; };
 		EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC982ACC268A4D5300805C39 /* DeviceControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControl.swift; sourceTree = "<group>"; };
 		EC982ACE268A56E900805C39 /* MainDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDeviceTableViewCell.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				EC2AFF4C2679EE5F007864CE /* CameraConfiguration.swift */,
 				EC2AFF4D2679EE5F007864CE /* CustomButton.swift */,
 				EC2AFF5D267B5992007864CE /* VideoSeparator.swift */,
+				EC82A4F526A2F73E0099DBAB /* BatteryControl.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 				EC76B6232674CBC3001709CB /* Info.plist */,
 				EC5C6F96267F450D00E9E130 /* Database */,
 				EC580EA5268E6954003BB38E /* Live.swift */,
+				EC7073AB269CC3C1009A674C /* TabBarController.swift */,
 			);
 			path = camera;
 			sourceTree = "<group>";
@@ -329,7 +335,7 @@
 			);
 			mainGroup = EC76B6092674CBC3001709CB;
 			packageReferences = (
-				EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = EC76B6132674CBC3001709CB /* Products */;
 			projectDirPath = "";
@@ -388,11 +394,13 @@
 				EC580EAC2694ADB1003BB38E /* SessionGroupTableViewCell.swift in Sources */,
 				ECE1EB3D2685E98F00B34F47 /* SliderTableViewCell.swift in Sources */,
 				EC982ACD268A4D5300805C39 /* DeviceControl.swift in Sources */,
+				EC82A4F626A2F73E0099DBAB /* BatteryControl.swift in Sources */,
 				EC982ACF268A56E900805C39 /* MainDeviceTableViewCell.swift in Sources */,
 				2258532C40EACFD88397B535 /* CompassViewController.swift in Sources */,
 				EC2AFF4E2679EE5F007864CE /* CameraConfiguration.swift in Sources */,
 				22585A80DAE8C821C8C7832D /* SettingsViewController.swift in Sources */,
 				225857798682AF9DB5DF9AB0 /* LocalStorage.swift in Sources */,
+				EC7073AC269CC3C1009A674C /* TabBarController.swift in Sources */,
 				EC580EA6268E6954003BB38E /* Live.swift in Sources */,
 				EC5C6F95267D744500E9E130 /* SessionSettingsTableViewController.swift in Sources */,
 			);
@@ -731,7 +739,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -744,17 +752,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		EC2AFF57267A1377007864CE /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
 		EC2AFF59267A1377007864CE /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
 		};
 		EC2AFF5B267A1377007864CE /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = EC2AFF56267A1377007864CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */

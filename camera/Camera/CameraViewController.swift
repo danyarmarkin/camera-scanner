@@ -20,6 +20,8 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     
     var previousSession = "AAAA"
     
+    @IBOutlet weak var battery: UILabel!
+    @IBOutlet weak var storage: UILabel!
     @IBOutlet weak var ni: UINavigationItem!
     @IBOutlet weak var currentSession: UILabel!
     @IBOutlet weak var cameraButton: CustomButton!
@@ -103,7 +105,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     // MARK: View did load
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        overrideUserInterfaceStyle = .dark
         registerLive()
         ref = Database.database(url: "https://camera-scan-e5684-default-rtdb.europe-west1.firebasedatabase.app/").reference()
         ni.title = "text"
@@ -157,7 +159,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                 
                 var rDay = "\(day)"
                 var rMonth = "\(month)"
-                var rYear = "\(year)"
+                var rYear = "\(year)".suffix(2)
                 var rHour = "\(hour)"
                 var rMinute = "\(minute)"
                 var rSecond = "\(second)"
@@ -177,6 +179,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         updateParam.tolerance = 0.15
         UIApplication.shared.isIdleTimerDisabled = true
         monitoringData()
+        BatteryControl.control(label: storage, ref: ref)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -443,7 +446,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     }
     
     func sessionWithParams(num: Int, max: Int, suffix: String) -> String {
-        let val = "\(previousSession.prefix(previousSession.count - 19))_\(num)\(max)\(suffix)"
+        let val = "\(previousSession.prefix(previousSession.count - 17))_\(num)\(max)\(suffix)"
         return val
     }
     
