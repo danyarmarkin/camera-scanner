@@ -8,9 +8,10 @@
 import UIKit
 import AVFoundation
 import Firebase
+import AVKit
 //import Photos
 
-class SessionSettingsTableViewController: UITableViewController {
+class SessionSettingsTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate{
     
     var ref: DatabaseReference!
     
@@ -72,12 +73,18 @@ class SessionSettingsTableViewController: UITableViewController {
             } else {
                 cell.configure(name: "Delete trash list", color: .systemRed)
             }
+            cell.layoutMargins = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+            cell.layer.cornerRadius = 12
+            cell.layer.masksToBounds = true
+//            cell.layer.borderWidth = 1
+//            cell.layer.borderColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             return cell
         }
         let cell: SessionTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SessionTableViewCell
+        
         let session = sessionsData[indexPath[1]][0]
         if session.count <= 4 {
-            cell.configure(text: session, switchVal: false)
+            cell.configure(text: session, switchVal: false, host: self)
             return cell
         }
         if !previewData.keys.contains(session) {
@@ -85,10 +92,12 @@ class SessionSettingsTableViewController: UITableViewController {
         }
         if trashData.contains(session) {
             print("trash: \(session)")
-            cell.configure(text: session, switchVal: false, previewImage: previewData[session]!, duration: videoDuration(videoURL: session))
+            cell.configure(text: session, switchVal: false, previewImage: previewData[session]!, duration: videoDuration(videoURL: session), host: self)
         } else {
-            cell.configure(text: session, switchVal: true, previewImage: previewData[session]!, duration: videoDuration(videoURL: session))
+            cell.configure(text: session, switchVal: true, previewImage: previewData[session]!, duration: videoDuration(videoURL: session), host: self)
         }
+        cell.layer.cornerRadius = 12
+        cell.layer.masksToBounds = true
         return cell
     }
     
@@ -212,8 +221,22 @@ class SessionSettingsTableViewController: UITableViewController {
         } else if indexPath == [0, 1] {  // delete trash list
             deleteTrashList()
         } else {
-            exportVideo(url: [ sessionsData[indexPath[1]][0] ])
+                presentVideo(url: sessionsData[indexPath[1]][0])
+            
+//            exportVideo(url: [ sessionsData[indexPath[1]][0] ])
         }
+    }
+    
+    func presentVideo(url: String) {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let fileUrl = paths[0].appendingPathComponent("\(url).mov")
+        let video = AVPlayer(url: fileUrl)
+        let videoPlayer = AVPlayerViewController()
+        videoPlayer.player = video
+        
+        present(videoPlayer, animated: true, completion: {
+            video.play()
+        })
     }
     
     func monitoringData() {

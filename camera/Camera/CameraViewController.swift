@@ -173,7 +173,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                 
                 self.sessionSuffix = "_\(rDay)\(rMonth)\(rYear)_\(rHour)\(rMinute)\(rSecond)"
                 self.ref.child("sessionSuffix").setValue(self.sessionSuffix)
-                self.updateSession(setname: false)
+//                self.updateSession(setname: false)
             }
         })
         updateParam.tolerance = 0.15
