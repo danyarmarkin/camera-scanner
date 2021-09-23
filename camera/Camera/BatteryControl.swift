@@ -20,7 +20,7 @@ class BatteryControl {
         ref.child("batteryData").child(LocalStorage.getString(key: LocalStorage.deviceName)).setValue(UIDevice.current.batteryLevel)
         ref.child("batteryData").observe(.value, with: {(snapshot) in
             let value = snapshot.value
-            print("new battery data: \(value)")
+            print("new battery data: \(value ?? 0)")
             if let val = value as? Dictionary<String, Float> {
                 self.batteryData = val
                 update()
@@ -34,9 +34,9 @@ class BatteryControl {
                 for device in val {
                     if device.value as! Int != 0 {
                         self.activeDevices.append(device.key)
-                        update()
                     }
                 }
+                update()
             }
         })
         
@@ -44,7 +44,7 @@ class BatteryControl {
             label.text = ""
             for device in activeDevices {
                 if batteryData.keys.contains(device) {
-                    label.text! += "/n\(device) \(batteryData[device] as! Float * 100)%"
+                    label.text! += "\n\(device) \(batteryData[device] as! Float * 100)%"
                 }
             } 
         }

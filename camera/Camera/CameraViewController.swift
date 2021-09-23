@@ -11,16 +11,19 @@ import CoreMedia
 import Firebase
 import AVFoundation
 
-class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate {
+class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate, UITableViewDataSource{
     
     var ref: DatabaseReference!
     let videoRecordingStartedId = "isStartVideo"
     let currentSessionId = "currentSession"
     let mainDeviceId = "mainDevice"
     
+    var activeDevices: [String] = []
+    var batteryData: Dictionary<String, Int> = [:]
+    
     var previousSession = "AAAA"
     
-    @IBOutlet weak var battery: UILabel!
+    @IBOutlet weak var deviceStatus: UITableView!
     @IBOutlet weak var storage: UILabel!
     @IBOutlet weak var ni: UINavigationItem!
     @IBOutlet weak var currentSession: UILabel!
@@ -119,8 +122,12 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         
         print(LocalStorage.getString(key: LocalStorage.currentSession))
         
+        deviceStatus.delegate = self
+        deviceStatus.dataSource = self
+        
         let updateParam = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: {(timer) in
 //            self.currentSession.text = LocalStorage.getString(key: LocalStorage.currentSession)
+            self.ref.child("batteryData").child(LocalStorage.getString(key: LocalStorage.deviceName)).setValue(Int(floor(UIDevice.current.batteryLevel * 100)))
 
             let iso = LocalStorage.getInt(key: LocalStorage.isoVal)
             let shutter = LocalStorage.getInt(key: LocalStorage.shutterVal)
@@ -175,6 +182,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                 self.ref.child("sessionSuffix").setValue(self.sessionSuffix)
 //                self.updateSession(setname: false)
             }
+//            self.deviceStatus.reloadData()
         })
         updateParam.tolerance = 0.15
         UIApplication.shared.isIdleTimerDisabled = true
@@ -339,6 +347,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                 self.updateSession()
                 self.currentSession.tintColor = .systemRed
             }
+            
         })
         
         ref.child("devicesAmount").observe(DataEventType.value, with: {(snapshot) in
@@ -429,6 +438,28 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                 self.updateSession(setname: false)
             }
         })
+        
+        ref.child("devices").observe(.value, with: {(snapshot) in
+            let value = snapshot.value
+            if let val = value as? Dictionary<String, Int> {
+                self.activeDevices = []
+                for device in val {
+                    if device.value as! Int != 0 {
+                        self.activeDevices.append(device.key)
+                    }
+                    self.deviceStatus.reloadData()
+                }
+            }
+        })
+        
+        ref.child("batteryData").observe(.value, with: {(snapshot) in
+            let value = snapshot.value
+            print("new battery data: \(value ?? 0)")
+            if let val = value as? Dictionary<String, Int> {
+                self.batteryData = val
+                self.deviceStatus.reloadData()
+            }
+        })
     }
     
     func updateSession(setname: Bool = true) {
@@ -481,6 +512,26 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     @objc func enterFocus() {
         listenVolumeButton()
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.activeDevices.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "device_cell") as! DeviceStatusCell
+        let name = self.activeDevices[indexPath[1]]
+        cell.configure(name: String(self.activeDevices[indexPath[1]].split(separator: "-")[0]), battery: self.batteryData[name] ?? 50)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        50
+    }
+    
 }
 
 extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -520,6 +571,8 @@ extension CameraViewController {
         self.present(activityVC, animated: true, completion: nil)
 
     }
+    
+    
 }
 
 

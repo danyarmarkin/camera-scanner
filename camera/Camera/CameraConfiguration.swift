@@ -79,11 +79,11 @@ extension CameraConfiguration {
             guard let captureSession = self.captureSession else {
                 throw CameraControllerError.captureSessionIsMissing
             }
-            
-            
-            captureSession.sessionPreset =  .hd4K3840x2160
+
+            captureSession.sessionPreset = .hd4K3840x2160
             print(rearCamera?.formats.first?.minISO ?? 0)
             print(rearCamera?.formats.first?.maxISO ?? 0)
+//            rearCamera.isHighResolutionCaptureEnabled
             
             for input in captureSession.inputs {
                 captureSession.removeInput(input)
@@ -98,7 +98,6 @@ extension CameraConfiguration {
             if let rearCamera = self.rearCamera {
                 self.rearCameraInput = try AVCaptureDeviceInput(device: rearCamera)
                 if captureSession.canAddInput(self.rearCameraInput!) {
-                    
                     captureSession.addInput(self.rearCameraInput!)
                     self.currentCameraPosition = .rear
                 } else {
@@ -202,12 +201,14 @@ extension CameraConfiguration {
         }
         
         // MARK: Camera Settings
+        let rate = 120 * 1024 * 1024
         print("video codec types = \(self.videoOutput!.availableVideoCodecTypes)")
         print("quality = \(LocalStorage.getFloat(key: LocalStorage.videoQuality))")
         self.videoOutput?.setOutputSettings(
             [AVVideoCodecKey : AVVideoCodecType.hevc,
              AVVideoCompressionPropertiesKey: [
                 AVVideoAverageBitRateKey: NSNumber(value: LocalStorage.getFloat(key: LocalStorage.videoQuality) * 1024 * 1024) ,
+//                AVVideoAppleProRAWBitDepthKey: 16
 //                AVVideoQualityKey: NSNumber(value: LocalStorage.getFloat(key: LocalStorage.videoQuality))
              ]
             ],
