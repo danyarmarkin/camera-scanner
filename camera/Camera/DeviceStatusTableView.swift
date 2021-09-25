@@ -11,7 +11,7 @@ class DeviceStatusTableView: UITableView {
     
     override func cellForRow(at indexPath: IndexPath) -> UITableViewCell? {
         let cell = dequeueReusableCell(withIdentifier: "device_cell") as! DeviceStatusCell
-        cell.configure(name: "device #\(indexPath[1])", battery: 0)
+        cell.configure(name: "device #\(indexPath[1])", battery: 0, storage: 0, totalStorage: 1)
         return cell
     }
     

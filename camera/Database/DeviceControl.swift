@@ -32,11 +32,10 @@ class DeviceControl {
                 let value = snapshot.value
                 print("changed")
                 if let val = value as? Dictionary<String, Int> {
-                    print(val)
+                    let sortedKeys = Array(val.keys).sorted()
                     var ind = 1
-                    for i in val {
-                        if i.value != 0 {
-                            self.ref.child("devices").child(i.key).setValue(ind)
+                    for i in sortedKeys {
+                        if val[i] != 0 {
                             ind += 1
                         }
                     }

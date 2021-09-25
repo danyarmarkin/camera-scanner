@@ -20,6 +20,8 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     
     var activeDevices: [String] = []
     var batteryData: Dictionary<String, Int> = [:]
+    var storageData: Dictionary<String, Int> = [:]
+    var totalStorageData: Dictionary<String, Int> = [:]
     
     var previousSession = "AAAA"
     
@@ -128,7 +130,9 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         let updateParam = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: {(timer) in
 //            self.currentSession.text = LocalStorage.getString(key: LocalStorage.currentSession)
             self.ref.child("batteryData").child(LocalStorage.getString(key: LocalStorage.deviceName)).setValue(Int(floor(UIDevice.current.batteryLevel * 100)))
-
+            self.ref.child("storageData").child(LocalStorage.getString(key: LocalStorage.deviceName)).setValue(Int(DiskStatus.freeDiskSpaceInBytes / 1024 / 1024))
+            self.ref.child("totalStorageData").child(LocalStorage.getString(key: LocalStorage.deviceName)).setValue(Int(DiskStatus.totalDiskSpaceInBytes / 1024 / 1024))
+            
             let iso = LocalStorage.getInt(key: LocalStorage.isoVal)
             let shutter = LocalStorage.getInt(key: LocalStorage.shutterVal)
             let wb = LocalStorage.getInt(key: LocalStorage.wbVal)
@@ -460,6 +464,22 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                 self.deviceStatus.reloadData()
             }
         })
+        ref.child("storageData").observe(.value, with: {(snapshot) in
+            let value = snapshot.value
+            print("new storage data: \(value ?? 0)")
+            if let val = value as? Dictionary<String, Int> {
+                self.storageData = val
+                self.deviceStatus.reloadData()
+            }
+        })
+        ref.child("totalStorageData").observe(.value, with: {(snapshot) in
+            let value = snapshot.value
+            print("new tottal storage data: \(value ?? 0)")
+            if let val = value as? Dictionary<String, Int> {
+                self.totalStorageData = val
+                self.deviceStatus.reloadData()
+            }
+        })
     }
     
     func updateSession(setname: Bool = true) {
@@ -524,12 +544,17 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "device_cell") as! DeviceStatusCell
         let name = self.activeDevices[indexPath[1]]
-        cell.configure(name: String(self.activeDevices[indexPath[1]].split(separator: "-")[0]), battery: self.batteryData[name] ?? 50)
+        let device = activeDevices[indexPath[1]].split(separator: "-")[0]
+        cell.configure(name: String(device), battery: self.batteryData[name] ?? 50, storage: storageData[name] ?? 1024, totalStorage: totalStorageData[name] ?? 1)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         50
+    }
+    
+    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
+        false
     }
     
 }
