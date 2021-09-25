@@ -23,16 +23,25 @@ class DeviceStatusCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(name: String, battery: Int) {
+    func configure(name: String, battery: Int, storage: Int, totalStorage: Int) {
         deviceName.text = name
         batteryBar.tintColor = .systemGreen
         storageBar.tintColor = .systemBlue
         batteryBar.setProgress(Float(battery) / 100, animated: false)
+        storageBar.setProgress(1.0 - Float(storage) / Float(totalStorage), animated: false)
         if battery <= 20 {
             batteryBar.tintColor = .systemOrange
         }
         if battery <= 10 {
             batteryBar.tintColor = .systemRed
+        }
+        
+        if storage <= 10 * 1024 {
+            storageBar.tintColor = .systemOrange
+        }
+        
+        if storage <= 5 * 1024{
+            storageBar.tintColor = .systemRed
         }
     }
 

@@ -104,7 +104,8 @@ class LocalStorage {
     }
     
     static func randomSessionId(length: Int) -> String {
-      let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-      return String((0..<length).map{ _ in letters.randomElement()! })
+        let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        let numbers = "0123456789"
+        return String((0..<length).map{ _ in letters.randomElement()! }) + String((0..<2).map{ _ in numbers.randomElement()! })
     }
 }

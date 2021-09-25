@@ -52,10 +52,10 @@ class MainDeviceTableViewCell: UITableViewCell {
             if let val = value as? String {
                 if val == LocalStorage.getString(key: LocalStorage.deviceName) {
                     LocalStorage.set(key: LocalStorage.isMainDevice, val: true)
-                    self.mainDeviceSwitch.isOn = true
+                    self.mainDeviceSwitch.setOn(true, animated: true)
                 } else {
                     LocalStorage.set(key: LocalStorage.isMainDevice, val: false)
-                    self.mainDeviceSwitch.isOn = false
+                    self.mainDeviceSwitch.setOn(false, animated: true)
                 }
             }
         })
