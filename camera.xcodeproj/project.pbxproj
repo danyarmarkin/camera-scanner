@@ -12,6 +12,7 @@
 		22585A80DAE8C821C8C7832D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258528DBF17C41B071E5C20 /* SettingsViewController.swift */; };
 		EC024F8626FD0EC2009EA02B /* 1024.png in Resources */ = {isa = PBXBuildFile; fileRef = EC024F8526FD0EC2009EA02B /* 1024.png */; };
 		EC024FC826FE072B009EA02B /* DiskSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC024FC726FE072B009EA02B /* DiskSpace.swift */; };
+		EC024FCC26FF7379009EA02B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC024FCB26FF7379009EA02B /* Assets.xcassets */; };
 		EC2AFF4E2679EE5F007864CE /* CameraConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF4C2679EE5F007864CE /* CameraConfiguration.swift */; };
 		EC2AFF4F2679EE5F007864CE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF4D2679EE5F007864CE /* CustomButton.swift */; };
 		EC2AFF512679EE77007864CE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF502679EE76007864CE /* UIViewControllerExtensions.swift */; };
@@ -33,7 +34,6 @@
 		EC82A4F626A2F73E0099DBAB /* BatteryControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82A4F526A2F73E0099DBAB /* BatteryControl.swift */; };
 		EC87D21126FCB3A000B0C8C0 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = EC87D21026FCB3A000B0C8C0 /* FirebaseDatabase */; };
 		EC87D21526FCD30F00B0C8C0 /* DeviceStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC87D21426FCD30F00B0C8C0 /* DeviceStatusCell.swift */; };
-		EC87D21726FCED4100B0C8C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC87D21626FCED4100B0C8C0 /* Assets.xcassets */; };
 		EC8D0DB02684D32B009413E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */; };
 		EC982ACD268A4D5300805C39 /* DeviceControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC982ACC268A4D5300805C39 /* DeviceControl.swift */; };
 		EC982ACF268A56E900805C39 /* MainDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC982ACE268A56E900805C39 /* MainDeviceTableViewCell.swift */; };
@@ -65,6 +65,7 @@
 		22585ECA62D40B067F2FEBE3 /* CompassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassViewController.swift; sourceTree = "<group>"; };
 		EC024F8526FD0EC2009EA02B /* 1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1024.png; sourceTree = "<group>"; };
 		EC024FC726FE072B009EA02B /* DiskSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskSpace.swift; sourceTree = "<group>"; };
+		EC024FCB26FF7379009EA02B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		EC2AFF4C2679EE5F007864CE /* CameraConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraConfiguration.swift; sourceTree = "<group>"; };
 		EC2AFF4D2679EE5F007864CE /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		EC2AFF502679EE76007864CE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -91,7 +92,6 @@
 		EC76B6392674CBC3001709CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC82A4F526A2F73E0099DBAB /* BatteryControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryControl.swift; sourceTree = "<group>"; };
 		EC87D21426FCD30F00B0C8C0 /* DeviceStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStatusCell.swift; sourceTree = "<group>"; };
-		EC87D21626FCED4100B0C8C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../Assets.xcassets; sourceTree = "<group>"; };
 		EC8D0DAF2684D32B009413E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC982ACC268A4D5300805C39 /* DeviceControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControl.swift; sourceTree = "<group>"; };
 		EC982ACE268A56E900805C39 /* MainDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDeviceTableViewCell.swift; sourceTree = "<group>"; };
@@ -212,8 +212,8 @@
 				EC5C6F93267D73C600E9E130 /* Camera */,
 				2258528DBF17C41B071E5C20 /* SettingsViewController.swift */,
 				EC76B6192674CBC3001709CB /* ViewController.swift */,
-				EC87D21626FCED4100B0C8C0 /* Assets.xcassets */,
 				EC76B6232674CBC3001709CB /* Info.plist */,
+				EC024FCB26FF7379009EA02B /* Assets.xcassets */,
 				EC5C6F96267F450D00E9E130 /* Database */,
 				EC580EA5268E6954003BB38E /* Live.swift */,
 				EC7073AB269CC3C1009A674C /* TabBarController.swift */,
@@ -379,7 +379,7 @@
 				EC8D0DB02684D32B009413E9 /* GoogleService-Info.plist in Resources */,
 				EC024F8626FD0EC2009EA02B /* 1024.png in Resources */,
 				EC76B61D2674CBC3001709CB /* Main.storyboard in Resources */,
-				EC87D21726FCED4100B0C8C0 /* Assets.xcassets in Resources */,
+				EC024FCC26FF7379009EA02B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
