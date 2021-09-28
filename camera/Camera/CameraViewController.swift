@@ -10,8 +10,10 @@ import Foundation
 import CoreMedia
 import Firebase
 import AVFoundation
+import MediaPlayer
 
 class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate, UITableViewDataSource{
+    let volumeView = MPVolumeView()
     
     var ref: DatabaseReference!
     let videoRecordingStartedId = "isStartVideo"
@@ -72,26 +74,6 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         }
     }
     
-    fileprivate func registerNotification() {
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: NSNotification.Name(rawValue: "App is going background"), object: nil)
-        
-        notificationCenter.addObserver(self, selector: #selector(appCameToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-    }
-    
-    @objc func appMovedToBackground() {
-        if videoRecordingStarted {
-            videoRecordingStarted = false
-            cameraConfig.stopRecording { (error) in
-                print(error ?? "Video recording error")
-            }
-        }
-    }
-    
-    @objc func appCameToForeground() {
-        print("app enters foreground")
-    }
-    
     func camConf(fps: Int) -> CameraConfiguration {
         let cCnfg: CameraConfiguration? = CameraConfiguration()
         cCnfg?.setup (handler: { (error) in
@@ -117,7 +99,6 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         cameraConfig = camConf(fps: 8)
 
         cameraButton.tintColor = UIColor.systemBlue
-        registerNotification()
         
         objectNameTextField.delegate = self
         listenVolumeButton()
@@ -192,6 +173,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         UIApplication.shared.isIdleTimerDisabled = true
         monitoringData()
         BatteryControl.control(label: storage, ref: ref)
+//        self.view.addSubview(volumeView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -289,10 +271,6 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                     LocalStorage.appendArray(key: LocalStorage.sessionArray,
                                              value: [LocalStorage.getString(key: LocalStorage.currentSession)])
                     self.previousSession = LocalStorage.getString(key: LocalStorage.currentSession)
-                    if LocalStorage.getBool(key: LocalStorage.isMainDevice) {
-                        let session = LocalStorage.randomSessionId(length: 4)
-                        self.ref.child(self.currentSessionId).setValue(session)
-                    }
                     self.videoRecordingStarted = false
                     LocalStorage.set(key: LocalStorage.isVideoStarted, val: false)
                     self.durationTimer.invalidate()
@@ -324,6 +302,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                         self.showToastForSaved()
                     }
                     print(1)
+                    
                 }
             }
         })
@@ -458,7 +437,6 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         
         ref.child("batteryData").observe(.value, with: {(snapshot) in
             let value = snapshot.value
-            print("new battery data: \(value ?? 0)")
             if let val = value as? Dictionary<String, Int> {
                 self.batteryData = val
                 self.deviceStatus.reloadData()
@@ -466,7 +444,6 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         })
         ref.child("storageData").observe(.value, with: {(snapshot) in
             let value = snapshot.value
-            print("new storage data: \(value ?? 0)")
             if let val = value as? Dictionary<String, Int> {
                 self.storageData = val
                 self.deviceStatus.reloadData()
@@ -474,7 +451,6 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
         })
         ref.child("totalStorageData").observe(.value, with: {(snapshot) in
             let value = snapshot.value
-            print("new tottal storage data: \(value ?? 0)")
             if let val = value as? Dictionary<String, Int> {
                 self.totalStorageData = val
                 self.deviceStatus.reloadData()
@@ -510,17 +486,30 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
        audioSession.addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.new, context: nil)
     }
 
-
+    var volumeTapped = false
+    var ind = 0
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
       if keyPath == "outputVolume" {
-        self.ref.child("movePrivousSessionToTrashList").setValue(0)
-        if videoRecordingStarted {
-            ref.child(videoRecordingStartedId).setValue(0)
-        } else if !videoRecordingStarted {
-            ref.child(videoRecordingStartedId).setValue(1)
+          if !volumeTapped {
+              if videoRecordingStarted {
+                  ref.child(videoRecordingStartedId).setValue(0)
+              } else if !videoRecordingStarted {
+                  ref.child(videoRecordingStartedId).setValue(1)
+              }
+              isTrashButtonActive = false
+          }
+          if let view = volumeView.subviews.first as? UISlider{
+              if !volumeTapped {
+                  print("volume = \(view.value)")
+                  view.value = 0.5
+                  print("volume = \(view.value)")
+                  volumeTapped = true
+              }
+          }
+          _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: {_ in
+              self.volumeTapped = false
+          })
         }
-        isTrashButtonActive = false
-      }
     }
     
     func registerLive() {
@@ -564,9 +553,6 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
         if (info[UIImagePickerController.InfoKey.originalImage] as? UIImage) != nil {
 //            self.galleryButton.contentMode = .scaleAspectFit
 //            self.galleryButton.setImage( pickedImage, for: .normal)
-        }
-        if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
-            print("videoURL:\(String(describing: videoURL))")
         }
         
         dismiss(animated: true, completion: nil)
