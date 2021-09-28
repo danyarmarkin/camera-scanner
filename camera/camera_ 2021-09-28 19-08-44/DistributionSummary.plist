@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>camera.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>1</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>0EE39107E25A1C54AE90A15660F9685893800BE6</string>
+				<key>dateExpires</key>
+				<string>28.09.2022</string>
+				<key>type</key>
+				<string>Cloud Managed Apple Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>X6S75ZHN39.kanistra.camera</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>X6S75ZHN39</string>
+				<key>get-task-allow</key>
+				<false/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>X6S75ZHN39.kanistra.camera</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>camera.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>086b813b-a577-4f53-a9a0-7a4600da314a</string>
+				<key>dateExpires</key>
+				<string>28.09.2022</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: kanistra.camera</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>X6S75ZHN39</string>
+				<key>name</key>
+				<string>Nikita Saraev</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>1.1</string>
+		</dict>
+	</array>
+</dict>
+</plist>

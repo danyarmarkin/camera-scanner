@@ -133,12 +133,9 @@ class CompassViewController: UIViewController, CLLocationManagerDelegate {
         
         compassValue.text = String(currentVal)
         compassBar.progress = currentVal / 360
-
-//        print(motion.accelerometerData?.acceleration.x)
-//        print(motion.accelerometerData?.acceleration.y)
-//        print(motion.accelerometerData?.acceleration.z)
-//        print("---")
     }
+    
+    
     func registerLive() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(enterBackground),
