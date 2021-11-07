@@ -38,7 +38,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 7
+        return 8
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,8 +53,14 @@ class SettingsTableViewController: UITableViewController {
         var numberCell = tableView.dequeueReusableCell(withIdentifier: "NumberCell", for: indexPath) as! NumberTableViewCell
         var sliderCell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as! SliderTableViewCell
         var isMainDeviceCell = tableView.dequeueReusableCell(withIdentifier: "main_device_cell", for: indexPath) as! MainDeviceTableViewCell
+        var isStabilizationCell = tableView.dequeueReusableCell(withIdentifier: "stabilization_cell", for: indexPath) as! StabilizationTableViewCell
         
         if indexPath == [6, 0] {
+            isStabilizationCell.configure()
+            return isStabilizationCell
+        }
+        
+        if indexPath == [7, 0] {
             isMainDeviceCell.configure()
             return isMainDeviceCell
         }
@@ -162,10 +168,12 @@ class SettingsTableViewController: UITableViewController {
             return "Tint"
         case 4:
             return "FPS"
-        case 6:
+        case 7:
             return "Device"
         case 5:
             return "Bit Rate"
+        case 6:
+            return "Auto Stabilization"
         default:
             return "no name section"
         }

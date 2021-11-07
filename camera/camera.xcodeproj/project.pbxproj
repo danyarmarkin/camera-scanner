@@ -13,6 +13,7 @@
 		EC024F8626FD0EC2009EA02B /* 1024.png in Resources */ = {isa = PBXBuildFile; fileRef = EC024F8526FD0EC2009EA02B /* 1024.png */; };
 		EC024FC826FE072B009EA02B /* DiskSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC024FC726FE072B009EA02B /* DiskSpace.swift */; };
 		EC024FCC26FF7379009EA02B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC024FCB26FF7379009EA02B /* Assets.xcassets */; };
+		EC029A75272C0750004351F9 /* StabilizationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC029A74272C0750004351F9 /* StabilizationTableViewCell.swift */; };
 		EC2AFF4E2679EE5F007864CE /* CameraConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF4C2679EE5F007864CE /* CameraConfiguration.swift */; };
 		EC2AFF4F2679EE5F007864CE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF4D2679EE5F007864CE /* CustomButton.swift */; };
 		EC2AFF512679EE77007864CE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2AFF502679EE76007864CE /* UIViewControllerExtensions.swift */; };
@@ -66,6 +67,7 @@
 		EC024F8526FD0EC2009EA02B /* 1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1024.png; sourceTree = "<group>"; };
 		EC024FC726FE072B009EA02B /* DiskSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskSpace.swift; sourceTree = "<group>"; };
 		EC024FCB26FF7379009EA02B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		EC029A74272C0750004351F9 /* StabilizationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizationTableViewCell.swift; sourceTree = "<group>"; };
 		EC2AFF4C2679EE5F007864CE /* CameraConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraConfiguration.swift; sourceTree = "<group>"; };
 		EC2AFF4D2679EE5F007864CE /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		EC2AFF502679EE76007864CE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				ECE1EB3A2685E98300B34F47 /* NumberTableViewCell.swift */,
 				ECE1EB3C2685E98F00B34F47 /* SliderTableViewCell.swift */,
 				EC982ACE268A56E900805C39 /* MainDeviceTableViewCell.swift */,
+				EC029A74272C0750004351F9 /* StabilizationTableViewCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				ECE1EB3B2685E98300B34F47 /* NumberTableViewCell.swift in Sources */,
 				EC2AFF512679EE77007864CE /* UIViewControllerExtensions.swift in Sources */,
 				EC2AFF5E267B5992007864CE /* VideoSeparator.swift in Sources */,
+				EC029A75272C0750004351F9 /* StabilizationTableViewCell.swift in Sources */,
 				EC76B6162674CBC3001709CB /* AppDelegate.swift in Sources */,
 				ECE1EB332685E73700B34F47 /* SettingsTableViewController.swift in Sources */,
 				EC76B6182674CBC3001709CB /* SceneDelegate.swift in Sources */,

@@ -295,7 +295,7 @@ class CameraViewController: UIViewController, UITableViewDelegate, UITextFieldDe
                     self.videoRecordingStarted = true
                     LocalStorage.set(key: LocalStorage.isVideoStarted, val: true)
                     self.cameraConfig.recordVideo { (url, error) in
-                        guard let url = url else {
+                        guard url != nil else {
                             print(error ?? "Video recording error")
                             return
                         }
