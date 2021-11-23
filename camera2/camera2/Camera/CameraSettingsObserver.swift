@@ -19,6 +19,9 @@ class CameraSettingsObserver: NSObject {
     var observationColorSpace: NSKeyValueObservation?
     var captureDevice: AVCaptureDevice!
     
+    let defaults = UserDefaults.standard
+    var focus = 0
+    
     init(capDev: AVCaptureDevice, settings: CameraSettings) {
         cameraSettings = settings
         captureDevice = capDev
@@ -27,6 +30,7 @@ class CameraSettingsObserver: NSObject {
         observationIso = observe(\.cameraSettings.iso, options: [.new]) { object, change in
             do {
                 try self.captureDevice.lockForConfiguration()
+                print(self.cameraSettings.iso)
                 self.captureDevice.setExposureModeCustom(duration: self.cameraSettings.shutter as! CMTime, iso: Float(self.cameraSettings.iso), completionHandler: nil)
                 self.captureDevice.unlockForConfiguration()
             } catch {return}

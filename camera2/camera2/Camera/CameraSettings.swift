@@ -16,6 +16,9 @@ class CameraSettings: NSObject{
     @objc dynamic var focus: NSNumber!
     @objc dynamic var fps = 4
     @objc dynamic var colorSpace = 0
+    @objc dynamic var focusRange: AVCaptureDevice.AutoFocusRangeRestriction = .none
+    
+    let defaults = UserDefaults.standard
     
 //    var ref: DatabaseReference!
     
@@ -32,52 +35,27 @@ class CameraSettings: NSObject{
     }
     
     func monitoringData() {
-//        ref.child("cameraConf").child("iso").observe(.value) { snapshot in
-//            if let val = snapshot.value as? Int {
-//                self.iso = val
-//            }
-//        }
-//        ref.child("cameraConf").child("shutter").observe(.value) { snapshot in
-//            if let val = snapshot.value as? Int {
-//                self.shutter = CMTimeMake(value: 1, timescale: Int32(val)) as NSObject
-//            }
-//        }
-//        ref.child("cameraConf").child("wb").observe(.value) { snapshot in
-//            if let val = snapshot.value as? Int {
-//                self.wb = val
-//            }
-//        }
-//        ref.child("cameraConf").child("tint").observe(.value) { snapshot in
-//            if let val = snapshot.value as? Int {
-//                self.tint = val
-//            }
-//        }
         let timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: {[self](timer) in
-//            let iso = LocalStorage.getInt(key: LocalStorage.isoVal)
-//            let shutter = CMTimeMake(value: 1, timescale: Int32(LocalStorage.getInt(key: LocalStorage.shutterVal)))
-//            let wb = LocalStorage.getInt(key: LocalStorage.wbVal)
-//            let tint = LocalStorage.getInt(key: LocalStorage.tintVal)
-//            let fps = LocalStorage.getInt(key: LocalStorage.fpsVal)
-//            let colorSpace = LocalStorage.getInt(key: LocalStorage.csVal)
-//            if iso != self.iso {
-//                self.iso = iso
-//            }
-//            if shutter != self.shutter as! CMTime {
-//                self.shutter = shutter as NSObject
-//            }
-//            if wb != self.wb {
-//                self.iso = wb
-//            }
-//            if tint != self.tint {
-//                self.tint = tint
-//            }
-//            if fps != self.fps {
-//                self.fps = fps
-//            }
-//            if colorSpace != self.colorSpace {
-//                self.colorSpace = iso
-//            }
-//            self.iso += 10
+            let iso = CameraData.getData(.iso)
+            let shutter = CMTimeMake(value: 1, timescale: Int32(CameraData.getData(.shutter)))
+            let wb = CameraData.getData(.wb)
+            let tint = CameraData.getData(.tint)
+            let fps = CameraData.getData(.fps)
+            if iso != self.iso {
+                self.iso = iso
+            }
+            if shutter != self.shutter as! CMTime {
+                self.shutter = shutter as NSObject
+            }
+            if wb != self.wb {
+                self.wb = wb
+            }
+            if tint != self.tint {
+                self.tint = tint
+            }
+            if fps != self.fps {
+                self.fps = fps
+            }
         })
         timer.tolerance = 0.3
     }

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC8C2EF5273FB2CB0082FE8E /* SessionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C2EF4273FB2CB0082FE8E /* SessionsTableViewController.swift */; };
+		EC8C2EF7273FB2E00082FE8E /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C2EF6273FB2E00082FE8E /* SessionTableViewCell.swift */; };
+		EC8C2EF9273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C2EF8273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift */; };
+		EC8C2EFB273FB3050082FE8E /* DeleteAllBadSessionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C2EFA273FB3050082FE8E /* DeleteAllBadSessionsTableViewCell.swift */; };
+		EC8C2EFD273FB3190082FE8E /* SetAllSessionsBadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C2EFC273FB3190082FE8E /* SetAllSessionsBadTableViewCell.swift */; };
 		ECA5E12A2738263700A84E40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5E1292738263700A84E40 /* AppDelegate.swift */; };
 		ECA5E12C2738263700A84E40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5E12B2738263700A84E40 /* SceneDelegate.swift */; };
 		ECA5E12E2738263700A84E40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5E12D2738263700A84E40 /* ViewController.swift */; };
@@ -23,6 +28,16 @@
 		ECA5E16627382F6400A84E40 /* CameraSettingsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5E16427382F6400A84E40 /* CameraSettingsObserver.swift */; };
 		ECA5E168273832C200A84E40 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5E167273832C200A84E40 /* Session.swift */; };
 		ECA5E16A273839ED00A84E40 /* CaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5E169273839ED00A84E40 /* CaptureDevice.swift */; };
+		ECD57812274955ED007F7532 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD57811274955ED007F7532 /* SettingsTableViewController.swift */; };
+		ECD5781427495D3A007F7532 /* FastSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5781327495D3A007F7532 /* FastSettingsTableViewCell.swift */; };
+		ECD57816274966C0007F7532 /* IsoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD57815274966BF007F7532 /* IsoCollectionViewCell.swift */; };
+		ECD57818274966CB007F7532 /* ShutterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD57817274966CB007F7532 /* ShutterCollectionViewCell.swift */; };
+		ECD5781A274966D7007F7532 /* WBCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD57819274966D7007F7532 /* WBCollectionViewCell.swift */; };
+		ECD5781C274966E0007F7532 /* TintCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5781B274966E0007F7532 /* TintCollectionViewCell.swift */; };
+		ECD5781E274966EC007F7532 /* FPSCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5781D274966EC007F7532 /* FPSCollectionViewCell.swift */; };
+		ECD57820274969EC007F7532 /* ExtensionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5781F274969EC007F7532 /* ExtensionCollectionViewCell.swift */; };
+		ECD57822274A4675007F7532 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD57821274A4675007F7532 /* Storage.swift */; };
+		ECD57826274D5669007F7532 /* ConfigurationProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD57825274D5669007F7532 /* ConfigurationProfileTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +58,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC8C2EF4273FB2CB0082FE8E /* SessionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsTableViewController.swift; sourceTree = "<group>"; };
+		EC8C2EF6273FB2E00082FE8E /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
+		EC8C2EF8273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportAllSessionsTableViewCell.swift; sourceTree = "<group>"; };
+		EC8C2EFA273FB3050082FE8E /* DeleteAllBadSessionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllBadSessionsTableViewCell.swift; sourceTree = "<group>"; };
+		EC8C2EFC273FB3190082FE8E /* SetAllSessionsBadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAllSessionsBadTableViewCell.swift; sourceTree = "<group>"; };
 		ECA5E1262738263700A84E40 /* camera2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = camera2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA5E1292738263700A84E40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECA5E12B2738263700A84E40 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +83,16 @@
 		ECA5E16427382F6400A84E40 /* CameraSettingsObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraSettingsObserver.swift; sourceTree = "<group>"; };
 		ECA5E167273832C200A84E40 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		ECA5E169273839ED00A84E40 /* CaptureDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDevice.swift; sourceTree = "<group>"; };
+		ECD57811274955ED007F7532 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		ECD5781327495D3A007F7532 /* FastSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		ECD57815274966BF007F7532 /* IsoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsoCollectionViewCell.swift; sourceTree = "<group>"; };
+		ECD57817274966CB007F7532 /* ShutterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShutterCollectionViewCell.swift; sourceTree = "<group>"; };
+		ECD57819274966D7007F7532 /* WBCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBCollectionViewCell.swift; sourceTree = "<group>"; };
+		ECD5781B274966E0007F7532 /* TintCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintCollectionViewCell.swift; sourceTree = "<group>"; };
+		ECD5781D274966EC007F7532 /* FPSCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSCollectionViewCell.swift; sourceTree = "<group>"; };
+		ECD5781F274969EC007F7532 /* ExtensionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCollectionViewCell.swift; sourceTree = "<group>"; };
+		ECD57821274A4675007F7532 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		ECD57825274D5669007F7532 /* ConfigurationProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationProfileTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +120,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC8C2EF3273FB2AB0082FE8E /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				EC8C2EF4273FB2CB0082FE8E /* SessionsTableViewController.swift */,
+				EC8C2EF6273FB2E00082FE8E /* SessionTableViewCell.swift */,
+				EC8C2EF8273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift */,
+				EC8C2EFA273FB3050082FE8E /* DeleteAllBadSessionsTableViewCell.swift */,
+				EC8C2EFC273FB3190082FE8E /* SetAllSessionsBadTableViewCell.swift */,
+			);
+			path = Sessions;
+			sourceTree = "<group>";
+		};
 		ECA5E11D2738263700A84E40 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +155,8 @@
 		ECA5E1282738263700A84E40 /* camera2 */ = {
 			isa = PBXGroup;
 			children = (
+				ECD57810274955CA007F7532 /* Settings */,
+				EC8C2EF3273FB2AB0082FE8E /* Sessions */,
 				ECA5E15E27382D6700A84E40 /* Camera */,
 				ECA5E15B27382A5100A84E40 /* images */,
 				ECA5E1292738263700A84E40 /* AppDelegate.swift */,
@@ -123,6 +167,7 @@
 				ECA5E1342738263700A84E40 /* LaunchScreen.storyboard */,
 				ECA5E1372738263700A84E40 /* Info.plist */,
 				ECA5E167273832C200A84E40 /* Session.swift */,
+				ECD57821274A4675007F7532 /* Storage.swift */,
 			);
 			path = camera2;
 			sourceTree = "<group>";
@@ -162,6 +207,38 @@
 				ECA5E169273839ED00A84E40 /* CaptureDevice.swift */,
 			);
 			path = Camera;
+			sourceTree = "<group>";
+		};
+		ECD57810274955CA007F7532 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ECD57824274D4A7D007F7532 /* Configuration Profiles */,
+				ECD57823274D4A5D007F7532 /* Fast Settings */,
+				ECD57811274955ED007F7532 /* SettingsTableViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		ECD57823274D4A5D007F7532 /* Fast Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ECD5781327495D3A007F7532 /* FastSettingsTableViewCell.swift */,
+				ECD57815274966BF007F7532 /* IsoCollectionViewCell.swift */,
+				ECD57817274966CB007F7532 /* ShutterCollectionViewCell.swift */,
+				ECD57819274966D7007F7532 /* WBCollectionViewCell.swift */,
+				ECD5781B274966E0007F7532 /* TintCollectionViewCell.swift */,
+				ECD5781D274966EC007F7532 /* FPSCollectionViewCell.swift */,
+				ECD5781F274969EC007F7532 /* ExtensionCollectionViewCell.swift */,
+			);
+			path = "Fast Settings";
+			sourceTree = "<group>";
+		};
+		ECD57824274D4A7D007F7532 /* Configuration Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				ECD57825274D5669007F7532 /* ConfigurationProfileTableViewController.swift */,
+			);
+			path = "Configuration Profiles";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,14 +373,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECD57826274D5669007F7532 /* ConfigurationProfileTableViewController.swift in Sources */,
 				ECA5E12E2738263700A84E40 /* ViewController.swift in Sources */,
 				ECA5E16527382F6400A84E40 /* CameraSettings.swift in Sources */,
 				ECA5E16627382F6400A84E40 /* CameraSettingsObserver.swift in Sources */,
+				EC8C2EFB273FB3050082FE8E /* DeleteAllBadSessionsTableViewCell.swift in Sources */,
 				ECA5E16227382E8700A84E40 /* Camera.swift in Sources */,
+				EC8C2EF5273FB2CB0082FE8E /* SessionsTableViewController.swift in Sources */,
 				ECA5E168273832C200A84E40 /* Session.swift in Sources */,
 				ECA5E16027382D8600A84E40 /* CameraViewController.swift in Sources */,
+				ECD57820274969EC007F7532 /* ExtensionCollectionViewCell.swift in Sources */,
+				ECD5781A274966D7007F7532 /* WBCollectionViewCell.swift in Sources */,
+				EC8C2EF7273FB2E00082FE8E /* SessionTableViewCell.swift in Sources */,
+				ECD5781427495D3A007F7532 /* FastSettingsTableViewCell.swift in Sources */,
+				ECD57818274966CB007F7532 /* ShutterCollectionViewCell.swift in Sources */,
+				EC8C2EF9273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift in Sources */,
 				ECA5E16A273839ED00A84E40 /* CaptureDevice.swift in Sources */,
+				ECD57822274A4675007F7532 /* Storage.swift in Sources */,
+				ECD57812274955ED007F7532 /* SettingsTableViewController.swift in Sources */,
+				EC8C2EFD273FB3190082FE8E /* SetAllSessionsBadTableViewCell.swift in Sources */,
 				ECA5E12A2738263700A84E40 /* AppDelegate.swift in Sources */,
+				ECD5781E274966EC007F7532 /* FPSCollectionViewCell.swift in Sources */,
+				ECD57816274966C0007F7532 /* IsoCollectionViewCell.swift in Sources */,
+				ECD5781C274966E0007F7532 /* TintCollectionViewCell.swift in Sources */,
 				ECA5E12C2738263700A84E40 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

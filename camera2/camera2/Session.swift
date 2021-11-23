@@ -17,11 +17,12 @@ class Session {
     var sessionIndex = ""
     
     func getFullName() -> String {
-        if time == "" {
-            return "\(sessionIndex)\(objectName)_\(sessionName)_\(deviceIndex)\(deviceAmount)_\(date)"
-        }
         if date == "" {
             return "\(sessionIndex)\(objectName)_\(sessionName)_\(deviceIndex)\(deviceAmount)"
+        }
+        
+        if time == "" {
+            return "\(sessionIndex)\(objectName)_\(sessionName)_\(deviceIndex)\(deviceAmount)_\(date)"
         }
         return "\(sessionIndex)\(objectName)_\(sessionName)_\(deviceIndex)\(deviceAmount)_\(date)_\(time)"
     }

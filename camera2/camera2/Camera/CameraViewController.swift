@@ -32,7 +32,8 @@ class CameraViewController: UIViewController {
         if !isStartSession {
             isStartSession = true
             session.objectName = "testObject"
-            session.sessionName = "001ADFF"
+            let a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            session.sessionName = "\(a.randomElement()!)\(a.randomElement()!)\(a.randomElement()!)\(a.randomElement()!)"
             camera.recordVideo(session: session) {(url, error) in
                 guard url != nil else {
                     print(error ?? "error")
@@ -42,6 +43,7 @@ class CameraViewController: UIViewController {
             }
             videoButton.backgroundColor = .systemRed
         } else {
+            isStartSession = false
             videoButton.backgroundColor = .lightGray
             camera.captureVideoOutput?.stopRecording()
         }

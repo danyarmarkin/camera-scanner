@@ -11,10 +11,12 @@ import UIKit
 
 class Camera: NSObject{
     
+    let defaults = UserDefaults.standard
+    
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var captureVideoOutput: AVCaptureMovieFileOutput?
-    var captureDevice: AVCaptureDevice!
+    var captureDevice: AVCaptureDevice?
     var imageView: UIImageView!
     @objc let cameraSettings = CameraSettings()
     var observation: NSKeyValueObservation?
@@ -24,7 +26,7 @@ class Camera: NSObject{
     var getVideoSettings: [String : Any] {
         var settings: [String : Any] = [:]
         settings[AVVideoCodecKey] = AVVideoCodecType.hevc
-        settings[AVVideoCompressionPropertiesKey] = [AVVideoAverageBitRateKey: 1024 * 1024 * 1024]
+        settings[AVVideoCompressionPropertiesKey] = [AVVideoAverageBitRateKey: 128 * 1024 * 1024]
         return settings
     }
     
@@ -39,17 +41,17 @@ class Camera: NSObject{
             captureVideoOutput = AVCaptureMovieFileOutput()
             captureSession?.addOutput(captureVideoOutput!)
             captureSession?.sessionPreset = .hd4K3840x2160
-            
+            print(captureDevice?.isAutoFocusRangeRestrictionSupported ?? false)
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
             videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
             videoPreviewLayer?.frame = delegate.view.layer.bounds
             self.imageView.layer.addSublayer(videoPreviewLayer!)
             
-            captureSession?.startRunning()
-            
-            _ = CameraSettingsObserver(capDev: captureDevice, settings: cameraSettings)
+            _ = CameraSettingsObserver(capDev: captureDevice!, settings: cameraSettings)
             
             cameraSettings.monitoringData()
+            
+            captureSession?.startRunning()
         } catch {
             //If any error occurs, simply print it out
             print(error)
@@ -57,9 +59,35 @@ class Camera: NSObject{
         }
     }
     
+    
     func recordVideo(session: Session, complition: @escaping (URL?, Error?) -> Void) {
         
-        captureVideoOutput?.setOutputSettings(getVideoSettings, for: (captureVideoOutput?.connection(with: .video))!)
+        let captureConnection = (captureVideoOutput?.connection(with: .video))!
+        captureConnection.preferredVideoStabilizationMode = .standard
+        let stabilization = defaults.integer(forKey: "stabilization")
+        switch stabilization {
+        case 0:
+            captureConnection.preferredVideoStabilizationMode = .off
+            break
+        case 2:
+            captureConnection.preferredVideoStabilizationMode = .standard
+            break
+        case 3:
+            captureConnection.preferredVideoStabilizationMode = .auto
+            break
+        case 4:
+            captureConnection.preferredVideoStabilizationMode = .cinematic
+            break
+        case 5:
+            captureConnection.preferredVideoStabilizationMode = .cinematicExtended
+            break
+        default:
+            captureConnection.preferredVideoStabilizationMode = .off
+        }
+        
+        print(captureConnection.activeVideoStabilizationMode)
+        
+        captureVideoOutput?.setOutputSettings(getVideoSettings, for: captureConnection)
         
         let path = getUrl().path + "/\(session.getFileName())"
         try? FileManager.default.removeItem(at: URL(fileURLWithPath: path))
