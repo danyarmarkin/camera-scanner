@@ -18,13 +18,17 @@ class SessionsTableViewController: UITableViewController {
         files = getVideoFromDocumentsDirectory()
         
         let updateFilesTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) {timer in
-            if self.getVideoFromDocumentsDirectory() != self.files {
-                self.files = self.getVideoFromDocumentsDirectory()
-                self.tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
-                self.tableView.reloadSections(IndexSet(integer: 0), with: .none)
-            }
+            self.updateFiles()
         }
         updateFilesTimer.tolerance = 1
+    }
+    
+    func updateFiles() {
+        if self.getVideoFromDocumentsDirectory() != self.files {
+            self.files = self.getVideoFromDocumentsDirectory()
+            self.tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+            self.tableView.reloadSections(IndexSet(integer: 0), with: .none)
+        }
     }
 
     // MARK: - Table view data source
@@ -82,7 +86,7 @@ class SessionsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteFile(url: files[files.count - 1 - indexPath[1]])
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            updateFiles()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    

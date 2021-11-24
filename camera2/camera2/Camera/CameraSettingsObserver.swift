@@ -30,7 +30,6 @@ class CameraSettingsObserver: NSObject {
         observationIso = observe(\.cameraSettings.iso, options: [.new]) { object, change in
             do {
                 try self.captureDevice.lockForConfiguration()
-                print(self.cameraSettings.iso)
                 self.captureDevice.setExposureModeCustom(duration: self.cameraSettings.shutter as! CMTime, iso: Float(self.cameraSettings.iso), completionHandler: nil)
                 self.captureDevice.unlockForConfiguration()
             } catch {return}
@@ -69,7 +68,6 @@ class CameraSettingsObserver: NSObject {
             do {
                 try self.captureDevice.lockForConfiguration()
                 self.captureDevice.activeColorSpace = AVCaptureColorSpace(rawValue: self.cameraSettings.colorSpace) ?? .sRGB
-                print(self.captureDevice.activeColorSpace.rawValue)
                 self.captureDevice.unlockForConfiguration()
             } catch {return}
             

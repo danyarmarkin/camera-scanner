@@ -20,7 +20,6 @@ class CameraSettings: NSObject{
     
     let defaults = UserDefaults.standard
     
-//    var ref: DatabaseReference!
     
     override init() {
         super.init()
@@ -31,7 +30,6 @@ class CameraSettings: NSObject{
         wb = 3000
         iso = 100
         colorSpace = 0
-//        ref = Database.database(url: "https://camera-scan-e5684-default-rtdb.europe-west1.firebasedatabase.app/").reference()
     }
     
     func monitoringData() {

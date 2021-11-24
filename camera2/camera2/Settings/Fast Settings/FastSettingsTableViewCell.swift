@@ -26,10 +26,15 @@ class FastSettingsTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         cells.append(collectionView.dequeueReusableCell(withReuseIdentifier: "tint_cell", for: [0, 3]) as! TintCollectionViewCell)
         cells.append(collectionView.dequeueReusableCell(withReuseIdentifier: "fps_cell", for: [0, 4]) as! FPSCollectionViewCell)
         collectionView(collectionView, didSelectItemAt: [0, 1])
+        
         for cell in cells {
             cell.configure()
             cell.setDelegate(self)
         }
+        
+        let cameraSettings = CameraSettings()
+        _ = SettingsObserver(cells, forSettings: cameraSettings)
+        cameraSettings.monitoringData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

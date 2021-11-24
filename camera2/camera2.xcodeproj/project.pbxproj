@@ -38,6 +38,8 @@
 		ECD57820274969EC007F7532 /* ExtensionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5781F274969EC007F7532 /* ExtensionCollectionViewCell.swift */; };
 		ECD57822274A4675007F7532 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD57821274A4675007F7532 /* Storage.swift */; };
 		ECD57826274D5669007F7532 /* ConfigurationProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD57825274D5669007F7532 /* ConfigurationProfileTableViewController.swift */; };
+		ECD57828274E56D8007F7532 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD57827274E56D8007F7532 /* ProfileTableViewCell.swift */; };
+		ECD5782A274EA21C007F7532 /* SettingsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD57829274EA21C007F7532 /* SettingsObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		ECD5781F274969EC007F7532 /* ExtensionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCollectionViewCell.swift; sourceTree = "<group>"; };
 		ECD57821274A4675007F7532 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		ECD57825274D5669007F7532 /* ConfigurationProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationProfileTableViewController.swift; sourceTree = "<group>"; };
+		ECD57827274E56D8007F7532 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		ECD57829274EA21C007F7532 /* SettingsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +233,7 @@
 				ECD5781B274966E0007F7532 /* TintCollectionViewCell.swift */,
 				ECD5781D274966EC007F7532 /* FPSCollectionViewCell.swift */,
 				ECD5781F274969EC007F7532 /* ExtensionCollectionViewCell.swift */,
+				ECD57829274EA21C007F7532 /* SettingsObserver.swift */,
 			);
 			path = "Fast Settings";
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				ECD57825274D5669007F7532 /* ConfigurationProfileTableViewController.swift */,
+				ECD57827274E56D8007F7532 /* ProfileTableViewCell.swift */,
 			);
 			path = "Configuration Profiles";
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				ECA5E16627382F6400A84E40 /* CameraSettingsObserver.swift in Sources */,
 				EC8C2EFB273FB3050082FE8E /* DeleteAllBadSessionsTableViewCell.swift in Sources */,
 				ECA5E16227382E8700A84E40 /* Camera.swift in Sources */,
+				ECD5782A274EA21C007F7532 /* SettingsObserver.swift in Sources */,
 				EC8C2EF5273FB2CB0082FE8E /* SessionsTableViewController.swift in Sources */,
 				ECA5E168273832C200A84E40 /* Session.swift in Sources */,
 				ECA5E16027382D8600A84E40 /* CameraViewController.swift in Sources */,
@@ -396,6 +403,7 @@
 				ECD5781E274966EC007F7532 /* FPSCollectionViewCell.swift in Sources */,
 				ECD57816274966C0007F7532 /* IsoCollectionViewCell.swift in Sources */,
 				ECD5781C274966E0007F7532 /* TintCollectionViewCell.swift in Sources */,
+				ECD57828274E56D8007F7532 /* ProfileTableViewCell.swift in Sources */,
 				ECA5E12C2738263700A84E40 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,9 +22,15 @@ class WBCollectionViewCell: UICollectionViewCell {
         setVal(val())
         value.addTarget(self, action: #selector(onValue), for: .editingDidBegin)
         value.addTarget(self, action: #selector(onValueChanged), for: .editingChanged)
+        value.addTarget(self, action: #selector(onEditingCompleted), for: .editingDidEnd)
     }
     
     @objc func onValueChanged() {
+        let val = Int(value.text!) ?? 0
+        delegate.slider.setValue(Float(val), animated: false)
+    }
+    
+    @objc func onEditingCompleted() {
         let val = Int(value.text!) ?? 0
         let t = CameraData.type.wb
         if val < min(){
@@ -34,7 +40,6 @@ class WBCollectionViewCell: UICollectionViewCell {
         } else {
             CameraData.setData(t, val)
         }
-        delegate.slider.setValue(Float(val), animated: false)
     }
     
     @objc func onValue() {

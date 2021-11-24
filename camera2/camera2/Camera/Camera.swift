@@ -33,7 +33,7 @@ class Camera: NSObject{
     init(imageView: UIImageView, delegate: UIViewController) {
         self.imageView = imageView
         
-        captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        captureDevice = AVCaptureDevice.default(for: .video)
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice!)
             captureSession = AVCaptureSession()
@@ -41,17 +41,17 @@ class Camera: NSObject{
             captureVideoOutput = AVCaptureMovieFileOutput()
             captureSession?.addOutput(captureVideoOutput!)
             captureSession?.sessionPreset = .hd4K3840x2160
-            print(captureDevice?.isAutoFocusRangeRestrictionSupported ?? false)
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
             videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
             videoPreviewLayer?.frame = delegate.view.layer.bounds
             self.imageView.layer.addSublayer(videoPreviewLayer!)
             
+            captureSession?.startRunning()
+            
             _ = CameraSettingsObserver(capDev: captureDevice!, settings: cameraSettings)
             
             cameraSettings.monitoringData()
             
-            captureSession?.startRunning()
         } catch {
             //If any error occurs, simply print it out
             print(error)
@@ -61,34 +61,29 @@ class Camera: NSObject{
     
     
     func recordVideo(session: Session, complition: @escaping (URL?, Error?) -> Void) {
-        
         let captureConnection = (captureVideoOutput?.connection(with: .video))!
-        captureConnection.preferredVideoStabilizationMode = .standard
-        let stabilization = defaults.integer(forKey: "stabilization")
-        switch stabilization {
-        case 0:
-            captureConnection.preferredVideoStabilizationMode = .off
-            break
-        case 2:
-            captureConnection.preferredVideoStabilizationMode = .standard
-            break
-        case 3:
-            captureConnection.preferredVideoStabilizationMode = .auto
-            break
-        case 4:
-            captureConnection.preferredVideoStabilizationMode = .cinematic
-            break
-        case 5:
-            captureConnection.preferredVideoStabilizationMode = .cinematicExtended
-            break
-        default:
-            captureConnection.preferredVideoStabilizationMode = .off
-        }
-        
-        print(captureConnection.activeVideoStabilizationMode)
-        
         captureVideoOutput?.setOutputSettings(getVideoSettings, for: captureConnection)
-        
+        captureConnection.preferredVideoStabilizationMode = .standard
+//        let stabilization = defaults.integer(forKey: "stabilization")
+//        switch stabilization {
+//        case 0:
+//            captureConnection.preferredVideoStabilizationMode = .off
+//            break
+//        case 2:
+//            captureConnection.preferredVideoStabilizationMode = .standard
+//            break
+//        case 3:
+//            captureConnection.preferredVideoStabilizationMode = .auto
+//            break
+//        case 4:
+//            captureConnection.preferredVideoStabilizationMode = .cinematic
+//            break
+//        case 5:
+//            captureConnection.preferredVideoStabilizationMode = .cinematicExtended
+//            break
+//        default:
+//            captureConnection.preferredVideoStabilizationMode = .off
+//        }
         let path = getUrl().path + "/\(session.getFileName())"
         try? FileManager.default.removeItem(at: URL(fileURLWithPath: path))
         captureVideoOutput?.startRecording(to: URL(fileURLWithPath: path), recordingDelegate: self)
