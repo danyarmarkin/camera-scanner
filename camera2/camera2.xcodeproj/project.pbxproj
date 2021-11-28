@@ -40,6 +40,9 @@
 		ECD57826274D5669007F7532 /* ConfigurationProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD57825274D5669007F7532 /* ConfigurationProfileTableViewController.swift */; };
 		ECD57828274E56D8007F7532 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD57827274E56D8007F7532 /* ProfileTableViewCell.swift */; };
 		ECD5782A274EA21C007F7532 /* SettingsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD57829274EA21C007F7532 /* SettingsObserver.swift */; };
+		ECD5782E27513271007F7532 /* FocusPrioritizationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5782D27513271007F7532 /* FocusPrioritizationTableViewController.swift */; };
+		ECD578302751354E007F7532 /* FocusPrioritizationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5782F2751354E007F7532 /* FocusPrioritizationTableViewCell.swift */; };
+		ECD5783227514BB3007F7532 /* FocusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5783127514BB3007F7532 /* FocusTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +100,9 @@
 		ECD57825274D5669007F7532 /* ConfigurationProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationProfileTableViewController.swift; sourceTree = "<group>"; };
 		ECD57827274E56D8007F7532 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		ECD57829274EA21C007F7532 /* SettingsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsObserver.swift; sourceTree = "<group>"; };
+		ECD5782D27513271007F7532 /* FocusPrioritizationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPrioritizationTableViewController.swift; sourceTree = "<group>"; };
+		ECD5782F2751354E007F7532 /* FocusPrioritizationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPrioritizationTableViewCell.swift; sourceTree = "<group>"; };
+		ECD5783127514BB3007F7532 /* FocusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +222,8 @@
 		ECD57810274955CA007F7532 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				ECD5782C2751324E007F7532 /* Focus Settings */,
+				ECD5782B2751170E007F7532 /* Naming Settings */,
 				ECD57824274D4A7D007F7532 /* Configuration Profiles */,
 				ECD57823274D4A5D007F7532 /* Fast Settings */,
 				ECD57811274955ED007F7532 /* SettingsTableViewController.swift */,
@@ -245,6 +253,23 @@
 				ECD57827274E56D8007F7532 /* ProfileTableViewCell.swift */,
 			);
 			path = "Configuration Profiles";
+			sourceTree = "<group>";
+		};
+		ECD5782B2751170E007F7532 /* Naming Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Naming Settings";
+			sourceTree = "<group>";
+		};
+		ECD5782C2751324E007F7532 /* Focus Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ECD5782D27513271007F7532 /* FocusPrioritizationTableViewController.swift */,
+				ECD5782F2751354E007F7532 /* FocusPrioritizationTableViewCell.swift */,
+				ECD5783127514BB3007F7532 /* FocusTableViewCell.swift */,
+			);
+			path = "Focus Settings";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,6 +415,7 @@
 				ECA5E168273832C200A84E40 /* Session.swift in Sources */,
 				ECA5E16027382D8600A84E40 /* CameraViewController.swift in Sources */,
 				ECD57820274969EC007F7532 /* ExtensionCollectionViewCell.swift in Sources */,
+				ECD5783227514BB3007F7532 /* FocusTableViewCell.swift in Sources */,
 				ECD5781A274966D7007F7532 /* WBCollectionViewCell.swift in Sources */,
 				EC8C2EF7273FB2E00082FE8E /* SessionTableViewCell.swift in Sources */,
 				ECD5781427495D3A007F7532 /* FastSettingsTableViewCell.swift in Sources */,
@@ -405,6 +431,8 @@
 				ECD5781C274966E0007F7532 /* TintCollectionViewCell.swift in Sources */,
 				ECD57828274E56D8007F7532 /* ProfileTableViewCell.swift in Sources */,
 				ECA5E12C2738263700A84E40 /* SceneDelegate.swift in Sources */,
+				ECD5782E27513271007F7532 /* FocusPrioritizationTableViewController.swift in Sources */,
+				ECD578302751354E007F7532 /* FocusPrioritizationTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

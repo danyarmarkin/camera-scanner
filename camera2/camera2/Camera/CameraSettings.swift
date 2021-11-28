@@ -39,6 +39,8 @@ class CameraSettings: NSObject{
             let wb = CameraData.getData(.wb)
             let tint = CameraData.getData(.tint)
             let fps = CameraData.getData(.fps)
+            let focusRange = FocusConfig.getFocusRangeRestriction()
+            
             if iso != self.iso {
                 self.iso = iso
             }
@@ -53,6 +55,9 @@ class CameraSettings: NSObject{
             }
             if fps != self.fps {
                 self.fps = fps
+            }
+            if focusRange != self.focusRange {
+                self.focusRange = focusRange
             }
         })
         timer.tolerance = 0.3

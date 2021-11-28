@@ -52,6 +52,8 @@ class Camera: NSObject{
             
             cameraSettings.monitoringData()
             
+            captureDevice?.focusPointOfInterest = CGPoint(x: 100, y: 100)
+            
         } catch {
             //If any error occurs, simply print it out
             print(error)

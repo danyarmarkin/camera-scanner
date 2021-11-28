@@ -45,6 +45,7 @@ class SessionsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath[0] == 0 { return 50}
         return 70.0
     }
 

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 class CameraData {
     
@@ -175,6 +176,36 @@ class ConfigurationProfiles {
     static func setProfileData(_ profile: [String: Any]) {
         for key in keys {
             CameraData.setData(typeFromKey(key), profile[key] as! Int)
+        }
+    }
+}
+
+class FocusConfig {
+    static let defalts = UserDefaults.standard
+    static let key = "com.kanistra.camera2.camera-data.focus-range-restriction"
+    
+    static func setFocusRangeRestriction(_ type: AVCaptureDevice.AutoFocusRangeRestriction) {
+        switch type {
+        case .none:
+            defalts.set("none", forKey: key)
+        case .near:
+            defalts.set("near", forKey: key)
+        case .far:
+            defalts.set("far", forKey: key)
+        @unknown default:
+            fatalError()
+        }
+    }
+    
+    static func getFocusRangeRestriction() -> AVCaptureDevice.AutoFocusRangeRestriction {
+        let val = defalts.string(forKey: key)
+        switch val {
+        case "near":
+            return .near
+        case "far":
+            return .far
+        default:
+            return .none
         }
     }
 }

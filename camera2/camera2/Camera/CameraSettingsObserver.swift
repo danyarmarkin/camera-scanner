@@ -16,7 +16,7 @@ class CameraSettingsObserver: NSObject {
     var observationWB: NSKeyValueObservation?
     var observationTint: NSKeyValueObservation?
     var observationFocus: NSKeyValueObservation?
-    var observationColorSpace: NSKeyValueObservation?
+    var observationFocusRange: NSKeyValueObservation?
     var captureDevice: AVCaptureDevice!
     
     let defaults = UserDefaults.standard
@@ -61,16 +61,14 @@ class CameraSettingsObserver: NSObject {
                 self.captureDevice.setWhiteBalanceModeLocked(with: self.captureDevice.deviceWhiteBalanceGains(for: wbGains), completionHandler: nil)
                 self.captureDevice.unlockForConfiguration()
             } catch {return}
-            
         }
-        
-        observationColorSpace = observe(\.cameraSettings?.colorSpace, options: [.new]) { object, change in
+        observationFocusRange = observe(\.cameraSettings?.focusRange, options: [.new]) {object, change in
             do {
+                print("new focus range!")
                 try self.captureDevice.lockForConfiguration()
-                self.captureDevice.activeColorSpace = AVCaptureColorSpace(rawValue: self.cameraSettings.colorSpace) ?? .sRGB
+                self.captureDevice.autoFocusRangeRestriction = self.cameraSettings.focusRange
                 self.captureDevice.unlockForConfiguration()
             } catch {return}
-            
         }
     }
     
