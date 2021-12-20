@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  camera
+//  camera2
 //
-//  Created by Данила Ярмаркин on 12.07.2021.
+//  Created by Данила Ярмаркин on 09.12.2021.
 //
 
 import UIKit
