@@ -32,7 +32,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if section == 0 {return 2}
-        return 5
+        return 8
     }
 
     
@@ -50,11 +50,23 @@ class SettingsTableViewController: UITableViewController {
             cell.configure()
             return cell
         case [1, 2]:
-            return tableView.dequeueReusableCell(withIdentifier: "stabilization_cell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "stabilization_cell", for: indexPath) as! StabilizationTableViewCell
+            cell.configure()
+            return cell
         case [1, 3]:
-            return tableView.dequeueReusableCell(withIdentifier: "sincronization_cell", for: indexPath)
+            return tableView.dequeueReusableCell(withIdentifier: "server_cell", for: indexPath)
         case [1, 4]:
             return tableView.dequeueReusableCell(withIdentifier: "naming_cell", for: indexPath)
+        case [1, 5]:
+            return tableView.dequeueReusableCell(withIdentifier: "syncronization_cell", for: indexPath)
+        case [1, 6]:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "bit_rate_cell", for: indexPath) as! BitRateTableViewCell
+            cell.configure()
+            return cell
+        case [1, 7]:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "serial_null_cell", for: indexPath) as! SerialNullTableViewCell
+            cell.delegate = self
+            return cell
         default:
             return tableView.dequeueReusableCell(withIdentifier: "void_settings_cell", for: indexPath)
         }
@@ -70,4 +82,27 @@ class SettingsTableViewController: UITableViewController {
         if indexPath[0] == 1 {return 50}
         return 120
     }
+}
+
+
+extension UITextField {
+    func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {
+        let onCancel = onCancel ?? (target: self, action: #selector(cancelButtonTapped))
+        let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
+
+        let toolbar: UIToolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.items = [
+            UIBarButtonItem(title: "Cancel", style: .plain, target: onCancel.target, action: onCancel.action),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
+        ]
+        toolbar.sizeToFit()
+
+        self.inputAccessoryView = toolbar
+    }
+
+    // Default actions:
+    @objc func doneButtonTapped() { self.resignFirstResponder() }
+    @objc func cancelButtonTapped() { self.resignFirstResponder() }
 }

@@ -23,6 +23,7 @@ class CameraData {
         case codec
         case resolution
         case videoExtension
+        case bitRate
     }
     
     static func getId(_ type: type) -> String {
@@ -47,6 +48,8 @@ class CameraData {
             return "com.kanistra.camera2.camera-data.resolution"
         case .videoExtension:
             return "com.kanistra.camera2.camera-data.video-extension"
+        case .bitRate:
+            return "com.kanistra.camera2.camera-data.bit-rate"
         }
     }
     
@@ -62,7 +65,7 @@ class CameraData {
     
     static func params(_ type: type, val: Int) -> String{
         switch type {
-        case .iso, .shutter, .wb, .tint, .fps:
+        case .iso, .shutter, .wb, .tint, .fps, .bitRate:
             return "\(val)"
         case .focus:
             switch val {
@@ -176,6 +179,7 @@ class ConfigurationProfiles {
     static func setProfileData(_ profile: [String: Any]) {
         for key in keys {
             CameraData.setData(typeFromKey(key), profile[key] as! Int)
+            Server.setParam(typeFromKey(key), profile[key] as! Int)
         }
     }
 }
@@ -207,5 +211,56 @@ class FocusConfig {
         default:
             return .none
         }
+    }
+}
+
+class StabilizationConfig {
+    static let defalts = UserDefaults.standard
+    static let key = "com.kanistra.camera2.camera-data.stabilization-mode"
+    
+    static func setStablilizationMode(_ mode: AVCaptureVideoStabilizationMode) {
+        switch mode {
+        case .off:
+            defalts.set("off", forKey: key)
+        case .standard:
+            defalts.set("standart", forKey: key)
+        case .cinematic:
+            defalts.set("cinematic", forKey: key)
+        case .cinematicExtended:
+            defalts.set("cinematic-extended", forKey: key)
+        case .auto:
+            defalts.set("auto", forKey: key)
+        @unknown default:
+            fatalError()
+        }
+    }
+    
+    static func getStablizationMode() ->AVCaptureVideoStabilizationMode {
+        let val = defalts.string(forKey: key)
+        switch val {
+        case "auto":
+            return .auto
+        case "standart":
+            return .standard
+        case "cinematic":
+            return .cinematic
+        case "cinematic-extended":
+            return .cinematicExtended
+        default:
+            return .off
+        }
+    }
+}
+
+class NamingConf {
+    static let defalts = UserDefaults.standard
+    static let key = "com.kanistra.camera2.camera-data.naming-mask"
+    
+    static func setNaming(_ name: String) {
+        defalts.set(name, forKey: key)
+    }
+    
+    static func getNaming() -> String {
+        defalts.string(forKey: key) ?? "O_nnnRRRR_km"
     }
 }

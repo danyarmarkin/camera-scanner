@@ -15,16 +15,20 @@ class CameraSettingsObserver: NSObject {
     var observationShutter: NSKeyValueObservation?
     var observationWB: NSKeyValueObservation?
     var observationTint: NSKeyValueObservation?
+    var observationFps: NSKeyValueObservation?
     var observationFocus: NSKeyValueObservation?
     var observationFocusRange: NSKeyValueObservation?
+    var observationStabilizationMode: NSKeyValueObservation?
     var captureDevice: AVCaptureDevice!
+    var captureVideoOutput: AVCaptureMovieFileOutput!
     
     let defaults = UserDefaults.standard
     var focus = 0
     
-    init(capDev: AVCaptureDevice, settings: CameraSettings) {
+    init(capDev: AVCaptureDevice, settings: CameraSettings, output: AVCaptureMovieFileOutput) {
         cameraSettings = settings
         captureDevice = capDev
+        captureVideoOutput = output
         super.init()
         
         observationIso = observe(\.cameraSettings.iso, options: [.new]) { object, change in
@@ -62,14 +66,29 @@ class CameraSettingsObserver: NSObject {
                 self.captureDevice.unlockForConfiguration()
             } catch {return}
         }
+        observationFps = observe(\.cameraSettings?.fps, options: [.new]) { object, change in
+            do {
+                try self.captureDevice.lockForConfiguration()
+                self.captureDevice.activeVideoMinFrameDuration = CMTimeMake(value: 1, timescale: Int32(self.cameraSettings.fps))
+                self.captureDevice.activeVideoMaxFrameDuration = CMTimeMake(value: 1, timescale: Int32(self.cameraSettings.fps))
+                self.captureDevice.unlockForConfiguration()
+            } catch {return}
+        }
         observationFocusRange = observe(\.cameraSettings?.focusRange, options: [.new]) {object, change in
             do {
-                print("new focus range!")
                 try self.captureDevice.lockForConfiguration()
                 self.captureDevice.autoFocusRangeRestriction = self.cameraSettings.focusRange
                 self.captureDevice.unlockForConfiguration()
             } catch {return}
         }
+        
+        observationStabilizationMode = observe(\.cameraSettings?.stabilizationMode, options: [.new]) {object, change in
+            do {
+                print("new stabilization Mode")
+                self.captureVideoOutput.connection(with: .video)?.preferredVideoStabilizationMode = self.cameraSettings.stabilizationMode
+            } catch {
+                return
+            }
+        }
     }
-    
 }

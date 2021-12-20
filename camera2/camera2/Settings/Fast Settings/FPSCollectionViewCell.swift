@@ -20,6 +20,7 @@ class FPSCollectionViewCell: UICollectionViewCell {
     
     override func configure() {
         setVal(val())
+        value.addDoneCancelToolbar()
         value.addTarget(self, action: #selector(onValue), for: .editingDidBegin)
         value.addTarget(self, action: #selector(onValueChanged), for: .editingChanged)
         value.addTarget(self, action: #selector(onEditingCompleted), for: .editingDidEnd)
@@ -40,6 +41,7 @@ class FPSCollectionViewCell: UICollectionViewCell {
         } else {
             CameraData.setData(t, val)
         }
+        Server.setParam(t, CameraData.getData(t))
     }
     
     @objc func onValue() {
@@ -54,7 +56,7 @@ class FPSCollectionViewCell: UICollectionViewCell {
     }
     
     override func max() -> Int {
-        60
+        30
     }
     
     override func val() -> Int {
@@ -64,5 +66,6 @@ class FPSCollectionViewCell: UICollectionViewCell {
     override func setVal(_ val: Int) {
         value.text = "\(val)"
         CameraData.setData(.fps, val)
+        Server.setParam(.fps, val)
     }
 }

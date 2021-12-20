@@ -20,6 +20,7 @@ class TintCollectionViewCell: UICollectionViewCell {
     
     override func configure() {
         setVal(val())
+        value.addDoneCancelToolbar()
         value.addTarget(self, action: #selector(onValue), for: .editingDidBegin)
         value.addTarget(self, action: #selector(onValueChanged), for: .editingChanged)
         value.addTarget(self, action: #selector(onEditingCompleted), for: .editingDidEnd)
@@ -40,6 +41,7 @@ class TintCollectionViewCell: UICollectionViewCell {
         } else {
             CameraData.setData(t, val)
         }
+        Server.setParam(t, CameraData.getData(t))
     }
     
     @objc func onValue() {
@@ -64,5 +66,6 @@ class TintCollectionViewCell: UICollectionViewCell {
     override func setVal(_ val: Int) {
         value.text = "\(val)"
         CameraData.setData(.tint, val)
+        Server.setParam(.tint, val)
     }
 }

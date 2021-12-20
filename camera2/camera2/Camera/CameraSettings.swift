@@ -17,6 +17,7 @@ class CameraSettings: NSObject{
     @objc dynamic var fps = 4
     @objc dynamic var colorSpace = 0
     @objc dynamic var focusRange: AVCaptureDevice.AutoFocusRangeRestriction = .none
+    @objc dynamic var stabilizationMode: AVCaptureVideoStabilizationMode = .off
     
     let defaults = UserDefaults.standard
     
@@ -33,13 +34,14 @@ class CameraSettings: NSObject{
     }
     
     func monitoringData() {
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: {[self](timer) in
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: {[self](timer) in
             let iso = CameraData.getData(.iso)
             let shutter = CMTimeMake(value: 1, timescale: Int32(CameraData.getData(.shutter)))
             let wb = CameraData.getData(.wb)
             let tint = CameraData.getData(.tint)
             let fps = CameraData.getData(.fps)
             let focusRange = FocusConfig.getFocusRangeRestriction()
+            let stabilizationMode = StabilizationConfig.getStablizationMode()
             
             if iso != self.iso {
                 self.iso = iso
@@ -59,7 +61,10 @@ class CameraSettings: NSObject{
             if focusRange != self.focusRange {
                 self.focusRange = focusRange
             }
+            if stabilizationMode != self.stabilizationMode {
+                self.stabilizationMode = stabilizationMode
+            }
         })
-        timer.tolerance = 0.3
+        timer.tolerance = 0.15
     }
 }
