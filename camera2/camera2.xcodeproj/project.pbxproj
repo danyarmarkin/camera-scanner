@@ -11,7 +11,10 @@
 		EC280C9B27614DF30061A5E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC280C9A27614DF30061A5E7 /* GoogleService-Info.plist */; };
 		EC280C9E27614F280061A5E7 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = EC280C9D27614F280061A5E7 /* FirebaseDatabase */; };
 		EC282FAA276FC9E4009CF2CB /* SerialNullTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC282FA9276FC9E4009CF2CB /* SerialNullTableViewCell.swift */; };
+		EC282FAC2770D52A009CF2CB /* DeviceStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC282FAB2770D52A009CF2CB /* DeviceStatusCell.swift */; };
+		EC282FAE2770D5FF009CF2CB /* DeviceStatusTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC282FAD2770D5FF009CF2CB /* DeviceStatusTableView.swift */; };
 		EC5064BF276159B400014397 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5064BE276159B400014397 /* ViewController.swift */; };
+		EC57F7E92770D8EE005CBBDF /* DiskSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC57F7E82770D8EE005CBBDF /* DiskSpace.swift */; };
 		EC6D5BFA27566886001538F1 /* StabilizationModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6D5BF927566886001538F1 /* StabilizationModeTableViewCell.swift */; };
 		EC6D5BFC2756689A001538F1 /* StabilizationModeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6D5BFB2756689A001538F1 /* StabilizationModeTableViewController.swift */; };
 		EC6D5BFE27566E1B001538F1 /* StabilizationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6D5BFD27566E1A001538F1 /* StabilizationTableViewCell.swift */; };
@@ -76,7 +79,10 @@
 		EC280C9827614C5B0061A5E7 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		EC280C9A27614DF30061A5E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC282FA9276FC9E4009CF2CB /* SerialNullTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialNullTableViewCell.swift; sourceTree = "<group>"; };
+		EC282FAB2770D52A009CF2CB /* DeviceStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceStatusCell.swift; path = ../../../Camera/camera/Camera/DeviceStatusCell.swift; sourceTree = "<group>"; };
+		EC282FAD2770D5FF009CF2CB /* DeviceStatusTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStatusTableView.swift; sourceTree = "<group>"; };
 		EC5064BE276159B400014397 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EC57F7E82770D8EE005CBBDF /* DiskSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskSpace.swift; path = ../../Camera/camera/DiskSpace.swift; sourceTree = "<group>"; };
 		EC6D5BF927566886001538F1 /* StabilizationModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizationModeTableViewCell.swift; sourceTree = "<group>"; };
 		EC6D5BFB2756689A001538F1 /* StabilizationModeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizationModeTableViewController.swift; sourceTree = "<group>"; };
 		EC6D5BFD27566E1A001538F1 /* StabilizationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizationTableViewCell.swift; sourceTree = "<group>"; };
@@ -211,6 +217,7 @@
 				EC280C9A27614DF30061A5E7 /* GoogleService-Info.plist */,
 				ECA5E167273832C200A84E40 /* Session.swift */,
 				ECD57821274A4675007F7532 /* Storage.swift */,
+				EC57F7E82770D8EE005CBBDF /* DiskSpace.swift */,
 			);
 			path = camera2;
 			sourceTree = "<group>";
@@ -248,6 +255,8 @@
 				ECA5E15F27382D8600A84E40 /* CameraViewController.swift */,
 				ECA5E16127382E8700A84E40 /* Camera.swift */,
 				ECA5E169273839ED00A84E40 /* CaptureDevice.swift */,
+				EC282FAB2770D52A009CF2CB /* DeviceStatusCell.swift */,
+				EC282FAD2770D5FF009CF2CB /* DeviceStatusTableView.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -467,10 +476,13 @@
 				ECD57818274966CB007F7532 /* ShutterCollectionViewCell.swift in Sources */,
 				EC8C2EF9273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift in Sources */,
 				ECD066C827615AAD00E054E6 /* TabBarViewController.swift in Sources */,
+				EC282FAC2770D52A009CF2CB /* DeviceStatusCell.swift in Sources */,
 				ECA5E16A273839ED00A84E40 /* CaptureDevice.swift in Sources */,
 				EC6D5C0227567202001538F1 /* NamingViewController.swift in Sources */,
+				EC282FAE2770D5FF009CF2CB /* DeviceStatusTableView.swift in Sources */,
 				ECD57822274A4675007F7532 /* Storage.swift in Sources */,
 				ECD57812274955ED007F7532 /* SettingsTableViewController.swift in Sources */,
+				EC57F7E92770D8EE005CBBDF /* DiskSpace.swift in Sources */,
 				EC8C2EFD273FB3190082FE8E /* SetAllSessionsBadTableViewCell.swift in Sources */,
 				EC6D5BFE27566E1B001538F1 /* StabilizationTableViewCell.swift in Sources */,
 				EC282FAA276FC9E4009CF2CB /* SerialNullTableViewCell.swift in Sources */,
@@ -659,7 +671,7 @@
 		ECA5E1512738263800A84E40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -678,7 +690,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.camera2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -690,7 +702,7 @@
 		ECA5E1522738263800A84E40 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -709,7 +721,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.camera2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

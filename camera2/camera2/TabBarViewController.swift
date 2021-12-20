@@ -11,6 +11,7 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.isIdleTimerDisabled = true
 
         let server = Server()
         server.monitoringData()
@@ -37,5 +38,7 @@ class TabBarViewController: UITabBarController {
     @objc func enterFocus() {
         Server.registerDevice()
     }
+    
+    
     
 }

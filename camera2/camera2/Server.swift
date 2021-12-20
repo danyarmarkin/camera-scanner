@@ -101,4 +101,14 @@ class Server {
             }
         }
     }
+    
+    func updateDeviceStatus() {
+        UIDevice.current.isBatteryMonitoringEnabled = true
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) {timer in
+            Server.ref.child("batteryData").child(Server.getDeviceName()).setValue(Int(floor(UIDevice.current.batteryLevel * 100)))
+            Server.ref.child("storageData").child(Server.getDeviceName()).setValue(Int(DiskStatus.freeDiskSpaceInBytes / 1024 / 1024))
+            Server.ref.child("totalStorageData").child(Server.getDeviceName()).setValue(Int(DiskStatus.totalDiskSpaceInBytes / 1024 / 1024))
+        }
+        timer.tolerance = 0.2
+    }
 }
