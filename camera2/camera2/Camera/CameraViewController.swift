@@ -43,7 +43,6 @@ class CameraViewController: UIViewController,
     // MARK: View did load
     override func viewDidLoad() {
         super.viewDidLoad()
-        listenVolumeButton()
         sessionTextField.delegate = self
         camera = Camera(imageView: imageView, delegate: self)
         cameraSettings.monitoringData()
@@ -53,10 +52,15 @@ class CameraViewController: UIViewController,
         deviceTableView.configure()
         deviceTableView.reloadData()
         
-        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+        listenVolumeButton()
+        
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { timer in
             self.settingsLabel.text = "ISO \(self.cameraSettings.iso) SH \((self.cameraSettings.shutter as! CMTime).timescale) WB \(self.cameraSettings.wb) FPS \(self.cameraSettings.fps)"
+            if self.session.deviceIndex == 0 {
+                Server.registerDevice()
+            }
         }
-        timer.tolerance = 0.6
+        timer.tolerance = 0.1
         
         
         // MARK: Monitor session params
@@ -127,10 +131,13 @@ class CameraViewController: UIViewController,
                     print(error ?? "error")
                     return
                 }
-                self.durationTimer.invalidate()
+                let seconds = self.duration % 60
+                if seconds < 10 {
+                    self.showToast(message: "Video Saved \(self.duration / 60):0\(seconds)", fontSize: 20)
+                } else {
+                    self.showToast(message: "Video Saved \(self.duration / 60):\(seconds)", fontSize: 20)
+                }
                 self.duration = 0
-                self.showToast(message: "Video Saved " + self.timerLabel.text!, fontSize: 20)
-                self.timerLabel.text = "0:00"
                 print("video saved")
             }
             videoButton.backgroundColor = .systemRed
@@ -138,6 +145,10 @@ class CameraViewController: UIViewController,
             isStartSession = false
             videoButton.backgroundColor = .lightGray
             camera.captureVideoOutput?.stopRecording()
+            if durationTimer != nil{
+                self.durationTimer.invalidate()
+                self.timerLabel.text = "0:00"
+            }
         }
     }
     
@@ -166,11 +177,17 @@ class CameraViewController: UIViewController,
     
     // MARK: Volume button listener
     func listenVolumeButton() {
-       do {
-        try audioSession.setActive(true)
-       } catch {
-        print("some error")
-       }
+        for i in 1...5 {
+            do {
+                try audioSession.setActive(true)
+                break
+            } catch {
+                print("audio session error")
+                if i == 5 {
+                    showToast(message: "Can not bind volume button", fontSize: 15)
+                }
+            }
+        }
        audioSession.addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.new, context: nil)
     }
 

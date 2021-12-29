@@ -15,6 +15,13 @@
 		EC282FAE2770D5FF009CF2CB /* DeviceStatusTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC282FAD2770D5FF009CF2CB /* DeviceStatusTableView.swift */; };
 		EC5064BF276159B400014397 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5064BE276159B400014397 /* ViewController.swift */; };
 		EC57F7E92770D8EE005CBBDF /* DiskSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC57F7E82770D8EE005CBBDF /* DiskSpace.swift */; };
+		EC6188C42771DFB200891C9C /* 1617576913_iPhone-12-PNG-Image.png in Resources */ = {isa = PBXBuildFile; fileRef = EC6188BE2771DFB000891C9C /* 1617576913_iPhone-12-PNG-Image.png */; };
+		EC6188C52771DFB200891C9C /* iphone_side.webp in Resources */ = {isa = PBXBuildFile; fileRef = EC6188BF2771DFB000891C9C /* iphone_side.webp */; };
+		EC6188C62771DFB200891C9C /* kpkqsqsezaichxoadhcn.png in Resources */ = {isa = PBXBuildFile; fileRef = EC6188C02771DFB000891C9C /* kpkqsqsezaichxoadhcn.png */; };
+		EC6188C72771DFB200891C9C /* Terres-Neuves-Logo-arc-orange-1.png in Resources */ = {isa = PBXBuildFile; fileRef = EC6188C12771DFB100891C9C /* Terres-Neuves-Logo-arc-orange-1.png */; };
+		EC6188C82771DFB200891C9C /* ab137ab0bf1f6bd1540972b3628bab41.png in Resources */ = {isa = PBXBuildFile; fileRef = EC6188C22771DFB100891C9C /* ab137ab0bf1f6bd1540972b3628bab41.png */; };
+		EC6188C92771DFB200891C9C /* 30052888b.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC6188C32771DFB200891C9C /* 30052888b.jpg */; };
+		EC6188CB2771DFEB00891C9C /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6188CA2771DFEA00891C9C /* LocationViewController.swift */; };
 		EC6D5BFA27566886001538F1 /* StabilizationModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6D5BF927566886001538F1 /* StabilizationModeTableViewCell.swift */; };
 		EC6D5BFC2756689A001538F1 /* StabilizationModeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6D5BFB2756689A001538F1 /* StabilizationModeTableViewController.swift */; };
 		EC6D5BFE27566E1B001538F1 /* StabilizationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6D5BFD27566E1A001538F1 /* StabilizationTableViewCell.swift */; };
@@ -83,6 +90,13 @@
 		EC282FAD2770D5FF009CF2CB /* DeviceStatusTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStatusTableView.swift; sourceTree = "<group>"; };
 		EC5064BE276159B400014397 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EC57F7E82770D8EE005CBBDF /* DiskSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskSpace.swift; path = ../../Camera/camera/DiskSpace.swift; sourceTree = "<group>"; };
+		EC6188BE2771DFB000891C9C /* 1617576913_iPhone-12-PNG-Image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1617576913_iPhone-12-PNG-Image.png"; sourceTree = "<group>"; };
+		EC6188BF2771DFB000891C9C /* iphone_side.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = iphone_side.webp; sourceTree = "<group>"; };
+		EC6188C02771DFB000891C9C /* kpkqsqsezaichxoadhcn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kpkqsqsezaichxoadhcn.png; sourceTree = "<group>"; };
+		EC6188C12771DFB100891C9C /* Terres-Neuves-Logo-arc-orange-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Terres-Neuves-Logo-arc-orange-1.png"; sourceTree = "<group>"; };
+		EC6188C22771DFB100891C9C /* ab137ab0bf1f6bd1540972b3628bab41.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ab137ab0bf1f6bd1540972b3628bab41.png; sourceTree = "<group>"; };
+		EC6188C32771DFB200891C9C /* 30052888b.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 30052888b.jpg; sourceTree = "<group>"; };
+		EC6188CA2771DFEA00891C9C /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		EC6D5BF927566886001538F1 /* StabilizationModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizationModeTableViewCell.swift; sourceTree = "<group>"; };
 		EC6D5BFB2756689A001538F1 /* StabilizationModeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizationModeTableViewController.swift; sourceTree = "<group>"; };
 		EC6D5BFD27566E1A001538F1 /* StabilizationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizationTableViewCell.swift; sourceTree = "<group>"; };
@@ -218,6 +232,7 @@
 				ECA5E167273832C200A84E40 /* Session.swift */,
 				ECD57821274A4675007F7532 /* Storage.swift */,
 				EC57F7E82770D8EE005CBBDF /* DiskSpace.swift */,
+				EC6188CA2771DFEA00891C9C /* LocationViewController.swift */,
 			);
 			path = camera2;
 			sourceTree = "<group>";
@@ -242,6 +257,12 @@
 		ECA5E15B27382A5100A84E40 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				EC6188C32771DFB200891C9C /* 30052888b.jpg */,
+				EC6188BE2771DFB000891C9C /* 1617576913_iPhone-12-PNG-Image.png */,
+				EC6188C22771DFB100891C9C /* ab137ab0bf1f6bd1540972b3628bab41.png */,
+				EC6188BF2771DFB000891C9C /* iphone_side.webp */,
+				EC6188C02771DFB000891C9C /* kpkqsqsezaichxoadhcn.png */,
+				EC6188C12771DFB100891C9C /* Terres-Neuves-Logo-arc-orange-1.png */,
 				ECA5E15C27382A5C00A84E40 /* 1024.png */,
 			);
 			path = images;
@@ -430,8 +451,14 @@
 			files = (
 				ECA5E1362738263700A84E40 /* LaunchScreen.storyboard in Resources */,
 				ECA5E1332738263700A84E40 /* Assets.xcassets in Resources */,
+				EC6188C62771DFB200891C9C /* kpkqsqsezaichxoadhcn.png in Resources */,
 				EC280C9B27614DF30061A5E7 /* GoogleService-Info.plist in Resources */,
+				EC6188C72771DFB200891C9C /* Terres-Neuves-Logo-arc-orange-1.png in Resources */,
+				EC6188C52771DFB200891C9C /* iphone_side.webp in Resources */,
+				EC6188C42771DFB200891C9C /* 1617576913_iPhone-12-PNG-Image.png in Resources */,
+				EC6188C92771DFB200891C9C /* 30052888b.jpg in Resources */,
 				ECA5E15D27382A5C00A84E40 /* 1024.png in Resources */,
+				EC6188C82771DFB200891C9C /* ab137ab0bf1f6bd1540972b3628bab41.png in Resources */,
 				ECA5E1312738263700A84E40 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,6 +516,7 @@
 				ECA5E12A2738263700A84E40 /* AppDelegate.swift in Sources */,
 				ECD5781E274966EC007F7532 /* FPSCollectionViewCell.swift in Sources */,
 				ECD066CA2762936300E054E6 /* BitRateTableViewCell.swift in Sources */,
+				EC6188CB2771DFEB00891C9C /* LocationViewController.swift in Sources */,
 				EC5064BF276159B400014397 /* ViewController.swift in Sources */,
 				ECD57816274966C0007F7532 /* IsoCollectionViewCell.swift in Sources */,
 				ECD5781C274966E0007F7532 /* TintCollectionViewCell.swift in Sources */,
@@ -674,7 +702,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = X6S75ZHN39;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = camera2/Info.plist;
@@ -686,11 +714,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.camera2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -705,7 +734,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = X6S75ZHN39;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = camera2/Info.plist;
@@ -717,11 +746,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.camera2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

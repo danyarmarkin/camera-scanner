@@ -111,4 +111,11 @@ class Server {
         }
         timer.tolerance = 0.2
     }
+    
+    static func sendDeviceLocation(accelData: [Float], compassData: Int) {
+        ref.child("accelData").child(getDeviceName()).child("x").setValue(accelData[0])
+        ref.child("accelData").child(getDeviceName()).child("y").setValue(accelData[1])
+        ref.child("accelData").child(getDeviceName()).child("z").setValue(accelData[2])
+        ref.child("compassData").child(getDeviceName()).setValue(compassData)
+    }
 }
