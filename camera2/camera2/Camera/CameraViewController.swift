@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MetricKit
 import Firebase
 import MediaPlayer
 
@@ -43,6 +44,11 @@ class CameraViewController: UIViewController,
     // MARK: View did load
     override func viewDidLoad() {
         super.viewDidLoad()
+        let metricManager = MXMetricManager.shared
+        metricManager.add(self)
+        
+        print("load")
+        
         sessionTextField.delegate = self
         camera = Camera(imageView: imageView, delegate: self)
         cameraSettings.monitoringData()
@@ -67,6 +73,7 @@ class CameraViewController: UIViewController,
         ref.child("sessionLife").child("isStart").observe(.value){snapshot in
             let val = snapshot.value
             if let v = val as? Int {
+                if ![0, 1].contains(v) {return}
                 self.isStartSession = v == 0
                 self.updateSession()
             }
@@ -264,3 +271,14 @@ extension UIViewController {
     }
 }
 
+extension CameraViewController: MXMetricManagerSubscriber {
+    func didReceive(_ payloads: [MXMetricPayload]) {
+      guard let firstPayload = payloads.first else { return }
+      print(firstPayload.dictionaryRepresentation())
+    }
+
+    func didReceive(_ payloads: [MXDiagnosticPayload]) {
+      guard let firstPayload = payloads.first else { return }
+      print(firstPayload.dictionaryRepresentation())
+    }
+}

@@ -23,8 +23,8 @@ class SerialNullTableViewCell: UITableViewCell {
     }
 
     @IBAction func onClick(_ sender: Any) {
-        let alert = UIAlertController(title: "Confirm action", message: "Value of serial counter will be 0", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Set 0", style: .destructive) {action in
+        let alert = UIAlertController(title: "Confirm action", message: "Value of serial counter will be 1", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Set 1", style: .destructive) {action in
             Server.serialNull()
         })
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))

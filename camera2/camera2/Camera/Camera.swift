@@ -63,13 +63,39 @@ class Camera: NSObject{
     
     
     func recordVideo(session: Session, complition: @escaping (URL?, Error?) -> Void) {
-        let captureConnection = (captureVideoOutput?.connection(with: .video))!
-        captureVideoOutput?.setOutputSettings(videoSettings, for: captureConnection)
-        let path = getUrl().path + "/\(session.getFileName())"
-        try? FileManager.default.removeItem(at: URL(fileURLWithPath: path))
-        captureVideoOutput?.startRecording(to: URL(fileURLWithPath: path), recordingDelegate: self)
-        videoRecordCompletionBlock = complition
+//        let captureConnection = (captureVideoOutput?.connection(with: .video))!
+//        captureVideoOutput?.setOutputSettings(videoSettings, for: captureConnection)
+//        let path = getUrl().path + "/\(session.getFileName())"
+//        try? FileManager.default.removeItem(at: URL(fileURLWithPath: path))
+//        captureVideoOutput?.startRecording(to: URL(fileURLWithPath: path), recordingDelegate: self)
+//        videoRecordCompletionBlock = complition
+        
+        var settings: [String: Any] = [:]
+        settings[AVVideoCodecKey] = AVVideoCodecType.hevc
+        settings[AVVideoWidthKey] = 3000
+        settings[AVVideoHeightKey] = 4000
+        
+        let assetWriter = try! AVAssetWriter(outputURL: URL(fileURLWithPath: getUrl().path + "/test_3000x4000.mov"),
+                                        fileType: .mov)
+        let assetWriterInput = AVAssetWriterInput(mediaType: .video, outputSettings: settings)
+        assetWriterInput.mediaTimeScale = CMTimeScale(bitPattern: 600)
+        assetWriterInput.expectsMediaDataInRealTime = true
+        let adapter = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: assetWriterInput)
+        assetWriter.add(assetWriterInput)
+        if assetWriter.startWriting() {
+            print("ok")
+        } else {
+            print("not ok")
+            print(assetWriter.status)
+        }
+        assetWriter.startSession(atSourceTime: .zero)
+        
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: {timer in
+            assetWriterInput.markAsFinished()
+            assetWriter.finishWriting(completionHandler: {})
+        })
     }
+    
     
     func getUrl() -> URL{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)

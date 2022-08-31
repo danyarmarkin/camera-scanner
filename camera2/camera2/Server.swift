@@ -11,9 +11,14 @@ import Firebase
 import UIKit
 
 class Server {
-    static let firebasePath = "https://camera-scan2.europe-west1.firebasedatabase.app/"
+    static let isTest = true
+    static var firebasePath: String {
+        if isTest { return "http://192.168.31.115:9002?ns=camera-scan-e5684-default-rtdb" }
+        return "https://camera-scan2.europe-west1.firebasedatabase.app/"
+    }
     static let ref = Database.database(url: firebasePath).reference()
-    
+
+
     static func setParam(_ type: CameraData.type, _ value: Int) {
         let reference = ref.child("cameraSettings")
         switch type{
@@ -47,7 +52,7 @@ class Server {
     }
     
     static func serialNull() {
-        ref.child("sessionLife").child("serial").setValue(0)
+        ref.child("sessionLife").child("serial").setValue(1)
     }
     
     static func getDeviceName() -> String{
@@ -63,8 +68,15 @@ class Server {
     }
     
     func monitoringData() {
+        print("monitoring")
         let reference = Server.ref.child("cameraSettings")
+        
+        reference.child("test").observe(.value) { snapshot in
+            print("test")
+        }
+        
         reference.child("iso").observe(.value) { snapshot in
+            print("iso")
             let val = snapshot.value
             if let value = val as? Int {
                 CameraData.setData(.iso, value)

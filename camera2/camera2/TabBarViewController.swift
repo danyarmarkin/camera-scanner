@@ -6,16 +6,19 @@
 //
 
 import UIKit
+import MetricKit
 
 class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true
+        
+        let metricManager = MXMetricManager.shared
+        metricManager.add(self)
 
         let server = Server()
         server.monitoringData()
-        
         Server.registerDevice()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(enterBackground),
@@ -41,4 +44,17 @@ class TabBarViewController: UITabBarController {
     
     
     
+}
+
+
+extension TabBarViewController: MXMetricManagerSubscriber {
+    func didReceive(_ payloads: [MXMetricPayload]) {
+      guard let firstPayload = payloads.first else { return }
+      print(firstPayload.dictionaryRepresentation())
+    }
+
+    func didReceive(_ payloads: [MXDiagnosticPayload]) {
+      guard let firstPayload = payloads.first else { return }
+      print(firstPayload.dictionaryRepresentation())
+    }
 }
