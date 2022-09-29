@@ -1,35 +1,28 @@
 //
-//  ViewController.swift
+//  BluetoothCentral.swift
 //  bluetooth
 //
-//  Created by Данила Ярмаркин on 31.08.2022.
+//  Created by Данила Ярмаркин on 29.09.2022.
 //
 
-import UIKit
+import Foundation
 import CoreBluetooth
 
-class ViewController: UIViewController {
 
-    @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var switcher: UISegmentedControl!
+class BluetoothCentral: NSObject {
     
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral!
+    var delegate: ViewController!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        centralManager = CBCentralManager(delegate: self, queue: nil)
+    func configure(delegate: ViewController) {
+        self.delegate = delegate
+        centralManager = CBCentralManager(delegate: delegate, queue: nil)
     }
     
-    @IBAction func slide(_ sender: UISlider) {
-    }
-    
-    
-    @IBAction func `switch`(_ sender: UISegmentedControl) {
-    }
 }
 
-extension ViewController: CBCentralManagerDelegate {
+extension BluetoothCentral: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
         case .unknown:
@@ -49,7 +42,6 @@ extension ViewController: CBCentralManagerDelegate {
         @unknown default:
             break
         }
-        
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
@@ -68,9 +60,10 @@ extension ViewController: CBCentralManagerDelegate {
             
         }
     }
+    
 }
 
-extension ViewController: CBPeripheralDelegate {
+extension BluetoothCentral: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if let services = peripheral.services {
             for service in services {
@@ -106,7 +99,7 @@ extension ViewController: CBPeripheralDelegate {
             print("value upadeted")
             print(characteristic)
             let v = String(data: characteristic.value!, encoding: .unicode)
-            slider.setValue((v as! NSString).floatValue, animated: false)
+            self.delegate.slider.setValue((v! as NSString).floatValue, animated: false)
         }
         
     }

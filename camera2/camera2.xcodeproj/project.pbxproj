@@ -84,6 +84,16 @@
 		ECEE4F912783802800F210F1 /* widgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = ECEE4F802783802600F210F1 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		ECEE4F9927838BFE00F210F1 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = ECEE4F9827838BFE00F210F1 /* FirebaseDatabase */; };
 		ECF6E43B27839A170056E1CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECF6E439278399030056E1CE /* GoogleService-Info.plist */; };
+		ECF7359E28CF91A500BA39B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF7359D28CF91A500BA39B1 /* AppDelegate.swift */; };
+		ECF735A028CF91A500BA39B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF7359F28CF91A500BA39B1 /* SceneDelegate.swift */; };
+		ECF735A228CF91A500BA39B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF735A128CF91A500BA39B1 /* ViewController.swift */; };
+		ECF735A528CF91A500BA39B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECF735A328CF91A500BA39B1 /* Main.storyboard */; };
+		ECF735A728CF91A600BA39B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECF735A628CF91A600BA39B1 /* Assets.xcassets */; };
+		ECF735AA28CF91A600BA39B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECF735A828CF91A600BA39B1 /* LaunchScreen.storyboard */; };
+		ECF735B028CF923500BA39B1 /* ParticlePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC840D4428CC66C40055F350 /* ParticlePeripheral.swift */; };
+		ECF735B228CF927500BA39B1 /* ParticlePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF735B128CF927500BA39B1 /* ParticlePeripheral.swift */; };
+		ECFCF1A428E62A7600F2545E /* BluetoothCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFCF1A328E62A7600F2545E /* BluetoothCentral.swift */; };
+		ECFCF1A628E62A8700F2545E /* BluetoothPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFCF1A528E62A8700F2545E /* BluetoothPeripheral.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +153,7 @@
 		EC6D5BFB2756689A001538F1 /* StabilizationModeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizationModeTableViewController.swift; sourceTree = "<group>"; };
 		EC6D5BFD27566E1A001538F1 /* StabilizationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizationTableViewCell.swift; sourceTree = "<group>"; };
 		EC6D5C0127567202001538F1 /* NamingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamingViewController.swift; sourceTree = "<group>"; };
+		EC840D4428CC66C40055F350 /* ParticlePeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticlePeripheral.swift; sourceTree = "<group>"; };
 		EC8C2EF4273FB2CB0082FE8E /* SessionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsTableViewController.swift; sourceTree = "<group>"; };
 		EC8C2EF6273FB2E00082FE8E /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		EC8C2EF8273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportAllSessionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -208,6 +219,17 @@
 		ECEE4F8A2783802800F210F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECEE4F8C2783802800F210F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECF6E439278399030056E1CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ECF7359B28CF91A500BA39B1 /* bluetooth_peripheral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluetooth_peripheral.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECF7359D28CF91A500BA39B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ECF7359F28CF91A500BA39B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		ECF735A128CF91A500BA39B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ECF735A428CF91A500BA39B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ECF735A628CF91A600BA39B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ECF735A928CF91A600BA39B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ECF735AB28CF91A600BA39B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECF735B128CF927500BA39B1 /* ParticlePeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParticlePeripheral.swift; path = bluetooth/ParticlePeripheral.swift; sourceTree = SOURCE_ROOT; };
+		ECFCF1A328E62A7600F2545E /* BluetoothCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentral.swift; sourceTree = "<group>"; };
+		ECFCF1A528E62A8700F2545E /* BluetoothPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPeripheral.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +279,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ECF7359828CF91A400BA39B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -291,6 +320,7 @@
 				ECA5E1492738263800A84E40 /* camera2UITests */,
 				ECEE4F862783802600F210F1 /* widget */,
 				ECEA0D8F28BF6A4300DC22B3 /* bluetooth */,
+				ECF7359C28CF91A500BA39B1 /* bluetooth_peripheral */,
 				ECEE4F812783802600F210F1 /* Frameworks */,
 				ECA5E1272738263700A84E40 /* Products */,
 			);
@@ -305,6 +335,7 @@
 				ECEE4F802783802600F210F1 /* widgetExtension.appex */,
 				ECEA0D7628BEB4CF00DC22B3 /* camera3000x4000.app */,
 				ECEA0D8E28BF6A4300DC22B3 /* bluetooth.app */,
+				ECF7359B28CF91A500BA39B1 /* bluetooth_peripheral.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -456,10 +487,13 @@
 				ECEA0D9028BF6A4300DC22B3 /* AppDelegate.swift */,
 				ECEA0D9228BF6A4300DC22B3 /* SceneDelegate.swift */,
 				ECEA0D9428BF6A4300DC22B3 /* ViewController.swift */,
+				ECFCF1A328E62A7600F2545E /* BluetoothCentral.swift */,
+				ECFCF1A528E62A8700F2545E /* BluetoothPeripheral.swift */,
 				ECEA0D9628BF6A4300DC22B3 /* Main.storyboard */,
 				ECEA0D9928BF6A4500DC22B3 /* Assets.xcassets */,
 				ECEA0D9B28BF6A4500DC22B3 /* LaunchScreen.storyboard */,
 				ECEA0D9E28BF6A4500DC22B3 /* Info.plist */,
+				EC840D4428CC66C40055F350 /* ParticlePeripheral.swift */,
 			);
 			path = bluetooth;
 			sourceTree = "<group>";
@@ -483,6 +517,21 @@
 				ECF6E439278399030056E1CE /* GoogleService-Info.plist */,
 			);
 			path = widget;
+			sourceTree = "<group>";
+		};
+		ECF7359C28CF91A500BA39B1 /* bluetooth_peripheral */ = {
+			isa = PBXGroup;
+			children = (
+				ECF7359D28CF91A500BA39B1 /* AppDelegate.swift */,
+				ECF7359F28CF91A500BA39B1 /* SceneDelegate.swift */,
+				ECF735A128CF91A500BA39B1 /* ViewController.swift */,
+				ECF735B128CF927500BA39B1 /* ParticlePeripheral.swift */,
+				ECF735A328CF91A500BA39B1 /* Main.storyboard */,
+				ECF735A628CF91A600BA39B1 /* Assets.xcassets */,
+				ECF735A828CF91A600BA39B1 /* LaunchScreen.storyboard */,
+				ECF735AB28CF91A600BA39B1 /* Info.plist */,
+			);
+			path = bluetooth_peripheral;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -600,6 +649,23 @@
 			productReference = ECEE4F802783802600F210F1 /* widgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		ECF7359A28CF91A400BA39B1 /* bluetooth_peripheral */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECF735AE28CF91A600BA39B1 /* Build configuration list for PBXNativeTarget "bluetooth_peripheral" */;
+			buildPhases = (
+				ECF7359728CF91A400BA39B1 /* Sources */,
+				ECF7359828CF91A400BA39B1 /* Frameworks */,
+				ECF7359928CF91A400BA39B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bluetooth_peripheral;
+			productName = bluetooth_peripheral;
+			productReference = ECF7359B28CF91A500BA39B1 /* bluetooth_peripheral.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -630,6 +696,9 @@
 					ECEE4F7F2783802600F210F1 = {
 						CreatedOnToolsVersion = 13.1;
 					};
+					ECF7359A28CF91A400BA39B1 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
 				};
 			};
 			buildConfigurationList = ECA5E1212738263700A84E40 /* Build configuration list for PBXProject "camera2" */;
@@ -654,6 +723,7 @@
 				ECEE4F7F2783802600F210F1 /* widgetExtension */,
 				ECEA0D7528BEB4CF00DC22B3 /* camera3000x4000 */,
 				ECEA0D8D28BF6A4300DC22B3 /* bluetooth */,
+				ECF7359A28CF91A400BA39B1 /* bluetooth_peripheral */,
 			);
 		};
 /* End PBXProject section */
@@ -717,6 +787,16 @@
 			files = (
 				ECF6E43B27839A170056E1CE /* GoogleService-Info.plist in Resources */,
 				ECEE4F8B2783802800F210F1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECF7359928CF91A400BA39B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF735AA28CF91A600BA39B1 /* LaunchScreen.storyboard in Resources */,
+				ECF735A728CF91A600BA39B1 /* Assets.xcassets in Resources */,
+				ECF735A528CF91A500BA39B1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,6 +886,9 @@
 				ECEA0D9528BF6A4300DC22B3 /* ViewController.swift in Sources */,
 				ECEA0D9128BF6A4300DC22B3 /* AppDelegate.swift in Sources */,
 				ECEA0D9328BF6A4300DC22B3 /* SceneDelegate.swift in Sources */,
+				ECFCF1A428E62A7600F2545E /* BluetoothCentral.swift in Sources */,
+				ECF735B028CF923500BA39B1 /* ParticlePeripheral.swift in Sources */,
+				ECFCF1A628E62A8700F2545E /* BluetoothPeripheral.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,6 +898,17 @@
 			files = (
 				ECEE4F8D2783802800F210F1 /* widget.intentdefinition in Sources */,
 				ECEE4F882783802600F210F1 /* widget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECF7359728CF91A400BA39B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF735A228CF91A500BA39B1 /* ViewController.swift in Sources */,
+				ECF7359E28CF91A500BA39B1 /* AppDelegate.swift in Sources */,
+				ECF735A028CF91A500BA39B1 /* SceneDelegate.swift in Sources */,
+				ECF735B228CF927500BA39B1 /* ParticlePeripheral.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,6 +977,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				ECEA0D9C28BF6A4500DC22B3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		ECF735A328CF91A500BA39B1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECF735A428CF91A500BA39B1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ECF735A828CF91A600BA39B1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECF735A928CF91A600BA39B1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1241,7 +1351,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1270,7 +1380,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1332,6 +1442,64 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.camera2.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ECF735AC28CF91A600BA39B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = bluetooth_peripheral/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kanistra.bluetooth-peripheral";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ECF735AD28CF91A600BA39B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = bluetooth_peripheral/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kanistra.bluetooth-peripheral";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1400,6 +1568,15 @@
 			buildConfigurations = (
 				ECEE4F932783802800F210F1 /* Debug */,
 				ECEE4F942783802800F210F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECF735AE28CF91A600BA39B1 /* Build configuration list for PBXNativeTarget "bluetooth_peripheral" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECF735AC28CF91A600BA39B1 /* Debug */,
+				ECF735AD28CF91A600BA39B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

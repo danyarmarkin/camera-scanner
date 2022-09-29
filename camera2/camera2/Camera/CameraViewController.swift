@@ -47,8 +47,6 @@ class CameraViewController: UIViewController,
         let metricManager = MXMetricManager.shared
         metricManager.add(self)
         
-        print("load")
-        
         sessionTextField.delegate = self
         camera = Camera(imageView: imageView, delegate: self)
         cameraSettings.monitoringData()
