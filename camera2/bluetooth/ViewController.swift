@@ -10,104 +10,73 @@ import CoreBluetooth
 
 class ViewController: UIViewController {
 
+    
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var slider2: UISlider!
     @IBOutlet weak var switcher: UISegmentedControl!
     
-    var centralManager: CBCentralManager!
-    var peripheral: CBPeripheral!
+    var bluetoothCentral: BluetoothCentral!
+    var bluetoothPeripheral: BluetoothPeripheral!
+    var bluetoothStatus: BluetoothStatus!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        centralManager = CBCentralManager(delegate: self, queue: nil)
+        bluetoothStatus = .central
+        bluetoothCentral = BluetoothCentral()
+        bluetoothCentral.configure(delegate: self)
     }
     
     @IBAction func slide(_ sender: UISlider) {
-    }
-    
-    
-    @IBAction func `switch`(_ sender: UISegmentedControl) {
-    }
-}
-
-extension ViewController: CBCentralManagerDelegate {
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        switch central.state {
-        case .unknown:
-            print("central.state is unknown")
-        case .resetting:
-            print("central.state is resetting")
-        case .unsupported:
-            print("central.state is unsupported")
-        case .unauthorized:
-            print("central.state is unauthorized")
-        case .poweredOff:
-            print("central.state is poweredOff")
-        case .poweredOn:
-            print("central.state is poweredOn")
-            centralManager.scanForPeripherals(withServices: [ParticlePeripheral.particlePeripheralServiceUUID],
-                                                              options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
-        @unknown default:
+        let data = "\(sender.value)".data(using: .unicode)!
+        switch bluetoothStatus {
+        case .central:
+            if bluetoothCentral.characteristic != nil {
+                bluetoothCentral.peripheral.writeValue(data, for: bluetoothCentral.characteristic, type: .withoutResponse)
+            }
+        case .peripheral:
+            if bluetoothPeripheral.peripheralManager != nil {
+                bluetoothPeripheral.peripheralManager.updateValue(data, for: bluetoothPeripheral.characteristic, onSubscribedCentrals: nil)
+            }
+        case .none:
             break
         }
         
+        
     }
     
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        
-        self.centralManager.stopScan()
-        self.peripheral = peripheral
-        self.peripheral.delegate = self
-        
-        self.centralManager.connect(self.peripheral)
+    @IBAction func slide2(_ sender: UISlider) {
+        let data = "\(sender.value)".data(using: .unicode)!
+        switch bluetoothStatus {
+        case .central:
+            if bluetoothCentral.characteristic2 != nil {
+                bluetoothCentral.peripheral.writeValue(data, for: bluetoothCentral.characteristic2, type: .withoutResponse)
+            }
+        case .peripheral:
+            if bluetoothPeripheral.peripheralManager != nil {
+                bluetoothPeripheral.peripheralManager.updateValue(data, for: bluetoothPeripheral.characteristic2, onSubscribedCentrals: nil)
+            }
+        case .none:
+            break
+        }
     }
     
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        if peripheral == self.peripheral {
-            print("peripheral connected!")
-            peripheral.discoverServices([ParticlePeripheral.particlePeripheralServiceUUID])
-            
+    @IBAction func `switch`(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 1 {
+            bluetoothStatus = .peripheral
+            bluetoothCentral = nil
+            bluetoothPeripheral = BluetoothPeripheral()
+            bluetoothPeripheral.configure(delegate: self)
+        } else {
+            bluetoothStatus = .central
+            bluetoothPeripheral = nil
+            bluetoothCentral = BluetoothCentral()
+            bluetoothCentral.configure(delegate: self)
         }
     }
 }
 
-extension ViewController: CBPeripheralDelegate {
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        if let services = peripheral.services {
-            for service in services {
-                if service.uuid == ParticlePeripheral.particlePeripheralServiceUUID {
-                    print("device found")
-                    peripheral.discoverCharacteristics([ParticlePeripheral.particleSliderCharacteristicUUID], for: service)
-                }
-            }
-        }
-    }
-    
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        if let characteristics = service.characteristics {
-            for characteristic in characteristics {
-                if characteristic.uuid == ParticlePeripheral.particleSliderCharacteristicUUID {
-                    self.peripheral.setNotifyValue(true, for: characteristic)
-                }
-            }
-        }
-    }
-    
-    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
-        print(characteristic)
-        print(peripheral.readValue(for: characteristic))
-    }
-    
-    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        if error != nil {
-            print(error as Any)
-            return
-        }
-        if characteristic.uuid == ParticlePeripheral.particleSliderCharacteristicUUID {
-            print("value upadeted")
-            print(characteristic)
-            let v = String(data: characteristic.value!, encoding: .unicode)
-            slider.setValue((v as! NSString).floatValue, animated: false)
-        }
-        
-    }
+
+enum BluetoothStatus {
+    case central
+    case peripheral
 }

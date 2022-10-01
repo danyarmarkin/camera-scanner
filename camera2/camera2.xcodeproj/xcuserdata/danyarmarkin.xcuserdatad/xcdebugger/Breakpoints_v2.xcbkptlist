@@ -20,5 +20,221 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE088F3F-18D8-445D-AD7D-76CE31C0A834"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bluetooth/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "BE088F3F-18D8-445D-AD7D-76CE31C0A834 - d641474a4399d0dd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bluetooth.ViewController.switcher.getter : Swift.Optional&lt;__C.UISegmentedControl&gt;"
+                  moduleName = "bluetooth"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danyarmarkin/Desktop/camera/camera2/bluetooth/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "BE088F3F-18D8-445D-AD7D-76CE31C0A834 - d29b7bae523fe8d1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bluetooth.ViewController.switcher.setter : Swift.Optional&lt;__C.UISegmentedControl&gt;"
+                  moduleName = "bluetooth"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danyarmarkin/Desktop/camera/camera2/bluetooth/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "BE088F3F-18D8-445D-AD7D-76CE31C0A834 - 722d6457e75a4ede"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bluetooth.ViewController.switcher.modify : Swift.Optional&lt;__C.UISegmentedControl&gt;"
+                  moduleName = "bluetooth"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danyarmarkin/Desktop/camera/camera2/bluetooth/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "BE088F3F-18D8-445D-AD7D-76CE31C0A834 - d46c1fc90d0b8ecf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bluetooth.ViewController.switcher.modify : Swift.Optional&lt;__C.UISegmentedControl&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "bluetooth"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danyarmarkin/Desktop/camera/camera2/bluetooth/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "BE088F3F-18D8-445D-AD7D-76CE31C0A834 - e776a227844fddda"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bluetooth.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; bluetooth.ViewController"
+                  moduleName = "bluetooth"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danyarmarkin/Desktop/camera/camera2/bluetooth/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "208">
+               </Location>
+               <Location
+                  uuid = "BE088F3F-18D8-445D-AD7D-76CE31C0A834 - 875ddbca699ed51e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bluetooth.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;bluetooth.ViewController&gt;"
+                  moduleName = "bluetooth"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danyarmarkin/Desktop/camera/camera2/bluetooth/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "184">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "586D1B50-EA1F-48AC-8EE6-D1270574B40E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bluetooth/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "586D1B50-EA1F-48AC-8EE6-D1270574B40E - bfb738b89008da22"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bluetooth.ViewController.bluetoothCentral.getter : Swift.Optional&lt;bluetooth.BluetoothCentral&gt;"
+                  moduleName = "bluetooth"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danyarmarkin/Desktop/camera/camera2/bluetooth/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "586D1B50-EA1F-48AC-8EE6-D1270574B40E - f60436431f7e8216"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bluetooth.ViewController.bluetoothCentral.setter : Swift.Optional&lt;bluetooth.BluetoothCentral&gt;"
+                  moduleName = "bluetooth"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danyarmarkin/Desktop/camera/camera2/bluetooth/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "586D1B50-EA1F-48AC-8EE6-D1270574B40E - a88b57ab5bd95c27"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bluetooth.ViewController.bluetoothCentral.modify : Swift.Optional&lt;bluetooth.BluetoothCentral&gt;"
+                  moduleName = "bluetooth"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danyarmarkin/Desktop/camera/camera2/bluetooth/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "586D1B50-EA1F-48AC-8EE6-D1270574B40E - d7e81c9e0cd0c32b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bluetooth.ViewController.bluetoothCentral.modify : Swift.Optional&lt;bluetooth.BluetoothCentral&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "bluetooth"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danyarmarkin/Desktop/camera/camera2/bluetooth/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "586D1B50-EA1F-48AC-8EE6-D1270574B40E - e776a227844fdd98"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bluetooth.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; bluetooth.ViewController"
+                  moduleName = "bluetooth"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danyarmarkin/Desktop/camera/camera2/bluetooth/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  uuid = "586D1B50-EA1F-48AC-8EE6-D1270574B40E - 875ddbca699ed55c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bluetooth.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;bluetooth.ViewController&gt;"
+                  moduleName = "bluetooth"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danyarmarkin/Desktop/camera/camera2/bluetooth/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "220">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

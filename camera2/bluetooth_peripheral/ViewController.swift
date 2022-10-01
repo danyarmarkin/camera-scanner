@@ -23,7 +23,6 @@ class ViewController: UIViewController {
 
     @IBAction func onSlider(_ sender: UISlider) {
         peripheralManager.updateValue("\(sender.value)".data(using: .unicode)!, for: characteristic!, onSubscribedCentrals: nil)
-        print(characteristic.value)
     }
     
 }
@@ -35,7 +34,7 @@ extension ViewController: CBPeripheralManagerDelegate {
             // ... so start working with the peripheral
             print("CBManager is powered on")
             
-            let transferCharacteristic = CBMutableCharacteristic(type: ParticlePeripheral.particleSliderCharacteristicUUID, properties: [.notify, .write, .read], value: nil, permissions: [.readable, .writeable])
+            let transferCharacteristic = CBMutableCharacteristic(type: ParticlePeripheral.particleSliderCharacteristicUUID, properties: [.notify, .write, .read, .writeWithoutResponse], value: nil, permissions: [.readable, .writeable])
             
             let transferService = CBMutableService(type: ParticlePeripheral.particlePeripheralServiceUUID, primary: true)
             transferService.characteristics = [transferCharacteristic]
@@ -53,20 +52,7 @@ extension ViewController: CBPeripheralManagerDelegate {
             // In a real app, you'd deal with all the states accordingly
             return
         case .unauthorized:
-            // In a real app, you'd deal with all the states accordingly
-            if #available(iOS 13.0, *) {
-                switch peripheral.authorization {
-                case .denied:
-                    print("You are not authorized to use Bluetooth")
-                case .restricted:
-                    print("Bluetooth is restricted")
-                default:
-                    print("Unexpected authorization")
-                }
-            } else {
-                // Fallback on earlier versions
-            }
-            return
+            print("unathorized")
         case .unknown:
             print("CBManager state is unknown")
             // In a real app, you'd deal with all the states accordingly
@@ -91,10 +77,19 @@ extension ViewController: CBPeripheralManagerDelegate {
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
         print(characteristic.uuid)
         print("\(central.description) subscribed")
-        peripheral.updateValue("hello".data(using: .unicode)!, for: self.characteristic, onSubscribedCentrals: nil)
+        peripheral.updateValue("0.5".data(using: .unicode)!, for: self.characteristic, onSubscribedCentrals: nil)
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
+        for request in requests {
+            let v = String(data: request.value!, encoding: .unicode)
+            slider.setValue((v! as NSString).floatValue, animated: false)
+//            peripheral.respond(to: request, withResult: .success)
+        }
         print("write")
+    }
+    
+    func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
+        print("read")
     }
 }

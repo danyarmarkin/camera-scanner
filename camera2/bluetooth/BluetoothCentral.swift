@@ -14,12 +14,13 @@ class BluetoothCentral: NSObject {
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral!
     var delegate: ViewController!
+    var characteristic: CBCharacteristic!
+    var characteristic2: CBCharacteristic!
     
     func configure(delegate: ViewController) {
         self.delegate = delegate
-        centralManager = CBCentralManager(delegate: delegate, queue: nil)
+        centralManager = CBCentralManager(delegate: self, queue: nil)
     }
-    
 }
 
 extension BluetoothCentral: CBCentralManagerDelegate {
@@ -69,7 +70,7 @@ extension BluetoothCentral: CBPeripheralDelegate {
             for service in services {
                 if service.uuid == ParticlePeripheral.particlePeripheralServiceUUID {
                     print("device found")
-                    peripheral.discoverCharacteristics([ParticlePeripheral.particleSliderCharacteristicUUID], for: service)
+                    peripheral.discoverCharacteristics([ParticlePeripheral.particleSliderCharacteristicUUID, ParticlePeripheral.particleSlider2CharacteristicUUID], for: service)
                 }
             }
         }
@@ -79,7 +80,13 @@ extension BluetoothCentral: CBPeripheralDelegate {
         if let characteristics = service.characteristics {
             for characteristic in characteristics {
                 if characteristic.uuid == ParticlePeripheral.particleSliderCharacteristicUUID {
+                    self.characteristic = characteristic
                     self.peripheral.setNotifyValue(true, for: characteristic)
+                }
+                
+                if characteristic.uuid == ParticlePeripheral.particleSlider2CharacteristicUUID {
+                    self.characteristic2 = characteristic
+                    self.peripheral.setNotifyValue(true, for: characteristic2)
                 }
             }
         }
@@ -96,10 +103,11 @@ extension BluetoothCentral: CBPeripheralDelegate {
             return
         }
         if characteristic.uuid == ParticlePeripheral.particleSliderCharacteristicUUID {
-            print("value upadeted")
-            print(characteristic)
             let v = String(data: characteristic.value!, encoding: .unicode)
             self.delegate.slider.setValue((v! as NSString).floatValue, animated: false)
+        } else if characteristic.uuid == ParticlePeripheral.particleSlider2CharacteristicUUID {
+            let v = String(data: characteristic.value!, encoding: .unicode)
+            self.delegate.slider2.setValue((v! as NSString).floatValue, animated: false)
         }
         
     }
