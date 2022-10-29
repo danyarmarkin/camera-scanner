@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC14E4B228ECACC000CEB379 /* BluetoothCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4B128ECACC000CEB379 /* BluetoothCentral.swift */; };
+		EC14E4B428ECACD800CEB379 /* BluetoothPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4B328ECACD800CEB379 /* BluetoothPeripheral.swift */; };
+		EC14E4B728ECAD6400CEB379 /* ConnectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4B628ECAD6400CEB379 /* ConnectionTableViewController.swift */; };
+		EC14E4B928ECAE8700CEB379 /* BluetoothConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4B828ECAE8700CEB379 /* BluetoothConstants.swift */; };
+		EC14E4BB28ECB28100CEB379 /* PeripheralDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4BA28ECB28100CEB379 /* PeripheralDevice.swift */; };
+		EC14E4BD28ECCB5C00CEB379 /* ConnectionDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4BC28ECCB5C00CEB379 /* ConnectionDevice.swift */; };
+		EC14E4BF28ECCD4B00CEB379 /* CentralDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4BE28ECCD4B00CEB379 /* CentralDeviceTableViewCell.swift */; };
+		EC14E4C128ECCF6700CEB379 /* MakeDeviceCentralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4C028ECCF6700CEB379 /* MakeDeviceCentralTableViewCell.swift */; };
+		EC14E4C328ECD19F00CEB379 /* ConnectionDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4C228ECD19F00CEB379 /* ConnectionDeviceTableViewCell.swift */; };
+		EC14E4DE28EDDDF900CEB379 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4DD28EDDDF900CEB379 /* AppDelegate.swift */; };
+		EC14E4E028EDDDF900CEB379 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4DF28EDDDF900CEB379 /* SceneDelegate.swift */; };
+		EC14E4E228EDDDF900CEB379 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4E128EDDDF900CEB379 /* ViewController.swift */; };
+		EC14E4E528EDDDF900CEB379 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC14E4E328EDDDF900CEB379 /* Main.storyboard */; };
+		EC14E4E728EDDDFA00CEB379 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC14E4E628EDDDFA00CEB379 /* Assets.xcassets */; };
+		EC14E4EA28EDDDFA00CEB379 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC14E4E828EDDDFA00CEB379 /* LaunchScreen.storyboard */; };
 		EC280C9927614C5B0061A5E7 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC280C9827614C5B0061A5E7 /* Server.swift */; };
 		EC280C9B27614DF30061A5E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC280C9A27614DF30061A5E7 /* GoogleService-Info.plist */; };
 		EC280C9E27614F280061A5E7 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = EC280C9D27614F280061A5E7 /* FirebaseDatabase */; };
@@ -15,6 +30,13 @@
 		EC282FAE2770D5FF009CF2CB /* DeviceStatusTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC282FAD2770D5FF009CF2CB /* DeviceStatusTableView.swift */; };
 		EC5064BF276159B400014397 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5064BE276159B400014397 /* ViewController.swift */; };
 		EC57F7E92770D8EE005CBBDF /* DiskSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC57F7E82770D8EE005CBBDF /* DiskSpace.swift */; };
+		EC6188C42771DFB200891C9C /* 1617576913_iPhone-12-PNG-Image.png in Resources */ = {isa = PBXBuildFile; fileRef = EC6188BE2771DFB000891C9C /* 1617576913_iPhone-12-PNG-Image.png */; };
+		EC6188C52771DFB200891C9C /* iphone_side.webp in Resources */ = {isa = PBXBuildFile; fileRef = EC6188BF2771DFB000891C9C /* iphone_side.webp */; };
+		EC6188C62771DFB200891C9C /* kpkqsqsezaichxoadhcn.png in Resources */ = {isa = PBXBuildFile; fileRef = EC6188C02771DFB000891C9C /* kpkqsqsezaichxoadhcn.png */; };
+		EC6188C72771DFB200891C9C /* Terres-Neuves-Logo-arc-orange-1.png in Resources */ = {isa = PBXBuildFile; fileRef = EC6188C12771DFB100891C9C /* Terres-Neuves-Logo-arc-orange-1.png */; };
+		EC6188C82771DFB200891C9C /* ab137ab0bf1f6bd1540972b3628bab41.png in Resources */ = {isa = PBXBuildFile; fileRef = EC6188C22771DFB100891C9C /* ab137ab0bf1f6bd1540972b3628bab41.png */; };
+		EC6188C92771DFB200891C9C /* 30052888b.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC6188C32771DFB200891C9C /* 30052888b.jpg */; };
+		EC6188CB2771DFEB00891C9C /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6188CA2771DFEA00891C9C /* LocationViewController.swift */; };
 		EC6D5BFA27566886001538F1 /* StabilizationModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6D5BF927566886001538F1 /* StabilizationModeTableViewCell.swift */; };
 		EC6D5BFC2756689A001538F1 /* StabilizationModeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6D5BFB2756689A001538F1 /* StabilizationModeTableViewController.swift */; };
 		EC6D5BFE27566E1B001538F1 /* StabilizationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6D5BFD27566E1A001538F1 /* StabilizationTableViewCell.swift */; };
@@ -56,6 +78,38 @@
 		ECD5782E27513271007F7532 /* FocusPrioritizationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5782D27513271007F7532 /* FocusPrioritizationTableViewController.swift */; };
 		ECD578302751354E007F7532 /* FocusPrioritizationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5782F2751354E007F7532 /* FocusPrioritizationTableViewCell.swift */; };
 		ECD5783227514BB3007F7532 /* FocusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5783127514BB3007F7532 /* FocusTableViewCell.swift */; };
+		ECEA0D7928BEB4CF00DC22B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA0D7828BEB4CF00DC22B3 /* AppDelegate.swift */; };
+		ECEA0D7B28BEB4CF00DC22B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA0D7A28BEB4CF00DC22B3 /* SceneDelegate.swift */; };
+		ECEA0D7D28BEB4CF00DC22B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA0D7C28BEB4CF00DC22B3 /* ViewController.swift */; };
+		ECEA0D8028BEB4CF00DC22B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECEA0D7E28BEB4CF00DC22B3 /* Main.storyboard */; };
+		ECEA0D8228BEB4D100DC22B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECEA0D8128BEB4D100DC22B3 /* Assets.xcassets */; };
+		ECEA0D8528BEB4D100DC22B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECEA0D8328BEB4D100DC22B3 /* LaunchScreen.storyboard */; };
+		ECEA0D9128BF6A4300DC22B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA0D9028BF6A4300DC22B3 /* AppDelegate.swift */; };
+		ECEA0D9328BF6A4300DC22B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA0D9228BF6A4300DC22B3 /* SceneDelegate.swift */; };
+		ECEA0D9528BF6A4300DC22B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA0D9428BF6A4300DC22B3 /* ViewController.swift */; };
+		ECEA0D9828BF6A4300DC22B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECEA0D9628BF6A4300DC22B3 /* Main.storyboard */; };
+		ECEA0D9A28BF6A4500DC22B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECEA0D9928BF6A4500DC22B3 /* Assets.xcassets */; };
+		ECEA0D9D28BF6A4500DC22B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECEA0D9B28BF6A4500DC22B3 /* LaunchScreen.storyboard */; };
+		ECEE4F832783802600F210F1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECEE4F822783802600F210F1 /* WidgetKit.framework */; };
+		ECEE4F852783802600F210F1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECEE4F842783802600F210F1 /* SwiftUI.framework */; };
+		ECEE4F882783802600F210F1 /* widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEE4F872783802600F210F1 /* widget.swift */; };
+		ECEE4F8B2783802800F210F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECEE4F8A2783802800F210F1 /* Assets.xcassets */; };
+		ECEE4F8D2783802800F210F1 /* widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = ECEE4F892783802600F210F1 /* widget.intentdefinition */; };
+		ECEE4F8E2783802800F210F1 /* widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = ECEE4F892783802600F210F1 /* widget.intentdefinition */; };
+		ECEE4F912783802800F210F1 /* widgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = ECEE4F802783802600F210F1 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		ECEE4F9927838BFE00F210F1 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = ECEE4F9827838BFE00F210F1 /* FirebaseDatabase */; };
+		ECF6E43B27839A170056E1CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECF6E439278399030056E1CE /* GoogleService-Info.plist */; };
+		ECF7359E28CF91A500BA39B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF7359D28CF91A500BA39B1 /* AppDelegate.swift */; };
+		ECF735A028CF91A500BA39B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF7359F28CF91A500BA39B1 /* SceneDelegate.swift */; };
+		ECF735A228CF91A500BA39B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF735A128CF91A500BA39B1 /* ViewController.swift */; };
+		ECF735A528CF91A500BA39B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECF735A328CF91A500BA39B1 /* Main.storyboard */; };
+		ECF735A728CF91A600BA39B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECF735A628CF91A600BA39B1 /* Assets.xcassets */; };
+		ECF735AA28CF91A600BA39B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECF735A828CF91A600BA39B1 /* LaunchScreen.storyboard */; };
+		ECF735B028CF923500BA39B1 /* ParticlePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC840D4428CC66C40055F350 /* ParticlePeripheral.swift */; };
+		ECF735B228CF927500BA39B1 /* ParticlePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF735B128CF927500BA39B1 /* ParticlePeripheral.swift */; };
+		ECFCF1A428E62A7600F2545E /* BluetoothCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFCF1A328E62A7600F2545E /* BluetoothCentral.swift */; };
+		ECFCF1A628E62A8700F2545E /* BluetoothPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFCF1A528E62A8700F2545E /* BluetoothPeripheral.swift */; };
+		ECFCF1AA28E8B35F00F2545E /* PeripheralDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFCF1A928E8B35F00F2545E /* PeripheralDevice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,9 +127,47 @@
 			remoteGlobalIDString = ECA5E1252738263700A84E40;
 			remoteInfo = camera2;
 		};
+		ECEE4F8F2783802800F210F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECA5E11E2738263700A84E40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ECEE4F7F2783802600F210F1;
+			remoteInfo = widgetExtension;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		ECEE4F922783802800F210F1 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				ECEE4F912783802800F210F1 /* widgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		EC14E4B128ECACC000CEB379 /* BluetoothCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentral.swift; sourceTree = "<group>"; };
+		EC14E4B328ECACD800CEB379 /* BluetoothPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPeripheral.swift; sourceTree = "<group>"; };
+		EC14E4B628ECAD6400CEB379 /* ConnectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionTableViewController.swift; sourceTree = "<group>"; };
+		EC14E4B828ECAE8700CEB379 /* BluetoothConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConstants.swift; sourceTree = "<group>"; };
+		EC14E4BA28ECB28100CEB379 /* PeripheralDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralDevice.swift; sourceTree = "<group>"; };
+		EC14E4BC28ECCB5C00CEB379 /* ConnectionDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionDevice.swift; sourceTree = "<group>"; };
+		EC14E4BE28ECCD4B00CEB379 /* CentralDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralDeviceTableViewCell.swift; sourceTree = "<group>"; };
+		EC14E4C028ECCF6700CEB379 /* MakeDeviceCentralTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeDeviceCentralTableViewCell.swift; sourceTree = "<group>"; };
+		EC14E4C228ECD19F00CEB379 /* ConnectionDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionDeviceTableViewCell.swift; sourceTree = "<group>"; };
+		EC14E4DB28EDDDF900CEB379 /* animation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = animation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC14E4DD28EDDDF900CEB379 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EC14E4DF28EDDDF900CEB379 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EC14E4E128EDDDF900CEB379 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EC14E4E428EDDDF900CEB379 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EC14E4E628EDDDFA00CEB379 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EC14E4E928EDDDFA00CEB379 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EC14E4EB28EDDDFA00CEB379 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC280C9827614C5B0061A5E7 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		EC280C9A27614DF30061A5E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC282FA9276FC9E4009CF2CB /* SerialNullTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialNullTableViewCell.swift; sourceTree = "<group>"; };
@@ -83,10 +175,18 @@
 		EC282FAD2770D5FF009CF2CB /* DeviceStatusTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStatusTableView.swift; sourceTree = "<group>"; };
 		EC5064BE276159B400014397 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EC57F7E82770D8EE005CBBDF /* DiskSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskSpace.swift; path = ../../Camera/camera/DiskSpace.swift; sourceTree = "<group>"; };
+		EC6188BE2771DFB000891C9C /* 1617576913_iPhone-12-PNG-Image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1617576913_iPhone-12-PNG-Image.png"; sourceTree = "<group>"; };
+		EC6188BF2771DFB000891C9C /* iphone_side.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = iphone_side.webp; sourceTree = "<group>"; };
+		EC6188C02771DFB000891C9C /* kpkqsqsezaichxoadhcn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kpkqsqsezaichxoadhcn.png; sourceTree = "<group>"; };
+		EC6188C12771DFB100891C9C /* Terres-Neuves-Logo-arc-orange-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Terres-Neuves-Logo-arc-orange-1.png"; sourceTree = "<group>"; };
+		EC6188C22771DFB100891C9C /* ab137ab0bf1f6bd1540972b3628bab41.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ab137ab0bf1f6bd1540972b3628bab41.png; sourceTree = "<group>"; };
+		EC6188C32771DFB200891C9C /* 30052888b.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 30052888b.jpg; sourceTree = "<group>"; };
+		EC6188CA2771DFEA00891C9C /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		EC6D5BF927566886001538F1 /* StabilizationModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizationModeTableViewCell.swift; sourceTree = "<group>"; };
 		EC6D5BFB2756689A001538F1 /* StabilizationModeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizationModeTableViewController.swift; sourceTree = "<group>"; };
 		EC6D5BFD27566E1A001538F1 /* StabilizationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizationTableViewCell.swift; sourceTree = "<group>"; };
 		EC6D5C0127567202001538F1 /* NamingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamingViewController.swift; sourceTree = "<group>"; };
+		EC840D4428CC66C40055F350 /* ParticlePeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticlePeripheral.swift; sourceTree = "<group>"; };
 		EC8C2EF4273FB2CB0082FE8E /* SessionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsTableViewController.swift; sourceTree = "<group>"; };
 		EC8C2EF6273FB2E00082FE8E /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		EC8C2EF8273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportAllSessionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -128,9 +228,52 @@
 		ECD5782D27513271007F7532 /* FocusPrioritizationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPrioritizationTableViewController.swift; sourceTree = "<group>"; };
 		ECD5782F2751354E007F7532 /* FocusPrioritizationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPrioritizationTableViewCell.swift; sourceTree = "<group>"; };
 		ECD5783127514BB3007F7532 /* FocusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTableViewCell.swift; sourceTree = "<group>"; };
+		ECEA0D7628BEB4CF00DC22B3 /* camera3000x4000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = camera3000x4000.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECEA0D7828BEB4CF00DC22B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ECEA0D7A28BEB4CF00DC22B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		ECEA0D7C28BEB4CF00DC22B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ECEA0D7F28BEB4CF00DC22B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ECEA0D8128BEB4D100DC22B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ECEA0D8428BEB4D100DC22B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ECEA0D8628BEB4D100DC22B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECEA0D8E28BF6A4300DC22B3 /* bluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECEA0D9028BF6A4300DC22B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ECEA0D9228BF6A4300DC22B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		ECEA0D9428BF6A4300DC22B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ECEA0D9728BF6A4300DC22B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ECEA0D9928BF6A4500DC22B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ECEA0D9C28BF6A4500DC22B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ECEA0D9E28BF6A4500DC22B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECEE4F802783802600F210F1 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECEE4F822783802600F210F1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		ECEE4F842783802600F210F1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		ECEE4F872783802600F210F1 /* widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = widget.swift; sourceTree = "<group>"; };
+		ECEE4F892783802600F210F1 /* widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = widget.intentdefinition; sourceTree = "<group>"; };
+		ECEE4F8A2783802800F210F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ECEE4F8C2783802800F210F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECF6E439278399030056E1CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ECF7359B28CF91A500BA39B1 /* bluetooth_peripheral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluetooth_peripheral.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECF7359D28CF91A500BA39B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ECF7359F28CF91A500BA39B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		ECF735A128CF91A500BA39B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ECF735A428CF91A500BA39B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ECF735A628CF91A600BA39B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ECF735A928CF91A600BA39B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ECF735AB28CF91A600BA39B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECF735B128CF927500BA39B1 /* ParticlePeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParticlePeripheral.swift; path = bluetooth/ParticlePeripheral.swift; sourceTree = SOURCE_ROOT; };
+		ECFCF1A328E62A7600F2545E /* BluetoothCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentral.swift; sourceTree = "<group>"; };
+		ECFCF1A528E62A8700F2545E /* BluetoothPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPeripheral.swift; sourceTree = "<group>"; };
+		ECFCF1A928E8B35F00F2545E /* PeripheralDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralDevice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EC14E4D828EDDDF900CEB379 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ECA5E1232738263700A84E40 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -153,9 +296,77 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ECEA0D7328BEB4CF00DC22B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECEA0D8B28BF6A4300DC22B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECEE4F7D2783802600F210F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECEE4F9927838BFE00F210F1 /* FirebaseDatabase in Frameworks */,
+				ECEE4F852783802600F210F1 /* SwiftUI.framework in Frameworks */,
+				ECEE4F832783802600F210F1 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECF7359828CF91A400BA39B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC14E4B028ECACA300CEB379 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				EC14E4B128ECACC000CEB379 /* BluetoothCentral.swift */,
+				EC14E4B328ECACD800CEB379 /* BluetoothPeripheral.swift */,
+				EC14E4B828ECAE8700CEB379 /* BluetoothConstants.swift */,
+				EC14E4BA28ECB28100CEB379 /* PeripheralDevice.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		EC14E4B528ECAD3900CEB379 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				EC14E4B628ECAD6400CEB379 /* ConnectionTableViewController.swift */,
+				EC14E4BC28ECCB5C00CEB379 /* ConnectionDevice.swift */,
+				EC14E4BE28ECCD4B00CEB379 /* CentralDeviceTableViewCell.swift */,
+				EC14E4C028ECCF6700CEB379 /* MakeDeviceCentralTableViewCell.swift */,
+				EC14E4C228ECD19F00CEB379 /* ConnectionDeviceTableViewCell.swift */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
+		EC14E4DC28EDDDF900CEB379 /* animation */ = {
+			isa = PBXGroup;
+			children = (
+				EC14E4DD28EDDDF900CEB379 /* AppDelegate.swift */,
+				EC14E4DF28EDDDF900CEB379 /* SceneDelegate.swift */,
+				EC14E4E128EDDDF900CEB379 /* ViewController.swift */,
+				EC14E4E328EDDDF900CEB379 /* Main.storyboard */,
+				EC14E4E628EDDDFA00CEB379 /* Assets.xcassets */,
+				EC14E4E828EDDDFA00CEB379 /* LaunchScreen.storyboard */,
+				EC14E4EB28EDDDFA00CEB379 /* Info.plist */,
+			);
+			path = animation;
+			sourceTree = "<group>";
+		};
 		EC6D5BF827566870001538F1 /* Stabilization Mode */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,9 +392,15 @@
 		ECA5E11D2738263700A84E40 = {
 			isa = PBXGroup;
 			children = (
+				ECEA0D7728BEB4CF00DC22B3 /* camera3000x4000 */,
 				ECA5E1282738263700A84E40 /* camera2 */,
 				ECA5E13F2738263800A84E40 /* camera2Tests */,
 				ECA5E1492738263800A84E40 /* camera2UITests */,
+				ECEE4F862783802600F210F1 /* widget */,
+				ECEA0D8F28BF6A4300DC22B3 /* bluetooth */,
+				ECF7359C28CF91A500BA39B1 /* bluetooth_peripheral */,
+				EC14E4DC28EDDDF900CEB379 /* animation */,
+				ECEE4F812783802600F210F1 /* Frameworks */,
 				ECA5E1272738263700A84E40 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -194,6 +411,11 @@
 				ECA5E1262738263700A84E40 /* camera2.app */,
 				ECA5E13C2738263800A84E40 /* camera2Tests.xctest */,
 				ECA5E1462738263800A84E40 /* camera2UITests.xctest */,
+				ECEE4F802783802600F210F1 /* widgetExtension.appex */,
+				ECEA0D7628BEB4CF00DC22B3 /* camera3000x4000.app */,
+				ECEA0D8E28BF6A4300DC22B3 /* bluetooth.app */,
+				ECF7359B28CF91A500BA39B1 /* bluetooth_peripheral.app */,
+				EC14E4DB28EDDDF900CEB379 /* animation.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,6 +423,8 @@
 		ECA5E1282738263700A84E40 /* camera2 */ = {
 			isa = PBXGroup;
 			children = (
+				EC14E4B528ECAD3900CEB379 /* Connection */,
+				EC14E4B028ECACA300CEB379 /* Bluetooth */,
 				ECD57810274955CA007F7532 /* Settings */,
 				EC8C2EF3273FB2AB0082FE8E /* Sessions */,
 				ECA5E15E27382D6700A84E40 /* Camera */,
@@ -218,6 +442,7 @@
 				ECA5E167273832C200A84E40 /* Session.swift */,
 				ECD57821274A4675007F7532 /* Storage.swift */,
 				EC57F7E82770D8EE005CBBDF /* DiskSpace.swift */,
+				EC6188CA2771DFEA00891C9C /* LocationViewController.swift */,
 			);
 			path = camera2;
 			sourceTree = "<group>";
@@ -242,6 +467,12 @@
 		ECA5E15B27382A5100A84E40 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				EC6188C32771DFB200891C9C /* 30052888b.jpg */,
+				EC6188BE2771DFB000891C9C /* 1617576913_iPhone-12-PNG-Image.png */,
+				EC6188C22771DFB100891C9C /* ab137ab0bf1f6bd1540972b3628bab41.png */,
+				EC6188BF2771DFB000891C9C /* iphone_side.webp */,
+				EC6188C02771DFB000891C9C /* kpkqsqsezaichxoadhcn.png */,
+				EC6188C12771DFB100891C9C /* Terres-Neuves-Logo-arc-orange-1.png */,
 				ECA5E15C27382A5C00A84E40 /* 1024.png */,
 			);
 			path = images;
@@ -318,9 +549,94 @@
 			path = "Focus Settings";
 			sourceTree = "<group>";
 		};
+		ECEA0D7728BEB4CF00DC22B3 /* camera3000x4000 */ = {
+			isa = PBXGroup;
+			children = (
+				ECEA0D7828BEB4CF00DC22B3 /* AppDelegate.swift */,
+				ECEA0D7A28BEB4CF00DC22B3 /* SceneDelegate.swift */,
+				ECEA0D7C28BEB4CF00DC22B3 /* ViewController.swift */,
+				ECEA0D7E28BEB4CF00DC22B3 /* Main.storyboard */,
+				ECEA0D8128BEB4D100DC22B3 /* Assets.xcassets */,
+				ECEA0D8328BEB4D100DC22B3 /* LaunchScreen.storyboard */,
+				ECEA0D8628BEB4D100DC22B3 /* Info.plist */,
+			);
+			path = camera3000x4000;
+			sourceTree = "<group>";
+		};
+		ECEA0D8F28BF6A4300DC22B3 /* bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				ECEA0D9028BF6A4300DC22B3 /* AppDelegate.swift */,
+				ECEA0D9228BF6A4300DC22B3 /* SceneDelegate.swift */,
+				ECEA0D9428BF6A4300DC22B3 /* ViewController.swift */,
+				ECFCF1A328E62A7600F2545E /* BluetoothCentral.swift */,
+				ECFCF1A528E62A8700F2545E /* BluetoothPeripheral.swift */,
+				ECEA0D9628BF6A4300DC22B3 /* Main.storyboard */,
+				ECEA0D9928BF6A4500DC22B3 /* Assets.xcassets */,
+				ECEA0D9B28BF6A4500DC22B3 /* LaunchScreen.storyboard */,
+				ECEA0D9E28BF6A4500DC22B3 /* Info.plist */,
+				EC840D4428CC66C40055F350 /* ParticlePeripheral.swift */,
+				ECFCF1A928E8B35F00F2545E /* PeripheralDevice.swift */,
+			);
+			path = bluetooth;
+			sourceTree = "<group>";
+		};
+		ECEE4F812783802600F210F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ECEE4F822783802600F210F1 /* WidgetKit.framework */,
+				ECEE4F842783802600F210F1 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ECEE4F862783802600F210F1 /* widget */ = {
+			isa = PBXGroup;
+			children = (
+				ECEE4F872783802600F210F1 /* widget.swift */,
+				ECEE4F892783802600F210F1 /* widget.intentdefinition */,
+				ECEE4F8A2783802800F210F1 /* Assets.xcassets */,
+				ECEE4F8C2783802800F210F1 /* Info.plist */,
+				ECF6E439278399030056E1CE /* GoogleService-Info.plist */,
+			);
+			path = widget;
+			sourceTree = "<group>";
+		};
+		ECF7359C28CF91A500BA39B1 /* bluetooth_peripheral */ = {
+			isa = PBXGroup;
+			children = (
+				ECF7359D28CF91A500BA39B1 /* AppDelegate.swift */,
+				ECF7359F28CF91A500BA39B1 /* SceneDelegate.swift */,
+				ECF735A128CF91A500BA39B1 /* ViewController.swift */,
+				ECF735B128CF927500BA39B1 /* ParticlePeripheral.swift */,
+				ECF735A328CF91A500BA39B1 /* Main.storyboard */,
+				ECF735A628CF91A600BA39B1 /* Assets.xcassets */,
+				ECF735A828CF91A600BA39B1 /* LaunchScreen.storyboard */,
+				ECF735AB28CF91A600BA39B1 /* Info.plist */,
+			);
+			path = bluetooth_peripheral;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EC14E4DA28EDDDF900CEB379 /* animation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC14E4EC28EDDDFA00CEB379 /* Build configuration list for PBXNativeTarget "animation" */;
+			buildPhases = (
+				EC14E4D728EDDDF900CEB379 /* Sources */,
+				EC14E4D828EDDDF900CEB379 /* Frameworks */,
+				EC14E4D928EDDDF900CEB379 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = animation;
+			productName = animation;
+			productReference = EC14E4DB28EDDDF900CEB379 /* animation.app */;
+			productType = "com.apple.product-type.application";
+		};
 		ECA5E1252738263700A84E40 /* camera2 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ECA5E1502738263800A84E40 /* Build configuration list for PBXNativeTarget "camera2" */;
@@ -328,10 +644,12 @@
 				ECA5E1222738263700A84E40 /* Sources */,
 				ECA5E1232738263700A84E40 /* Frameworks */,
 				ECA5E1242738263700A84E40 /* Resources */,
+				ECEE4F922783802800F210F1 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				ECEE4F902783802800F210F1 /* PBXTargetDependency */,
 			);
 			name = camera2;
 			packageProductDependencies = (
@@ -377,6 +695,77 @@
 			productReference = ECA5E1462738263800A84E40 /* camera2UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		ECEA0D7528BEB4CF00DC22B3 /* camera3000x4000 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECEA0D8928BEB4D100DC22B3 /* Build configuration list for PBXNativeTarget "camera3000x4000" */;
+			buildPhases = (
+				ECEA0D7228BEB4CF00DC22B3 /* Sources */,
+				ECEA0D7328BEB4CF00DC22B3 /* Frameworks */,
+				ECEA0D7428BEB4CF00DC22B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = camera3000x4000;
+			productName = camera3000x4000;
+			productReference = ECEA0D7628BEB4CF00DC22B3 /* camera3000x4000.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ECEA0D8D28BF6A4300DC22B3 /* bluetooth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECEA0D9F28BF6A4500DC22B3 /* Build configuration list for PBXNativeTarget "bluetooth" */;
+			buildPhases = (
+				ECEA0D8A28BF6A4300DC22B3 /* Sources */,
+				ECEA0D8B28BF6A4300DC22B3 /* Frameworks */,
+				ECEA0D8C28BF6A4300DC22B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bluetooth;
+			productName = bluetooth;
+			productReference = ECEA0D8E28BF6A4300DC22B3 /* bluetooth.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ECEE4F7F2783802600F210F1 /* widgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECEE4F952783802800F210F1 /* Build configuration list for PBXNativeTarget "widgetExtension" */;
+			buildPhases = (
+				ECEE4F7C2783802600F210F1 /* Sources */,
+				ECEE4F7D2783802600F210F1 /* Frameworks */,
+				ECEE4F7E2783802600F210F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = widgetExtension;
+			packageProductDependencies = (
+				ECEE4F9827838BFE00F210F1 /* FirebaseDatabase */,
+			);
+			productName = widgetExtension;
+			productReference = ECEE4F802783802600F210F1 /* widgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		ECF7359A28CF91A400BA39B1 /* bluetooth_peripheral */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECF735AE28CF91A600BA39B1 /* Build configuration list for PBXNativeTarget "bluetooth_peripheral" */;
+			buildPhases = (
+				ECF7359728CF91A400BA39B1 /* Sources */,
+				ECF7359828CF91A400BA39B1 /* Frameworks */,
+				ECF7359928CF91A400BA39B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bluetooth_peripheral;
+			productName = bluetooth_peripheral;
+			productReference = ECF7359B28CF91A500BA39B1 /* bluetooth_peripheral.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -384,9 +773,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					EC14E4DA28EDDDF900CEB379 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
 					ECA5E1252738263700A84E40 = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -397,6 +789,18 @@
 					ECA5E1452738263800A84E40 = {
 						CreatedOnToolsVersion = 13.1;
 						TestTargetID = ECA5E1252738263700A84E40;
+					};
+					ECEA0D7528BEB4CF00DC22B3 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					ECEA0D8D28BF6A4300DC22B3 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					ECEE4F7F2783802600F210F1 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					ECF7359A28CF91A400BA39B1 = {
+						CreatedOnToolsVersion = 13.4.1;
 					};
 				};
 			};
@@ -419,19 +823,40 @@
 				ECA5E1252738263700A84E40 /* camera2 */,
 				ECA5E13B2738263800A84E40 /* camera2Tests */,
 				ECA5E1452738263800A84E40 /* camera2UITests */,
+				ECEE4F7F2783802600F210F1 /* widgetExtension */,
+				ECEA0D7528BEB4CF00DC22B3 /* camera3000x4000 */,
+				ECEA0D8D28BF6A4300DC22B3 /* bluetooth */,
+				ECF7359A28CF91A400BA39B1 /* bluetooth_peripheral */,
+				EC14E4DA28EDDDF900CEB379 /* animation */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EC14E4D928EDDDF900CEB379 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC14E4EA28EDDDFA00CEB379 /* LaunchScreen.storyboard in Resources */,
+				EC14E4E728EDDDFA00CEB379 /* Assets.xcassets in Resources */,
+				EC14E4E528EDDDF900CEB379 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ECA5E1242738263700A84E40 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				ECA5E1362738263700A84E40 /* LaunchScreen.storyboard in Resources */,
 				ECA5E1332738263700A84E40 /* Assets.xcassets in Resources */,
+				EC6188C62771DFB200891C9C /* kpkqsqsezaichxoadhcn.png in Resources */,
 				EC280C9B27614DF30061A5E7 /* GoogleService-Info.plist in Resources */,
+				EC6188C72771DFB200891C9C /* Terres-Neuves-Logo-arc-orange-1.png in Resources */,
+				EC6188C52771DFB200891C9C /* iphone_side.webp in Resources */,
+				EC6188C42771DFB200891C9C /* 1617576913_iPhone-12-PNG-Image.png in Resources */,
+				EC6188C92771DFB200891C9C /* 30052888b.jpg in Resources */,
 				ECA5E15D27382A5C00A84E40 /* 1024.png in Resources */,
+				EC6188C82771DFB200891C9C /* ab137ab0bf1f6bd1540972b3628bab41.png in Resources */,
 				ECA5E1312738263700A84E40 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,28 +875,84 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ECEA0D7428BEB4CF00DC22B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECEA0D8528BEB4D100DC22B3 /* LaunchScreen.storyboard in Resources */,
+				ECEA0D8228BEB4D100DC22B3 /* Assets.xcassets in Resources */,
+				ECEA0D8028BEB4CF00DC22B3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECEA0D8C28BF6A4300DC22B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECEA0D9D28BF6A4500DC22B3 /* LaunchScreen.storyboard in Resources */,
+				ECEA0D9A28BF6A4500DC22B3 /* Assets.xcassets in Resources */,
+				ECEA0D9828BF6A4300DC22B3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECEE4F7E2783802600F210F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF6E43B27839A170056E1CE /* GoogleService-Info.plist in Resources */,
+				ECEE4F8B2783802800F210F1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECF7359928CF91A400BA39B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF735AA28CF91A600BA39B1 /* LaunchScreen.storyboard in Resources */,
+				ECF735A728CF91A600BA39B1 /* Assets.xcassets in Resources */,
+				ECF735A528CF91A500BA39B1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EC14E4D728EDDDF900CEB379 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC14E4E228EDDDF900CEB379 /* ViewController.swift in Sources */,
+				EC14E4DE28EDDDF900CEB379 /* AppDelegate.swift in Sources */,
+				EC14E4E028EDDDF900CEB379 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ECA5E1222738263700A84E40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				ECD57826274D5669007F7532 /* ConfigurationProfileTableViewController.swift in Sources */,
+				EC14E4C128ECCF6700CEB379 /* MakeDeviceCentralTableViewCell.swift in Sources */,
 				ECA5E16527382F6400A84E40 /* CameraSettings.swift in Sources */,
 				ECA5E16627382F6400A84E40 /* CameraSettingsObserver.swift in Sources */,
 				EC8C2EFB273FB3050082FE8E /* DeleteAllBadSessionsTableViewCell.swift in Sources */,
+				EC14E4B228ECACC000CEB379 /* BluetoothCentral.swift in Sources */,
+				EC14E4C328ECD19F00CEB379 /* ConnectionDeviceTableViewCell.swift in Sources */,
 				ECA5E16227382E8700A84E40 /* Camera.swift in Sources */,
 				ECD5782A274EA21C007F7532 /* SettingsObserver.swift in Sources */,
 				EC8C2EF5273FB2CB0082FE8E /* SessionsTableViewController.swift in Sources */,
 				ECA5E168273832C200A84E40 /* Session.swift in Sources */,
 				ECA5E16027382D8600A84E40 /* CameraViewController.swift in Sources */,
+				EC14E4B428ECACD800CEB379 /* BluetoothPeripheral.swift in Sources */,
 				EC6D5BFA27566886001538F1 /* StabilizationModeTableViewCell.swift in Sources */,
 				ECD57820274969EC007F7532 /* ExtensionCollectionViewCell.swift in Sources */,
 				ECD5783227514BB3007F7532 /* FocusTableViewCell.swift in Sources */,
+				ECEE4F8E2783802800F210F1 /* widget.intentdefinition in Sources */,
 				ECD5781A274966D7007F7532 /* WBCollectionViewCell.swift in Sources */,
 				EC280C9927614C5B0061A5E7 /* Server.swift in Sources */,
+				EC14E4BB28ECB28100CEB379 /* PeripheralDevice.swift in Sources */,
 				EC8C2EF7273FB2E00082FE8E /* SessionTableViewCell.swift in Sources */,
+				EC14E4B928ECAE8700CEB379 /* BluetoothConstants.swift in Sources */,
 				ECD5781427495D3A007F7532 /* FastSettingsTableViewCell.swift in Sources */,
 				ECD57818274966CB007F7532 /* ShutterCollectionViewCell.swift in Sources */,
 				EC8C2EF9273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift in Sources */,
@@ -485,13 +966,17 @@
 				EC57F7E92770D8EE005CBBDF /* DiskSpace.swift in Sources */,
 				EC8C2EFD273FB3190082FE8E /* SetAllSessionsBadTableViewCell.swift in Sources */,
 				EC6D5BFE27566E1B001538F1 /* StabilizationTableViewCell.swift in Sources */,
+				EC14E4BD28ECCB5C00CEB379 /* ConnectionDevice.swift in Sources */,
 				EC282FAA276FC9E4009CF2CB /* SerialNullTableViewCell.swift in Sources */,
 				ECA5E12A2738263700A84E40 /* AppDelegate.swift in Sources */,
 				ECD5781E274966EC007F7532 /* FPSCollectionViewCell.swift in Sources */,
 				ECD066CA2762936300E054E6 /* BitRateTableViewCell.swift in Sources */,
+				EC6188CB2771DFEB00891C9C /* LocationViewController.swift in Sources */,
 				EC5064BF276159B400014397 /* ViewController.swift in Sources */,
 				ECD57816274966C0007F7532 /* IsoCollectionViewCell.swift in Sources */,
 				ECD5781C274966E0007F7532 /* TintCollectionViewCell.swift in Sources */,
+				EC14E4B728ECAD6400CEB379 /* ConnectionTableViewController.swift in Sources */,
+				EC14E4BF28ECCD4B00CEB379 /* CentralDeviceTableViewCell.swift in Sources */,
 				ECD57828274E56D8007F7532 /* ProfileTableViewCell.swift in Sources */,
 				ECA5E12C2738263700A84E40 /* SceneDelegate.swift in Sources */,
 				ECD5782E27513271007F7532 /* FocusPrioritizationTableViewController.swift in Sources */,
@@ -517,6 +1002,50 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ECEA0D7228BEB4CF00DC22B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECEA0D7D28BEB4CF00DC22B3 /* ViewController.swift in Sources */,
+				ECEA0D7928BEB4CF00DC22B3 /* AppDelegate.swift in Sources */,
+				ECEA0D7B28BEB4CF00DC22B3 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECEA0D8A28BF6A4300DC22B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECEA0D9528BF6A4300DC22B3 /* ViewController.swift in Sources */,
+				ECEA0D9128BF6A4300DC22B3 /* AppDelegate.swift in Sources */,
+				ECFCF1AA28E8B35F00F2545E /* PeripheralDevice.swift in Sources */,
+				ECEA0D9328BF6A4300DC22B3 /* SceneDelegate.swift in Sources */,
+				ECFCF1A428E62A7600F2545E /* BluetoothCentral.swift in Sources */,
+				ECF735B028CF923500BA39B1 /* ParticlePeripheral.swift in Sources */,
+				ECFCF1A628E62A8700F2545E /* BluetoothPeripheral.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECEE4F7C2783802600F210F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECEE4F8D2783802800F210F1 /* widget.intentdefinition in Sources */,
+				ECEE4F882783802600F210F1 /* widget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECF7359728CF91A400BA39B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF735A228CF91A500BA39B1 /* ViewController.swift in Sources */,
+				ECF7359E28CF91A500BA39B1 /* AppDelegate.swift in Sources */,
+				ECF735A028CF91A500BA39B1 /* SceneDelegate.swift in Sources */,
+				ECF735B228CF927500BA39B1 /* ParticlePeripheral.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -530,9 +1059,30 @@
 			target = ECA5E1252738263700A84E40 /* camera2 */;
 			targetProxy = ECA5E1472738263800A84E40 /* PBXContainerItemProxy */;
 		};
+		ECEE4F902783802800F210F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ECEE4F7F2783802600F210F1 /* widgetExtension */;
+			targetProxy = ECEE4F8F2783802800F210F1 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		EC14E4E328EDDDF900CEB379 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC14E4E428EDDDF900CEB379 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EC14E4E828EDDDFA00CEB379 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC14E4E928EDDDFA00CEB379 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		ECA5E12F2738263700A84E40 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -549,9 +1099,117 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		ECEA0D7E28BEB4CF00DC22B3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECEA0D7F28BEB4CF00DC22B3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ECEA0D8328BEB4D100DC22B3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECEA0D8428BEB4D100DC22B3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		ECEA0D9628BF6A4300DC22B3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECEA0D9728BF6A4300DC22B3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ECEA0D9B28BF6A4500DC22B3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECEA0D9C28BF6A4500DC22B3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		ECF735A328CF91A500BA39B1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECF735A428CF91A500BA39B1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ECF735A828CF91A600BA39B1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECF735A928CF91A600BA39B1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EC14E4ED28EDDDFA00CEB379 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = animation/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kanistra.animation-image";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EC14E4EE28EDDDFA00CEB379 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = animation/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kanistra.animation-image";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		ECA5E14E2738263800A84E40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -671,6 +1329,7 @@
 		ECA5E1512738263800A84E40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -686,11 +1345,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.camera2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -702,6 +1362,7 @@
 		ECA5E1522738263800A84E40 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -717,11 +1378,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.camera2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -826,9 +1488,246 @@
 			};
 			name = Release;
 		};
+		ECEA0D8728BEB4D100DC22B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = camera3000x4000/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.camera3000x4000;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ECEA0D8828BEB4D100DC22B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = camera3000x4000/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.camera3000x4000;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ECEA0DA028BF6A4500DC22B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = bluetooth/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.bluetooth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ECEA0DA128BF6A4500DC22B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = bluetooth/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.bluetooth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ECEE4F932783802800F210F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.camera2.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ECEE4F942783802800F210F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.camera2.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ECF735AC28CF91A600BA39B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = bluetooth_peripheral/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kanistra.bluetooth-peripheral";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ECF735AD28CF91A600BA39B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = bluetooth_peripheral/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kanistra.bluetooth-peripheral";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EC14E4EC28EDDDFA00CEB379 /* Build configuration list for PBXNativeTarget "animation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC14E4ED28EDDDFA00CEB379 /* Debug */,
+				EC14E4EE28EDDDFA00CEB379 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		ECA5E1212738263700A84E40 /* Build configuration list for PBXProject "camera2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -865,6 +1764,42 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		ECEA0D8928BEB4D100DC22B3 /* Build configuration list for PBXNativeTarget "camera3000x4000" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECEA0D8728BEB4D100DC22B3 /* Debug */,
+				ECEA0D8828BEB4D100DC22B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECEA0D9F28BF6A4500DC22B3 /* Build configuration list for PBXNativeTarget "bluetooth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECEA0DA028BF6A4500DC22B3 /* Debug */,
+				ECEA0DA128BF6A4500DC22B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECEE4F952783802800F210F1 /* Build configuration list for PBXNativeTarget "widgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECEE4F932783802800F210F1 /* Debug */,
+				ECEE4F942783802800F210F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECF735AE28CF91A600BA39B1 /* Build configuration list for PBXNativeTarget "bluetooth_peripheral" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECF735AC28CF91A600BA39B1 /* Debug */,
+				ECF735AD28CF91A600BA39B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -880,6 +1815,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		EC280C9D27614F280061A5E7 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC280C9C27614F280061A5E7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		ECEE4F9827838BFE00F210F1 /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EC280C9C27614F280061A5E7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;

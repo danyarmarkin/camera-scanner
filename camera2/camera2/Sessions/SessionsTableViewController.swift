@@ -103,7 +103,14 @@ extension SessionsTableViewController {
         do {
             // Get the directory contents urls (including subfolders urls)
             let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil)
-            let movFiles = directoryContents.filter{ $0.pathExtension == "mov" }
+            var movFiles = directoryContents.filter{ $0.pathExtension == "mov" }
+            
+            movFiles.sort {
+                let a = $0.path
+                let b = $1.path
+                return a > b
+            }
+            
             return movFiles
 
         } catch {

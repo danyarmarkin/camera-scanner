@@ -16,16 +16,9 @@ class Session {
     var date = ""
     var time = ""
     var sessionIndex = ""
-    var naming = "O_nnnRRRR_km"
     
     init() {
-        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {timer in
-            let naming = NamingConf.getNaming()
-            if naming != self.naming {
-                self.naming = naming
-            }
-        }
-        timer.tolerance = 0.7
+        
     }
     
     func getFullName() -> String {

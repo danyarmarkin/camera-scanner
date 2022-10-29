@@ -33,7 +33,6 @@ class NamingViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func onName(_ sender: UITextField) {
-        NamingConf.setNaming(sender.text ?? "O_nnnRRRRN_km_d_t")
-        Server.setNaming(sender.text ?? "O_nnnRRRRN_km_d_t")
+        NamingConf.setNaming(sender.text ?? "nnnRRRRN")
     }
 }

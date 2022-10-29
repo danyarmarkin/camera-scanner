@@ -71,6 +71,7 @@ class Camera: NSObject{
         videoRecordCompletionBlock = complition
     }
     
+    
     func getUrl() -> URL{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]

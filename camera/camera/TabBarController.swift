@@ -11,7 +11,7 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .dark
+//        overrideUserInterfaceStyle = .dark
         // Do any additional setup after loading the view.
     }
     

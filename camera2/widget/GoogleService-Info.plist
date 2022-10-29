@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>31153091402-im8p6bbgavgdkf0t6iq3j39ildqek64s.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.31153091402-im8p6bbgavgdkf0t6iq3j39ildqek64s</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDvsOERgqtQAN3qwZYQB2t2ZBdTKgoZPK4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>31153091402</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kanistra.camera2.widget</string>
+	<key>PROJECT_ID</key>
+	<string>camera-scan-e5684</string>
+	<key>STORAGE_BUCKET</key>
+	<string>camera-scan-e5684.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:31153091402:ios:f8601ed8a837101266c7b3</string>
+	<key>DATABASE_URL</key>
+	<string>https://camera-scan-e5684-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>
