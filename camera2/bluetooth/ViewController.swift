@@ -30,8 +30,8 @@ class ViewController: UIViewController {
         let data = "\(sender.value)".data(using: .unicode)!
         switch bluetoothStatus {
         case .central:
-            if bluetoothCentral.characteristic != nil {
-                bluetoothCentral.peripheral.writeValue(data, for: bluetoothCentral.characteristic, type: .withoutResponse)
+            for pd in bluetoothCentral.peripheralDevides {
+                pd.peripheral?.writeValue(data, for: pd.characteristic!, type: .withoutResponse)
             }
         case .peripheral:
             if bluetoothPeripheral.peripheralManager != nil {
@@ -48,8 +48,8 @@ class ViewController: UIViewController {
         let data = "\(sender.value)".data(using: .unicode)!
         switch bluetoothStatus {
         case .central:
-            if bluetoothCentral.characteristic2 != nil {
-                bluetoothCentral.peripheral.writeValue(data, for: bluetoothCentral.characteristic2, type: .withoutResponse)
+            for pd in bluetoothCentral.peripheralDevides {
+                pd.peripheral?.writeValue(data, for: pd.characteristic2!, type: .withoutResponse)
             }
         case .peripheral:
             if bluetoothPeripheral.peripheralManager != nil {

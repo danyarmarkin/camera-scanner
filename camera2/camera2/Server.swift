@@ -7,7 +7,6 @@
 
 import Foundation
 import AVFoundation
-import Firebase
 import UIKit
 
 class Server {
@@ -16,118 +15,64 @@ class Server {
         if isTest { return "http://192.168.31.115:9002?ns=camera-scan-e5684-default-rtdb" }
         return "https://camera-scan2.europe-west1.firebasedatabase.app/"
     }
-    static let ref = Database.database(url: firebasePath).reference()
+
 
 
     static func setParam(_ type: CameraData.type, _ value: Int) {
-        let reference = ref.child("cameraSettings")
-        switch type{
-        case .iso:
-            reference.child("iso").setValue(value)
-        case .shutter:
-            reference.child("shutter").setValue(value)
-        case .wb:
-            reference.child("wb").setValue(value)
-        case .tint:
-            reference.child("tint").setValue(value)
-        case .fps:
-            reference.child("fps").setValue(value)
-        case .focus:
-            reference.child("focus").setValue(value)
-        case .stablization:
-            reference.child("stabilization").setValue(value)
-        case .codec:
-            reference.child("codec").setValue(value)
-        case .resolution:
-            reference.child("resolution").setValue(value)
-        case .videoExtension:
-            reference.child("extension").setValue(value)
-        case .bitRate:
-            reference.child("bitRate").setValue(value)
-        }
+        NotificationCenter.default.post(name: NSNotification.Name(CameraData.cameraDataKey), object: nil, userInfo: ["key": CameraData.getId(type), "value": value])
     }
     
-    static func setNaming(_ name: String) {
-        ref.child("sessionLife").child("naming").setValue(name)
-    }
-    
-    static func serialNull() {
-        ref.child("sessionLife").child("serial").setValue(1)
+    static func updateParam() {
+        NotificationCenter.default.post(name: NSNotification.Name(CameraData.cameraDataKey), object: nil, userInfo: ["key": CameraData.getId(.iso), "value": CameraData.getData(.iso)])
+        NotificationCenter.default.post(name: NSNotification.Name(CameraData.cameraDataKey), object: nil, userInfo: ["key": CameraData.getId(.shutter), "value": CameraData.getData(.shutter)])
+        NotificationCenter.default.post(name: NSNotification.Name(CameraData.cameraDataKey), object: nil, userInfo: ["key": CameraData.getId(.wb), "value": CameraData.getData(.wb)])
+        NotificationCenter.default.post(name: NSNotification.Name(CameraData.cameraDataKey), object: nil, userInfo: ["key": CameraData.getId(.tint), "value": CameraData.getData(.tint)])
+        NotificationCenter.default.post(name: NSNotification.Name(CameraData.cameraDataKey), object: nil, userInfo: ["key": CameraData.getId(.fps), "value": CameraData.getData(.fps)])
     }
     
     static func getDeviceName() -> String{
         return UIDevice.current.name + "-" + UIDevice.current.model
     }
     
-    static func registerDevice() {
-        ref.child("devices").child(getDeviceName()).setValue(1)
+    static var battery = {
+        return Int(floor(UIDevice.current.batteryLevel * 100))
     }
     
-    static func unregisterDevice() {
-        ref.child("devices").child(getDeviceName()).setValue(0)
+    static var storage = {
+        return Int(DiskStatus.freeDiskSpaceInBytes / 1024 / 1024 / 1024)
     }
     
-    func monitoringData() {
-        print("monitoring")
-        let reference = Server.ref.child("cameraSettings")
-        
-        reference.child("test").observe(.value) { snapshot in
-            print("test")
-        }
-        
-        reference.child("iso").observe(.value) { snapshot in
-            print("iso")
-            let val = snapshot.value
-            if let value = val as? Int {
-                CameraData.setData(.iso, value)
-            }
-        }
-        reference.child("shutter").observe(.value) { snapshot in
-            let val = snapshot.value
-            if let value = val as? Int {
-                CameraData.setData(.shutter, value)
-            }
-        }
-        reference.child("wb").observe(.value) { snapshot in
-            let val = snapshot.value
-            if let value = val as? Int {
-                CameraData.setData(.wb, value)
-            }
-        }
-        reference.child("tint").observe(.value) { snapshot in
-            let val = snapshot.value
-            if let value = val as? Int {
-                CameraData.setData(.tint, value)
-            }
-        }
-        reference.child("fps").observe(.value) { snapshot in
-            let val = snapshot.value
-            if let value = val as? Int {
-                CameraData.setData(.fps, value)
-            }
-        }
-        Server.ref.child("sessionLife").child("naming").observe(.value) {snapshot in
-            let val = snapshot.value
-            if let value = val as? String {
-                NamingConf.setNaming(value)
-            }
-        }
+    static var totalStorage = {
+        return Int(DiskStatus.totalDiskSpaceInBytes / 1024 / 1024 / 1024)
     }
     
     func updateDeviceStatus() {
         UIDevice.current.isBatteryMonitoringEnabled = true
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) {timer in
-            Server.ref.child("batteryData").child(Server.getDeviceName()).setValue(Int(floor(UIDevice.current.batteryLevel * 100)))
-            Server.ref.child("storageData").child(Server.getDeviceName()).setValue(Int(DiskStatus.freeDiskSpaceInBytes / 1024 / 1024))
-            Server.ref.child("totalStorageData").child(Server.getDeviceName()).setValue(Int(DiskStatus.totalDiskSpaceInBytes / 1024 / 1024))
+        var battery = 0
+        var storage = 0
+        var totalStorage = 0
+        
+        let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) {timer in
+            if battery != Int(floor(UIDevice.current.batteryLevel * 100)) {
+                battery = Int(floor(UIDevice.current.batteryLevel * 100))
+                NotificationCenter.default.post(name: Notification.Name(DevicesData.deviceDataKey), object: nil, userInfo: ["key": DevicesData.batteryKey, "value": battery])
+            }
+            if storage != Int(DiskStatus.freeDiskSpaceInBytes / 1024 / 1024 / 1024) {
+                storage = Int(DiskStatus.freeDiskSpaceInBytes / 1024 / 1024 / 1024)
+                NotificationCenter.default.post(name: Notification.Name(DevicesData.deviceDataKey), object: nil, userInfo: ["key": DevicesData.storageKey, "value": storage])
+            }
+            if totalStorage != Int(DiskStatus.totalDiskSpaceInBytes / 1024 / 1024 / 1024) {
+                totalStorage = Int(DiskStatus.totalDiskSpaceInBytes / 1024 / 1024 / 1024)
+                NotificationCenter.default.post(name: Notification.Name(DevicesData.deviceDataKey), object: nil, userInfo: ["key": DevicesData.totalStorageKey, "value": totalStorage])
+            }
         }
-        timer.tolerance = 0.2
+        timer.tolerance = 1
     }
     
     static func sendDeviceLocation(accelData: [Float], compassData: Int) {
-        ref.child("accelData").child(getDeviceName()).child("x").setValue(accelData[0])
-        ref.child("accelData").child(getDeviceName()).child("y").setValue(accelData[1])
-        ref.child("accelData").child(getDeviceName()).child("z").setValue(accelData[2])
-        ref.child("compassData").child(getDeviceName()).setValue(compassData)
+//        ref.child("accelData").child(getDeviceName()).child("x").setValue(accelData[0])
+//        ref.child("accelData").child(getDeviceName()).child("y").setValue(accelData[1])
+//        ref.child("accelData").child(getDeviceName()).child("z").setValue(accelData[2])
+//        ref.child("compassData").child(getDeviceName()).setValue(compassData)
     }
 }

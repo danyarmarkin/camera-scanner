@@ -10,6 +10,8 @@ import AVFoundation
 
 class CameraData {
     
+    static let cameraDataKey = "com.kanistra.camera2.camera-data.camera-data"
+    
     static let defaults = UserDefaults.standard
     
     enum type{
@@ -177,10 +179,16 @@ class ConfigurationProfiles {
     }
     
     static func setProfileData(_ profile: [String: Any]) {
-        for key in keys {
-            CameraData.setData(typeFromKey(key), profile[key] as! Int)
-            Server.setParam(typeFromKey(key), profile[key] as! Int)
-        }
+        var index = 0
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { timer in
+            if index < keys.count {
+                CameraData.setData(typeFromKey(keys[index]), profile[keys[index]] as! Int)
+                Server.setParam(typeFromKey(keys[index]), profile[keys[index]] as! Int)
+                index += 1
+            } else {
+                timer.invalidate()
+            }
+        })
     }
 }
 
@@ -261,6 +269,150 @@ class NamingConf {
     }
     
     static func getNaming() -> String {
-        defalts.string(forKey: key) ?? "O_nnnRRRR_km"
+        defalts.string(forKey: key) ?? "nnnRRRR"
     }
 }
+
+class SessionConfig {
+    static let isStartKey = "com.kanistra.camera2.session-data.isStart"
+    static let sessionNameKey = "com.kanistra.camera2.session-data.session-name"
+    static let sessionObjectKey = "com.kanistra.camera2.session-data.session-object"
+    static let serialIndexKey = "com.kanistra.camera2.session-data.serial-index"
+    
+    static let isStartKeyC = "com.kanistra.camera2.session-data.isStart.c"
+    static let sessionNameKeyC = "com.kanistra.camera2.session-data.session-name.c"
+    static let sessionObjectKeyC = "com.kanistra.camera2.session-data.session-object.c"
+    
+    static let defaults = UserDefaults.standard
+    
+    static let storageSessionNameKey = "com.kanistra.camera2.session-data.session-name.storage"
+    static let storageSessionObjectKey = "com.kanistra.camera2.session-data.session-object.storage"
+    static let currentSessionIndexKey = "com.kanistra.camera2.session-data.session-current-index.storage"
+    
+    static func setData(_ type: SessionDataType, _ v: String) {
+        switch type {
+        case .isStart:
+            NotificationCenter.default.post(name: NSNotification.Name(isStartKey), object: nil, userInfo: ["value": v])
+        case .sessionObject:
+            NotificationCenter.default.post(name: NSNotification.Name(sessionObjectKey), object: nil, userInfo: ["value": v])
+            defaults.set(v, forKey: storageSessionObjectKey)
+        case .sessionName:
+            NotificationCenter.default.post(name: NSNotification.Name(sessionNameKey), object: nil, userInfo: ["value": v])
+            defaults.set(v, forKey: storageSessionNameKey)
+        }
+    }
+    
+    static func setData(forCamera type: SessionDataType, _ v: String) {
+        switch type {
+        case .isStart:
+            NotificationCenter.default.post(name: NSNotification.Name(isStartKeyC), object: nil, userInfo: ["value": v])
+        case .sessionObject:
+            NotificationCenter.default.post(name: NSNotification.Name(sessionObjectKeyC), object: nil, userInfo: ["value": v])
+            defaults.set(v, forKey: storageSessionObjectKey)
+        case .sessionName:
+            NotificationCenter.default.post(name: NSNotification.Name(sessionNameKeyC), object: nil, userInfo: ["value": v])
+            defaults.set(v, forKey: storageSessionNameKey)
+        }
+    }
+    
+    static func setCurrentIndex(_ index: Int, withNotify notify: Bool = true) {
+        defaults.set(index, forKey: currentSessionIndexKey)
+        if notify {
+            NotificationCenter.default.post(name: NSNotification.Name(serialIndexKey), object: nil, userInfo: ["value": index])
+        }
+    }
+    
+    static func getSessionName() -> String {
+        return defaults.string(forKey: storageSessionNameKey) ?? "000AAAA"
+    }
+    
+    static func getSessionObject() -> String {
+        return defaults.string(forKey: storageSessionObjectKey) ?? "object"
+    }
+    
+    static func updateSession(updateIndex: Bool = true) {
+        let index = defaults.integer(forKey: currentSessionIndexKey) + (updateIndex ? 1 : 0)
+        var ind: Int = index
+        let mask = NamingConf.getNaming()
+        
+        let alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        let numb = "0123456789"
+        
+        var r = ""
+        
+        // N - random number
+        // n - serial number
+        // R - random letter
+        
+        for i in String(mask.reversed()) {
+            switch i {
+            case "N":
+                r = String(numb.randomElement() ?? "0") + r
+                ind = index
+                
+            case "n":
+                r = String(ind % 10) + r
+                ind /= 10
+                
+            case "R":
+                r = String(alph.randomElement() ?? "A") + r
+                ind = index
+                
+            default:
+                break
+            }
+        }
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { _ in
+                if updateIndex { setCurrentIndex(index) }
+            }
+            setData(.sessionName, r)
+        }
+    }
+    
+    enum SessionDataType {
+        case isStart
+        case sessionName
+        case sessionObject
+    }
+}
+
+class DevicesData {
+    static let batteryKey = "com.kanistra.camera2.devices-data.battery"
+    static let storageKey = "com.kanistra.camera2.devices-data.storage"
+    static let totalStorageKey = "com.kanistra.camera2.devices-data.total-storage"
+    static let isChargingKey = "com.kanistra.camera2.devices-data.charging"
+    static let deviceDataKey = "com.kanistra.camera2.devices-data.device-data"
+    
+    static let deviceIndexStorageKey = "com.kanistra.camera2.devices-data.device-index.storage"
+    static let devicesAmountStorageKey = "com.kanistra.camera2.devices-data.devices-amount.storage"
+    static let deviceIndexKey = "com.kanistra.camera2.devices-data.device-index"
+    static let devicesAmountKey = "com.kanistra.camera2.devices-data.devices-amount"
+    
+    static let devicesDataKey = "com.kanistra.camera2.devices-data.devices-data"
+    
+    static let defaults = UserDefaults.standard
+    
+    static func setData(_ data: [ConnectionDevice]) {
+        NotificationCenter.default.post(name: NSNotification.Name(devicesDataKey), object: nil, userInfo: ["value": data])
+    }
+    
+    static func setDeviceIndex(_ index: Int) {
+        defaults.set(index, forKey: deviceIndexStorageKey)
+        NotificationCenter.default.post(name: NSNotification.Name(deviceIndexKey), object: nil, userInfo: ["value": index])
+    }
+    
+    static func setDevicesAmount(_ amount: Int) {
+        defaults.set(amount, forKey: devicesAmountStorageKey)
+        NotificationCenter.default.post(name: NSNotification.Name(devicesAmountKey), object: nil, userInfo: ["value": amount])
+    }
+    
+    static func getDeviceIndex() -> Int {
+        return defaults.integer(forKey: deviceIndexStorageKey)
+    }
+    
+    static func getDevicesAmount() -> Int {
+        return defaults.integer(forKey: devicesAmountStorageKey)
+    }
+}
+

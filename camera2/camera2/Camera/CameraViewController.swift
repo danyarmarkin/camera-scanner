@@ -60,58 +60,74 @@ class CameraViewController: UIViewController,
         
         let timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { timer in
             self.settingsLabel.text = "ISO \(self.cameraSettings.iso) SH \((self.cameraSettings.shutter as! CMTime).timescale) WB \(self.cameraSettings.wb) FPS \(self.cameraSettings.fps)"
-            if self.session.deviceIndex == 0 {
-                Server.registerDevice()
-            }
         }
         timer.tolerance = 0.1
         
         
         // MARK: Monitor session params
-        ref.child("sessionLife").child("isStart").observe(.value){snapshot in
-            let val = snapshot.value
-            if let v = val as? Int {
-                if ![0, 1].contains(v) {return}
-                self.isStartSession = v == 0
-                self.updateSession()
-            }
-        }
         
-        ref.child("sessionName").observe(.value){snapshot in
-            let val = snapshot.value
-            if let v = val as? String {
-                self.session.sessionName = v
-                self.sessionLabel.text = self.session.getShortName()
-            }
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(onStrartNotification(_:)), name: Notification.Name(SessionConfig.isStartKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onSessionNameNotification(_:)), name: Notification.Name(SessionConfig.sessionNameKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onSessionObjectNotification(_:)), name: Notification.Name(SessionConfig.sessionObjectKey), object: nil)
         
-        ref.child("object").observe(.value) {snapshot in
-            let val = snapshot.value
-            if let v = val as? String {
-                self.sessionTextField.text = v
-            }
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(onStrartNotification(_:)), name: Notification.Name(SessionConfig.isStartKeyC), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onSessionNameNotification(_:)), name: Notification.Name(SessionConfig.sessionNameKeyC), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onSessionObjectNotification(_:)), name: Notification.Name(SessionConfig.sessionObjectKeyC), object: nil)
         
-        ref.child("devices").child(Server.getDeviceName()).observe(.value) {snapshot in
-            let val = snapshot.value
-            if let v = val as? Int {
-                self.session.deviceIndex = v
-                self.sessionLabel.text = self.session.getShortName()
-            }
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(onDeviceIndex(_:)), name: NSNotification.Name(DevicesData.deviceIndexKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDevicesAmount(_:)), name: NSNotification.Name(DevicesData.devicesAmountKey), object: nil)
         
-        ref.child("devicesAmount").observe(.value) {snapshot in
-            let val = snapshot.value
-            if let v = val as? Int {
-                self.session.deviceAmount = v
-                self.sessionLabel.text = self.session.getShortName()
-            }
-        }
+        
+        SessionConfig.setData(forCamera: .sessionName, SessionConfig.getSessionName())
+        SessionConfig.setData(forCamera: .sessionObject, SessionConfig.getSessionObject())
+        
+        DevicesData.setDeviceIndex(DevicesData.getDeviceIndex())
+        DevicesData.setDevicesAmount(DevicesData.getDevicesAmount())
         
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: #selector(didTapView))
         self.view.addGestureRecognizer(tapRecognizer)
     }
+    
+    @objc func onDeviceIndex(_ notification: Notification) {
+        let info = notification.userInfo as? [String: Any] ?? [:]
+        let v = info["value"] as! Int
+        self.session.deviceIndex = v
+        self.sessionLabel.text = self.session.getShortName()
+    }
+    
+    @objc func onDevicesAmount(_ notification: Notification) {
+        let info = notification.userInfo as? [String: Any] ?? [:]
+        let v = info["value"] as! Int
+        self.session.deviceAmount = v
+        self.sessionLabel.text = self.session.getShortName()
+    }
+    
+    @objc func onStrartNotification(_ notification: Notification) {
+        let info = notification.userInfo as? [String: Any] ?? [:]
+        let v = Int(info["value"] as! String)
+        
+        if (isStartSession && v == 1) || (!isStartSession && v == 0) {
+            return
+        } else {
+            self.isStartSession = v == 0
+            self.updateSession()
+        }
+    }
+    
+    @objc func onSessionNameNotification(_ notification: Notification) {
+        let info = notification.userInfo as? [String: Any] ?? [:]
+        let v = info["value"] as! String
+        self.session.sessionName = v
+        self.sessionLabel.text = self.session.getShortName()
+    }
+    
+    @objc func onSessionObjectNotification(_ notification: Notification) {
+        let info = notification.userInfo as? [String: Any] ?? [:]
+        let v = info["value"] as! String
+        self.sessionTextField.text = v
+    }
+    
     
     @objc func didTapView(){
       self.view.endEditing(true)
@@ -119,6 +135,7 @@ class CameraViewController: UIViewController,
     
     // MARK: Update session
     func updateSession() {
+        print("update session")
         if !isStartSession {
             isStartSession = true
             session.objectName = sessionTextField.text ?? "unnamed"
@@ -159,15 +176,25 @@ class CameraViewController: UIViewController,
     
     
     // MARK: On Video
-    @IBAction func onVideo(_ sender: Any) {
+    
+    func onVideoStateDidUpdate() {
         if isStartSession {
-            ref.child("sessionLife").child("isStart").setValue(0)
+            SessionConfig.setData(.isStart, "0")
+            SessionConfig.updateSession()
         } else {
-            ref.child("sessionLife").child("isStart").setValue(1)
+            SessionConfig.setData(.isStart, "1")
         }
+    }
+    
+    @IBAction func onVideo(_ sender: Any) {
+        onVideoStateDidUpdate()
     }
 
     @IBAction func onTrash(_ sender: Any) {
+    }
+    
+    @IBAction func refreshSession(_ sender: UIButton) {
+        SessionConfig.updateSession(updateIndex: false)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -176,7 +203,8 @@ class CameraViewController: UIViewController,
     }
     
     @IBAction func onSessionObjectName(_ sender: UITextField) {
-        ref.child("object").setValue(sender.text)
+        // TODO: create notification for change session name
+        SessionConfig.setData(.sessionObject, sender.text ?? "object")
     }
     
     
@@ -200,11 +228,7 @@ class CameraViewController: UIViewController,
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
       if keyPath == "outputVolume" {
           if !volumeTapped {
-              if isStartSession {
-                  ref.child("sessionLife").child("isStart").setValue(0)
-              } else {
-                  ref.child("sessionLife").child("isStart").setValue(1)
-              }
+              onVideoStateDidUpdate()
           }
           if let view = volumeView.subviews.first as? UISlider{
               if !volumeTapped {
@@ -225,14 +249,16 @@ class CameraViewController: UIViewController,
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        deviceTableView.activeDevices.count
+        deviceTableView.devices.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "device_cell") as! DeviceStatusCell
-        let name = deviceTableView.activeDevices[indexPath[1]]
-        let device = deviceTableView.activeDevices[indexPath[1]].split(separator: "-")[0]
-        cell.configure(name: String(device), battery: deviceTableView.batteryData[name] ?? 50, storage: deviceTableView.storageData[name] ?? 1024, totalStorage: deviceTableView.totalStorageData[name] ?? 1)
+        let device = deviceTableView.devices[indexPath.row]
+        cell.configure(name: device.name,
+                       battery: device.battery,
+                       storage: device.storage,
+                       totalStorage: device.totalStorage)
         return cell
     }
     

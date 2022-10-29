@@ -36,11 +36,11 @@ class DeviceStatusCell: UITableViewCell {
             batteryBar.tintColor = .systemRed
         }
         
-        if storage <= 10 * 1024 {
+        if storage <= 10 {
             storageBar.tintColor = .systemOrange
         }
         
-        if storage <= 5 * 1024{
+        if storage <= 5 {
             storageBar.tintColor = .systemRed
         }
     }

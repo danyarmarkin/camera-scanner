@@ -18,8 +18,10 @@ class TabBarViewController: UITabBarController {
         metricManager.add(self)
 
         let server = Server()
-        server.monitoringData()
-        Server.registerDevice()
+        server.updateDeviceStatus()
+        
+        UIDevice.current.isBatteryMonitoringEnabled = true
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(enterBackground),
                                                name: UIApplication.didEnterBackgroundNotification,
@@ -35,11 +37,11 @@ class TabBarViewController: UITabBarController {
     }
     
     @objc func enterBackground() {
-        Server.unregisterDevice()
+        
     }
     
     @objc func enterFocus() {
-        Server.registerDevice()
+        
     }
     
     
