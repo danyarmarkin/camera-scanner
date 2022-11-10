@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYi-I9-97K">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="502"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32q-C9-wU7">
                                 <rect key="frame" x="130" y="766" width="154" height="64"/>
@@ -31,21 +32,30 @@
                                     <action selector="onTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u8M-rL-gmh"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vvR-7p-C1k">
+                                <rect key="frame" x="87" y="510" width="240" height="128"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vvR-7p-C1k" secondAttribute="trailing" id="3Gr-ia-D3M"/>
+                            <constraint firstItem="vvR-7p-C1k" firstAttribute="top" secondItem="wYi-I9-97K" secondAttribute="bottom" constant="8" symbolic="YES" id="9pz-7Y-h4P"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vvR-7p-C1k" secondAttribute="trailing" id="A7U-Vc-znd"/>
+                            <constraint firstItem="32q-C9-wU7" firstAttribute="top" secondItem="vvR-7p-C1k" secondAttribute="bottom" constant="64" id="LPq-gn-v4p"/>
                             <constraint firstItem="wYi-I9-97K" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Mob-AU-BkW"/>
+                            <constraint firstItem="vvR-7p-C1k" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bXg-GB-QYZ"/>
                             <constraint firstItem="wYi-I9-97K" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gxU-Bl-lS4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="32q-C9-wU7" secondAttribute="bottom" constant="32" id="ieH-tu-q1f"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="32q-C9-wU7" secondAttribute="trailing" constant="130" id="q2U-vM-RvI"/>
                             <constraint firstItem="wYi-I9-97K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qHp-rg-tK2"/>
                             <constraint firstItem="32q-C9-wU7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="130" id="rcU-da-Mg3"/>
-                            <constraint firstAttribute="bottom" secondItem="wYi-I9-97K" secondAttribute="bottom" id="y9K-II-AQd"/>
+                            <constraint firstItem="vvR-7p-C1k" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zfr-Zm-5QH"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="button" destination="32q-C9-wU7" id="RQV-Af-Tn7"/>
+                        <outlet property="depthImageView" destination="vvR-7p-C1k" id="D9z-kA-S1B"/>
                         <outlet property="imageView" destination="wYi-I9-97K" id="Zam-Lt-ukU"/>
                     </connections>
                 </viewController>
@@ -55,7 +65,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="video" catalog="system" width="128" height="83"/>
+        <image name="video" catalog="system" width="128" height="82"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

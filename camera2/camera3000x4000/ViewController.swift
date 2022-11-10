@@ -8,13 +8,15 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureDepthDataOutputDelegate {
 
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var depthImageView: UIImageView!
     private var captureSession: AVCaptureSession?
     private var videoOutput: AVCaptureVideoDataOutput?
+    private var depthOtput: AVCaptureDepthDataOutput?
     private var assetWriter: AVAssetWriter?
     private var assetWriterInput: AVAssetWriterInput?
     private var adapter: AVAssetWriterInputPixelBufferAdaptor?
@@ -38,7 +40,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+        let captureDevice = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back)
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice!)
             
@@ -51,12 +53,17 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             videoOutput?.setSampleBufferDelegate(self, queue: DispatchQueue(label: "com.kanistra.video"))
             captureSession?.addOutput(videoOutput!)
             
+            depthOtput = AVCaptureDepthDataOutput()
+            depthOtput?.isFilteringEnabled = true
+            depthOtput?.setDelegate(self, callbackQueue: DispatchQueue(label: "com.kanistra.depth"))
+            captureSession?.addOutput(depthOtput!)
+            
             captureSession?.sessionPreset = .photo
             let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
             videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
             videoPreviewLayer.frame = view.layer.bounds
             self.imageView.layer.addSublayer(videoPreviewLayer)
-            
+//            imageView.transform = imageView.transform.rotated(by: .pi / 2)
             captureSession?.startRunning()
             
         } catch {
@@ -82,6 +89,25 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         }
     }
     
+    func depthDataOutput(_ output: AVCaptureDepthDataOutput, didOutput depthData: AVDepthData, timestamp: CMTime, connection: AVCaptureConnection) {
+        var convertedDepth: AVDepthData
+        let depthDataType = kCVPixelFormatType_DepthFloat32
+        if depthData.depthDataType != depthDataType {
+            convertedDepth = depthData.converting(toDepthDataType: depthDataType)
+        } else {
+            convertedDepth = depthData
+        }
+        
+        let depthMap = CIImage(depthData: convertedDepth)
+        let context: CIContext = CIContext.init(options: nil)
+        let cgImage: CGImage = context.createCGImage(depthMap!, from: depthMap!.extent)!
+        let image: UIImage = UIImage(cgImage: cgImage, scale: 1, orientation: .right)
+        DispatchQueue.main.sync {
+            depthImageView.image = image
+        }
+        
+    }
+    
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer).seconds
         switch captureState {
@@ -93,7 +119,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             assetWriterInput?.mediaTimeScale = CMTimeScale(bitPattern: 600)
             assetWriterInput?.expectsMediaDataInRealTime = true
             assetWriterInput?.transform = CGAffineTransform(rotationAngle: .pi / 2)
-//            assetWriterInput?.transform = CGAffineTransform(scaleX: CGFloat(Float(4032)) / 3024, y: CGFloat(3024) / 4032)
             adapter = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: assetWriterInput!)
             assetWriter?.add(assetWriterInput!)
             assetWriter?.startWriting()

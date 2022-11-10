@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="camera_with_depth" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pd-gO-apy">
+                                <rect key="frame" x="16" y="793" width="361" height="35"/>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Capture Video"/>
+                                <connections>
+                                    <action selector="onButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mdW-9w-Wmq"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pfp-FI-6Pt">
+                                <rect key="frame" x="16" y="285" width="361" height="500"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="500" id="f0B-ho-A1d"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t2m-oY-hb8">
+                                <rect key="frame" x="16" y="59" width="361" height="218"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9pd-gO-apy" firstAttribute="top" secondItem="pfp-FI-6Pt" secondAttribute="bottom" constant="8" symbolic="YES" id="0fa-h3-2yx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="t2m-oY-hb8" secondAttribute="trailing" constant="16" id="Gec-W5-v6Q"/>
+                            <constraint firstItem="t2m-oY-hb8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="J3A-x6-kuB"/>
+                            <constraint firstItem="pfp-FI-6Pt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="MBt-0M-Xgm"/>
+                            <constraint firstItem="t2m-oY-hb8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Ws1-Bi-jas"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9pd-gO-apy" secondAttribute="trailing" constant="16" id="aqs-8o-6gh"/>
+                            <constraint firstItem="9pd-gO-apy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="f2x-IC-UWb"/>
+                            <constraint firstAttribute="bottom" secondItem="9pd-gO-apy" secondAttribute="bottom" constant="24" id="fTH-Jk-VRU"/>
+                            <constraint firstItem="pfp-FI-6Pt" firstAttribute="top" secondItem="t2m-oY-hb8" secondAttribute="bottom" constant="8" symbolic="YES" id="pLp-3z-sf9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pfp-FI-6Pt" secondAttribute="trailing" constant="16" id="rim-cT-MAo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="button" destination="9pd-gO-apy" id="rYS-M4-3f6"/>
+                        <outlet property="depthImageView" destination="pfp-FI-6Pt" id="vs2-hl-W7l"/>
+                        <outlet property="videoImageView" destination="t2m-oY-hb8" id="WCu-s8-776"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="122.90076335877862" y="-34.507042253521128"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

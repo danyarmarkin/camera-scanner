@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC1085A72919203B00FE7953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1085A62919203B00FE7953 /* AppDelegate.swift */; };
+		EC1085A92919203B00FE7953 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1085A82919203B00FE7953 /* SceneDelegate.swift */; };
+		EC1085AB2919203B00FE7953 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1085AA2919203B00FE7953 /* ViewController.swift */; };
+		EC1085AE2919203B00FE7953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1085AC2919203B00FE7953 /* Main.storyboard */; };
+		EC1085B02919203D00FE7953 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1085AF2919203D00FE7953 /* Assets.xcassets */; };
+		EC1085B32919203D00FE7953 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1085B12919203D00FE7953 /* LaunchScreen.storyboard */; };
 		EC14E4B228ECACC000CEB379 /* BluetoothCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4B128ECACC000CEB379 /* BluetoothCentral.swift */; };
 		EC14E4B428ECACD800CEB379 /* BluetoothPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4B328ECACD800CEB379 /* BluetoothPeripheral.swift */; };
 		EC14E4B728ECAD6400CEB379 /* ConnectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E4B628ECAD6400CEB379 /* ConnectionTableViewController.swift */; };
@@ -46,6 +52,7 @@
 		EC8C2EF9273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C2EF8273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift */; };
 		EC8C2EFB273FB3050082FE8E /* DeleteAllBadSessionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C2EFA273FB3050082FE8E /* DeleteAllBadSessionsTableViewCell.swift */; };
 		EC8C2EFD273FB3190082FE8E /* SetAllSessionsBadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C2EFC273FB3190082FE8E /* SetAllSessionsBadTableViewCell.swift */; };
+		EC9F08E9291C02F400D56D88 /* cgImage2cvPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9F08E8291C02F400D56D88 /* cgImage2cvPixelBuffer.swift */; };
 		ECA5E12A2738263700A84E40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5E1292738263700A84E40 /* AppDelegate.swift */; };
 		ECA5E12C2738263700A84E40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5E12B2738263700A84E40 /* SceneDelegate.swift */; };
 		ECA5E1312738263700A84E40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECA5E12F2738263700A84E40 /* Main.storyboard */; };
@@ -151,6 +158,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EC10858C2915B1F900FE7953 /* Battery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Battery.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC1085A42919203B00FE7953 /* camera with depth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "camera with depth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC1085A62919203B00FE7953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EC1085A82919203B00FE7953 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EC1085AA2919203B00FE7953 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EC1085AD2919203B00FE7953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EC1085AF2919203D00FE7953 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EC1085B22919203D00FE7953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EC1085B42919203D00FE7953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC14E4B128ECACC000CEB379 /* BluetoothCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentral.swift; sourceTree = "<group>"; };
 		EC14E4B328ECACD800CEB379 /* BluetoothPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPeripheral.swift; sourceTree = "<group>"; };
 		EC14E4B628ECAD6400CEB379 /* ConnectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionTableViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +208,7 @@
 		EC8C2EF8273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportAllSessionsTableViewCell.swift; sourceTree = "<group>"; };
 		EC8C2EFA273FB3050082FE8E /* DeleteAllBadSessionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllBadSessionsTableViewCell.swift; sourceTree = "<group>"; };
 		EC8C2EFC273FB3190082FE8E /* SetAllSessionsBadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAllSessionsBadTableViewCell.swift; sourceTree = "<group>"; };
+		EC9F08E8291C02F400D56D88 /* cgImage2cvPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cgImage2cvPixelBuffer.swift; sourceTree = "<group>"; };
 		ECA5E1262738263700A84E40 /* camera2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = camera2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA5E1292738263700A84E40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECA5E12B2738263700A84E40 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -267,6 +284,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EC1085892915B1F900FE7953 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC1085A12919203B00FE7953 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC14E4D828EDDDF900CEB379 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -330,6 +361,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC1085A52919203B00FE7953 /* camera with depth */ = {
+			isa = PBXGroup;
+			children = (
+				EC1085A62919203B00FE7953 /* AppDelegate.swift */,
+				EC1085A82919203B00FE7953 /* SceneDelegate.swift */,
+				EC1085AA2919203B00FE7953 /* ViewController.swift */,
+				EC1085AC2919203B00FE7953 /* Main.storyboard */,
+				EC1085AF2919203D00FE7953 /* Assets.xcassets */,
+				EC1085B12919203D00FE7953 /* LaunchScreen.storyboard */,
+				EC1085B42919203D00FE7953 /* Info.plist */,
+				EC9F08E8291C02F400D56D88 /* cgImage2cvPixelBuffer.swift */,
+			);
+			path = "camera with depth";
+			sourceTree = "<group>";
+		};
 		EC14E4B028ECACA300CEB379 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +446,7 @@
 				ECEA0D8F28BF6A4300DC22B3 /* bluetooth */,
 				ECF7359C28CF91A500BA39B1 /* bluetooth_peripheral */,
 				EC14E4DC28EDDDF900CEB379 /* animation */,
+				EC1085A52919203B00FE7953 /* camera with depth */,
 				ECEE4F812783802600F210F1 /* Frameworks */,
 				ECA5E1272738263700A84E40 /* Products */,
 			);
@@ -416,6 +463,8 @@
 				ECEA0D8E28BF6A4300DC22B3 /* bluetooth.app */,
 				ECF7359B28CF91A500BA39B1 /* bluetooth_peripheral.app */,
 				EC14E4DB28EDDDF900CEB379 /* animation.app */,
+				EC10858C2915B1F900FE7953 /* Battery.app */,
+				EC1085A42919203B00FE7953 /* camera with depth.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -620,6 +669,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EC10858B2915B1F900FE7953 /* Battery */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC10859F2915B1FB00FE7953 /* Build configuration list for PBXNativeTarget "Battery" */;
+			buildPhases = (
+				EC1085882915B1F900FE7953 /* Sources */,
+				EC1085892915B1F900FE7953 /* Frameworks */,
+				EC10858A2915B1F900FE7953 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Battery;
+			productName = Battery;
+			productReference = EC10858C2915B1F900FE7953 /* Battery.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EC1085A32919203B00FE7953 /* camera with depth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC1085B52919203D00FE7953 /* Build configuration list for PBXNativeTarget "camera with depth" */;
+			buildPhases = (
+				EC1085A02919203B00FE7953 /* Sources */,
+				EC1085A12919203B00FE7953 /* Frameworks */,
+				EC1085A22919203B00FE7953 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "camera with depth";
+			productName = "camera with depth";
+			productReference = EC1085A42919203B00FE7953 /* camera with depth.app */;
+			productType = "com.apple.product-type.application";
+		};
 		EC14E4DA28EDDDF900CEB379 /* animation */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC14E4EC28EDDDFA00CEB379 /* Build configuration list for PBXNativeTarget "animation" */;
@@ -773,9 +856,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					EC10858B2915B1F900FE7953 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					EC1085A32919203B00FE7953 = {
+						CreatedOnToolsVersion = 14.1;
+					};
 					EC14E4DA28EDDDF900CEB379 = {
 						CreatedOnToolsVersion = 14.0.1;
 					};
@@ -828,11 +917,30 @@
 				ECEA0D8D28BF6A4300DC22B3 /* bluetooth */,
 				ECF7359A28CF91A400BA39B1 /* bluetooth_peripheral */,
 				EC14E4DA28EDDDF900CEB379 /* animation */,
+				EC10858B2915B1F900FE7953 /* Battery */,
+				EC1085A32919203B00FE7953 /* camera with depth */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EC10858A2915B1F900FE7953 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC1085A22919203B00FE7953 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC1085B32919203D00FE7953 /* LaunchScreen.storyboard in Resources */,
+				EC1085B02919203D00FE7953 /* Assets.xcassets in Resources */,
+				EC1085AE2919203B00FE7953 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC14E4D928EDDDF900CEB379 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -917,6 +1025,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EC1085882915B1F900FE7953 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC1085A02919203B00FE7953 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC1085AB2919203B00FE7953 /* ViewController.swift in Sources */,
+				EC1085A72919203B00FE7953 /* AppDelegate.swift in Sources */,
+				EC9F08E9291C02F400D56D88 /* cgImage2cvPixelBuffer.swift in Sources */,
+				EC1085A92919203B00FE7953 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC14E4D728EDDDF900CEB379 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1067,6 +1193,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		EC1085AC2919203B00FE7953 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC1085AD2919203B00FE7953 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EC1085B12919203D00FE7953 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC1085B22919203D00FE7953 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		EC14E4E328EDDDF900CEB379 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1150,6 +1292,126 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EC10859D2915B1FB00FE7953 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Battery/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.Battery;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EC10859E2915B1FB00FE7953 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Battery/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kanistra.Battery;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EC1085B62919203D00FE7953 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "camera with depth/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kanistra.camera-with-depth";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EC1085B72919203D00FE7953 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6S75ZHN39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "camera with depth/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kanistra.camera-with-depth";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		EC14E4ED28EDDDFA00CEB379 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1719,6 +1981,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EC10859F2915B1FB00FE7953 /* Build configuration list for PBXNativeTarget "Battery" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC10859D2915B1FB00FE7953 /* Debug */,
+				EC10859E2915B1FB00FE7953 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC1085B52919203D00FE7953 /* Build configuration list for PBXNativeTarget "camera with depth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC1085B62919203D00FE7953 /* Debug */,
+				EC1085B72919203D00FE7953 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EC14E4EC28EDDDFA00CEB379 /* Build configuration list for PBXNativeTarget "animation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
