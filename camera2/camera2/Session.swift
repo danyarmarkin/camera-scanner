@@ -37,6 +37,6 @@ class Session {
     }
     
     func getFileName() -> String {
-        return getFullName() + ".mov"
+        return getFullName()
     }
 }

@@ -25,11 +25,16 @@ class CameraSettingsObserver: NSObject {
     let defaults = UserDefaults.standard
     var focus = 0
     
-    init(capDev: AVCaptureDevice, settings: CameraSettings, output: AVCaptureMovieFileOutput) {
+    init(capDev: AVCaptureDevice, settings: CameraSettings) {
         cameraSettings = settings
         captureDevice = capDev
-        captureVideoOutput = output
+//        captureVideoOutput = output
         super.init()
+        
+        guard capDev.isExposureModeSupported(.custom) else {
+            print("exposure mode unsupported")
+            return
+        }
         
         observationIso = observe(\.cameraSettings.iso, options: [.new]) { object, change in
             do {
@@ -82,13 +87,13 @@ class CameraSettingsObserver: NSObject {
             } catch {return}
         }
         
-        observationStabilizationMode = observe(\.cameraSettings?.stabilizationMode, options: [.new]) {object, change in
-            do {
-                print("new stabilization Mode")
-                self.captureVideoOutput.connection(with: .video)?.preferredVideoStabilizationMode = self.cameraSettings.stabilizationMode
-            } catch {
-                return
-            }
-        }
+//        observationStabilizationMode = observe(\.cameraSettings?.stabilizationMode, options: [.new]) {object, change in
+//            do {
+//                print("new stabilization Mode")
+//                self.captureVideoOutput.connection(with: .video)?.preferredVideoStabilizationMode = self.cameraSettings.stabilizationMode
+//            } catch {
+//                return
+//            }
+//        }
     }
 }

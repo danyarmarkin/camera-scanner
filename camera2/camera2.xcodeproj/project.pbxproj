@@ -52,7 +52,7 @@
 		EC8C2EF9273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C2EF8273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift */; };
 		EC8C2EFB273FB3050082FE8E /* DeleteAllBadSessionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C2EFA273FB3050082FE8E /* DeleteAllBadSessionsTableViewCell.swift */; };
 		EC8C2EFD273FB3190082FE8E /* SetAllSessionsBadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C2EFC273FB3190082FE8E /* SetAllSessionsBadTableViewCell.swift */; };
-		EC9F08E9291C02F400D56D88 /* cgImage2cvPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9F08E8291C02F400D56D88 /* cgImage2cvPixelBuffer.swift */; };
+		EC9F08F0291CF25800D56D88 /* cgImage2cvPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9F08E8291C02F400D56D88 /* cgImage2cvPixelBuffer.swift */; };
 		ECA5E12A2738263700A84E40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5E1292738263700A84E40 /* AppDelegate.swift */; };
 		ECA5E12C2738263700A84E40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5E12B2738263700A84E40 /* SceneDelegate.swift */; };
 		ECA5E1312738263700A84E40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECA5E12F2738263700A84E40 /* Main.storyboard */; };
@@ -371,7 +371,6 @@
 				EC1085AF2919203D00FE7953 /* Assets.xcassets */,
 				EC1085B12919203D00FE7953 /* LaunchScreen.storyboard */,
 				EC1085B42919203D00FE7953 /* Info.plist */,
-				EC9F08E8291C02F400D56D88 /* cgImage2cvPixelBuffer.swift */,
 			);
 			path = "camera with depth";
 			sourceTree = "<group>";
@@ -537,6 +536,7 @@
 				ECA5E169273839ED00A84E40 /* CaptureDevice.swift */,
 				EC282FAB2770D52A009CF2CB /* DeviceStatusCell.swift */,
 				EC282FAD2770D5FF009CF2CB /* DeviceStatusTableView.swift */,
+				EC9F08E8291C02F400D56D88 /* cgImage2cvPixelBuffer.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -1038,7 +1038,6 @@
 			files = (
 				EC1085AB2919203B00FE7953 /* ViewController.swift in Sources */,
 				EC1085A72919203B00FE7953 /* AppDelegate.swift in Sources */,
-				EC9F08E9291C02F400D56D88 /* cgImage2cvPixelBuffer.swift in Sources */,
 				EC1085A92919203B00FE7953 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1097,6 +1096,7 @@
 				ECA5E12A2738263700A84E40 /* AppDelegate.swift in Sources */,
 				ECD5781E274966EC007F7532 /* FPSCollectionViewCell.swift in Sources */,
 				ECD066CA2762936300E054E6 /* BitRateTableViewCell.swift in Sources */,
+				EC9F08F0291CF25800D56D88 /* cgImage2cvPixelBuffer.swift in Sources */,
 				EC6188CB2771DFEB00891C9C /* LocationViewController.swift in Sources */,
 				EC5064BF276159B400014397 /* ViewController.swift in Sources */,
 				ECD57816274966C0007F7532 /* IsoCollectionViewCell.swift in Sources */,

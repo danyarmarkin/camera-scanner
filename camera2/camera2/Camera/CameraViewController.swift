@@ -16,6 +16,7 @@ class CameraViewController: UIViewController,
                             UITextFieldDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var depthImageView: UIImageView!
     @IBOutlet weak var trashButton: UIButton!
     @IBOutlet weak var videoButton: UIButton!
     @IBOutlet weak var buttonView: UIStackView!
@@ -48,7 +49,8 @@ class CameraViewController: UIViewController,
         metricManager.add(self)
         
         sessionTextField.delegate = self
-        camera = Camera(imageView: imageView, delegate: self)
+        camera = Camera()
+        camera.configure(videoImageView: imageView, depthImageView: depthImageView, delegate: self)
         cameraSettings.monitoringData()
         
         deviceTableView.delegate = self
@@ -148,7 +150,7 @@ class CameraViewController: UIViewController,
                     self.timerLabel.text = "\(Int(floor(Double(self.duration / 60)))):\(seconds)"
                 }
             }
-            camera.recordVideo(session: session) {(url, error) in
+            camera.startRecording(session: session) {(url, error) in
                 guard url != nil else {
                     print(error ?? "error")
                     return
@@ -166,7 +168,7 @@ class CameraViewController: UIViewController,
         } else {
             isStartSession = false
             videoButton.backgroundColor = .lightGray
-            camera.captureVideoOutput?.stopRecording()
+            camera.stopRecording()
             if durationTimer != nil{
                 self.durationTimer.invalidate()
                 self.timerLabel.text = "0:00"
