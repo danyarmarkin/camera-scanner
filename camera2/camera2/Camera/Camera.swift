@@ -23,6 +23,7 @@ class Camera: NSObject{
     var captureDevice: AVCaptureDevice?
     var videoImageView: UIImageView!
     var depthImageView: UIImageView!
+    var trueDepthImageView: UIImageView!
     @objc let cameraSettings = CameraSettings()
     var observation: NSKeyValueObservation?
     
@@ -72,21 +73,43 @@ class Camera: NSObject{
         print("init")
     }
     
-    func configure(videoImageView: UIImageView, depthImageView: UIImageView, delegate: UIViewController) {
+    var isCaptureDepth = false
+    
+    @objc func onCameraTypeChanged() {
+        captureSession?.stopRunning()
+        captureSession = nil
+        outputSynchronizer = nil
+        videoOutput =  AVCaptureVideoDataOutput()
+        depthOutput = AVCaptureDepthDataOutput()
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(CameraTypeConfig.cameraTypeKey), object: nil)
+        
+        configure(videoImageView: videoImageView,
+                  trueDepthImageView: trueDepthImageView,
+                  depthImageView: depthImageView)
+    }
+    
+    func configure(videoImageView: UIImageView, trueDepthImageView: UIImageView, depthImageView: UIImageView) {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onCameraTypeChanged), name: NSNotification.Name(CameraTypeConfig.cameraTypeKey), object: nil)
+        
         self.videoImageView = videoImageView
         self.depthImageView = depthImageView
+        self.trueDepthImageView = trueDepthImageView
         
+        let cameraType = CameraTypeConfig.getCameraType()
         if #available(iOS 15.4, *) {
-            captureDevice = AVCaptureDevice.default(.builtInLiDARDepthCamera, for: .video, position: .back)
+            if cameraType == .builtInLiDARDepthCamera || cameraType == .builtInDualCamera || cameraType == .builtInDualWideCamera {
+                isCaptureDepth = true
+            } else {
+                isCaptureDepth = false
+            }
         } else {
-            captureDevice = nil
+            isCaptureDepth = false
         }
-        if captureDevice == nil {
-            captureDevice = AVCaptureDevice.default(.builtInDualWideCamera, for: .video, position: .back)
-        }
-        if captureDevice == nil {
-            captureDevice = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back)
-        }
+        
+        captureDevice = AVCaptureDevice.default(cameraType, for: .video, position: .back)
+        
         
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice!)
@@ -94,21 +117,30 @@ class Camera: NSObject{
             captureSession?.beginConfiguration()
             captureSession?.addInput(input)
             captureSession?.commitConfiguration()
-            captureSession?.sessionPreset = .photo
+            captureSession?.sessionPreset = .photo 
             
             depthOutput.isFilteringEnabled = true
-            captureSession?.addOutput(depthOutput)
+            if isCaptureDepth {
+                captureSession?.addOutput(depthOutput)
+            }
             captureSession?.addOutput(videoOutput)
             
-            outputSynchronizer = AVCaptureDataOutputSynchronizer(dataOutputs: [videoOutput, depthOutput])
+            if isCaptureDepth {
+                outputSynchronizer = AVCaptureDataOutputSynchronizer(dataOutputs: [videoOutput, depthOutput])
+            } else {
+                outputSynchronizer = AVCaptureDataOutputSynchronizer(dataOutputs: [videoOutput])
+            }
+            
             outputSynchronizer?.setDelegate(self, queue: DispatchQueue(label: "com.kanistra.sinchr_video"))
             
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
             videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-            videoPreviewLayer?.frame = delegate.view.layer.bounds
+            videoPreviewLayer?.frame = videoImageView.layer.bounds
             self.videoImageView.layer.addSublayer(videoPreviewLayer!)
             
-            captureSession?.startRunning()
+            DispatchQueue.global().sync {
+                captureSession?.startRunning()
+            }
             
             _ = CameraSettingsObserver(capDev: captureDevice!, settings: cameraSettings)
             
@@ -155,188 +187,269 @@ class Camera: NSObject{
 
 extension Camera: AVCaptureDataOutputSynchronizerDelegate {
     func dataOutputSynchronizer(_ synchronizer: AVCaptureDataOutputSynchronizer, didOutput synchronizedDataCollection: AVCaptureSynchronizedDataCollection) {
-        guard
-            let syncedDepthData: AVCaptureSynchronizedDepthData = synchronizedDataCollection.synchronizedData(for: depthOutput) as? AVCaptureSynchronizedDepthData,
-            let syncedVideoData: AVCaptureSynchronizedSampleBufferData = synchronizedDataCollection.synchronizedData(for: videoOutput) as? AVCaptureSynchronizedSampleBufferData
-        else {
-            // only work on synced pairs
-            return
-        }
-        
-        if syncedDepthData.depthDataWasDropped || syncedVideoData.sampleBufferWasDropped {
-            return
-        }
-        
-        let depthData = syncedDepthData.depthData
-        var convertedDepth: AVDepthData
-        let depthDataType = kCVPixelFormatType_DepthFloat32
-        if depthData.depthDataType != depthDataType {
-            convertedDepth = depthData.converting(toDepthDataType: depthDataType)
-        } else {
-            convertedDepth = depthData
-        }
-        
-        let rawDepthPixelBuffer = convertedDepth.depthDataMap
-        let height = CVPixelBufferGetHeight(rawDepthPixelBuffer)
-        let width = CVPixelBufferGetWidth(rawDepthPixelBuffer)
-
-        CVPixelBufferLockBaseAddress(rawDepthPixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
-        
-        if frameIndex == 0 {
-            DispatchQueue.global().sync {
-                minDepth = Float32(1000)
-                for yMap in 0 ..< height {
-                    let rowData = CVPixelBufferGetBaseAddress(rawDepthPixelBuffer)! + yMap * CVPixelBufferGetBytesPerRow(rawDepthPixelBuffer)
-                    for index in 0 ..< width {
-                        if minDepth > rowData.assumingMemoryBound(to: Float32.self)[index / 2] {
-                            minDepth = rowData.assumingMemoryBound(to: Float32.self)[index / 2]
-                        }
-                    }
-                }
-            }
-        }
-        
-        frameIndex += 1
-        frameIndex %= 3
-    
-        for yMap in 0 ..< height {
-            let rowData = CVPixelBufferGetBaseAddress(rawDepthPixelBuffer)! + yMap * CVPixelBufferGetBytesPerRow(rawDepthPixelBuffer)
-            let data = UnsafeMutableBufferPointer<Float32>(start: rowData.assumingMemoryBound(to: Float32.self), count: width)
-            
-            for index in 0 ..< width {
-                if data[index] > minDepth + 0.8 {
-                    data[index] = 0
-                } else {
-                    data[index] = 1
-                }
-            }
-        }
-        CVPixelBufferUnlockBaseAddress(rawDepthPixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
-        
-        let depthMap = CIImage(cvPixelBuffer: rawDepthPixelBuffer)
-        let context: CIContext = CIContext.init(options: nil)
-        let cgImage: CGImage = context.createCGImage(depthMap, from: depthMap.extent)!
-        
-        let depthPixelBuffer = cgImage.pixelBuffer(width: width, height: height, orientation: .up)
-    
-        let image: UIImage = UIImage(cgImage: cgImage, scale: 1, orientation: .right)
-        DispatchQueue.main.sync {
-            depthImageView.image = image
-        }
-        
-        guard
-            let videoPixelBuffer = CMSampleBufferGetImageBuffer(syncedVideoData.sampleBuffer)
-        else {
-            return
-        }
-        
-        let videoTimestamp = syncedVideoData.timestamp.seconds
-        let depthTimestamp = syncedDepthData.timestamp.seconds
-        
-        
-        switch captureState {
-        case .start:
-            if videoFilename == "" || depthFilename == "" {
-                let filename = UUID().uuidString
-                videoFilename = filename
-                depthFilename = filename + "_depth"
+        if isCaptureDepth {
+            guard
+                let syncedDepthData: AVCaptureSynchronizedDepthData = synchronizedDataCollection.synchronizedData(for: depthOutput) as? AVCaptureSynchronizedDepthData,
+                let syncedVideoData: AVCaptureSynchronizedSampleBufferData = synchronizedDataCollection.synchronizedData(for: videoOutput) as? AVCaptureSynchronizedSampleBufferData
+            else {
+                // only work on synced pairs
+                return
             }
             
-            let videoPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(videoFilename).mov")
-            let depthPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(depthFilename).mov")
-            
-            videoAssetWriter = try! AVAssetWriter(outputURL: videoPath, fileType: .mov)
-            depthAssetWriter = try! AVAssetWriter(outputURL: depthPath, fileType: .mov)
-            
-            videoAssetWriterInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoSettings)
-            depthAssetWriterInput = AVAssetWriterInput(mediaType: .video, outputSettings: depthSetting)
-            
-            videoAssetWriterInput?.mediaTimeScale = CMTimeScale(bitPattern: 600)
-            depthAssetWriterInput?.mediaTimeScale = CMTimeScale(bitPattern: 600)
-            
-            videoAssetWriterInput?.expectsMediaDataInRealTime = true
-            depthAssetWriterInput?.expectsMediaDataInRealTime = true
-            
-            videoAssetWriterInput?.transform = CGAffineTransform(rotationAngle: .pi / 2)
-            depthAssetWriterInput?.transform = CGAffineTransform(rotationAngle: .pi / 2)
-            
-            videoAdapter = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: videoAssetWriterInput!)
-            depthAdapter = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: depthAssetWriterInput!)
-            
-            videoAssetWriter?.add(videoAssetWriterInput!)
-            depthAssetWriter?.add(depthAssetWriterInput!)
-            
-            videoAssetWriter?.startWriting()
-            videoAssetWriter?.startSession(atSourceTime: .zero)
-            depthAssetWriter?.startWriting()
-            depthAssetWriter?.startSession(atSourceTime: .zero)
-            
-            
-            captureState = .capturing
-            
-            _videoTime = videoTimestamp
-            _depthTime = depthTimestamp
-            
-            
-        case .capturing:
-            if (videoAssetWriterInput?.isReadyForMoreMediaData) == true {
-                let time = CMTime(seconds: videoTimestamp - _videoTime, preferredTimescale: CMTimeScale(bitPattern: 600))
-                let r = videoAdapter?.append(videoPixelBuffer, withPresentationTime: time)
-                if !(r ?? false){
-                    print("video wrong")
-                }
+            if syncedDepthData.depthDataWasDropped || syncedVideoData.sampleBufferWasDropped {
+                return
             }
-
-            if (depthAssetWriterInput?.isReadyForMoreMediaData) == true {
-                let time = CMTime(seconds: depthTimestamp - _depthTime, preferredTimescale: CMTimeScale(bitPattern: 600))
-                let r = depthAdapter?.append(depthPixelBuffer!, withPresentationTime: time)
-                if !(r ?? false){
-                    print("depth wrong")
-                }
+            
+            let depthData = syncedDepthData.depthData
+            var convertedDepth: AVDepthData
+            let depthDataType = kCVPixelFormatType_DepthFloat32
+            if depthData.depthDataType != depthDataType {
+                convertedDepth = depthData.converting(toDepthDataType: depthDataType)
             } else {
-                print("depth asset writer input failed")
+                convertedDepth = depthData
             }
-            break
             
-        case .end:
-            if videoAssetWriterInput?.isReadyForMoreMediaData == true && videoAssetWriter?.status != .failed {
-                videoAssetWriterInput?.markAsFinished()
-                videoAssetWriter?.finishWriting(completionHandler: { [weak self] in
-                    self?.videoDidEnd = true
-                    if self?.depthDidEnd ?? false {
+            let rawDepthPixelBuffer = convertedDepth.depthDataMap
+            let height = CVPixelBufferGetHeight(rawDepthPixelBuffer)
+            let width = CVPixelBufferGetWidth(rawDepthPixelBuffer)
+            
+            let trueDepthMap = CIImage(cvPixelBuffer: rawDepthPixelBuffer)
+            let tdContext: CIContext = CIContext.init(options: nil)
+            let tdcgImage: CGImage = tdContext.createCGImage(trueDepthMap, from: trueDepthMap.extent)!
+            
+            DispatchQueue.main.sync {
+                trueDepthImageView.image = UIImage(cgImage: tdcgImage, scale: 1, orientation: .right)
+            }
+            
+            CVPixelBufferLockBaseAddress(rawDepthPixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
+            
+            if frameIndex == 0 {
+                DispatchQueue.global().sync {
+                    minDepth = Float32(1000)
+                    for yMap in 0 ..< height {
+                        let rowData = CVPixelBufferGetBaseAddress(rawDepthPixelBuffer)! + yMap * CVPixelBufferGetBytesPerRow(rawDepthPixelBuffer)
+                        for index in 0 ..< width {
+                            if minDepth > rowData.assumingMemoryBound(to: Float32.self)[index / 2] {
+                                minDepth = rowData.assumingMemoryBound(to: Float32.self)[index / 2]
+                            }
+                        }
+                    }
+                }
+            }
+            
+            frameIndex += 1
+            frameIndex %= 3
+            
+            for yMap in 0 ..< height {
+                let rowData = CVPixelBufferGetBaseAddress(rawDepthPixelBuffer)! + yMap * CVPixelBufferGetBytesPerRow(rawDepthPixelBuffer)
+                let data = UnsafeMutableBufferPointer<Float32>(start: rowData.assumingMemoryBound(to: Float32.self), count: width)
+                
+                for index in 0 ..< width {
+                    if data[index] > minDepth + 0.8 {
+                        data[index] = 0
+                    } else {
+                        data[index] = 1
+                    }
+                }
+            }
+            CVPixelBufferUnlockBaseAddress(rawDepthPixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
+            
+            let depthMap = CIImage(cvPixelBuffer: rawDepthPixelBuffer)
+            let context: CIContext = CIContext.init(options: nil)
+            let cgImage: CGImage = context.createCGImage(depthMap, from: depthMap.extent)!
+            
+            let depthPixelBuffer = cgImage.pixelBuffer(width: width, height: height, orientation: .up)
+            
+            let image: UIImage = UIImage(cgImage: cgImage, scale: 1, orientation: .right)
+            DispatchQueue.main.sync {
+                depthImageView.image = image
+            }
+            
+            guard
+                let videoPixelBuffer = CMSampleBufferGetImageBuffer(syncedVideoData.sampleBuffer)
+            else {
+                return
+            }
+            
+            let videoTimestamp = syncedVideoData.timestamp.seconds
+            let depthTimestamp = syncedDepthData.timestamp.seconds
+            
+            
+            switch captureState {
+            case .start:
+                if videoFilename == "" || depthFilename == "" {
+                    let filename = UUID().uuidString
+                    videoFilename = filename
+                    depthFilename = filename + "_depth"
+                }
+                
+                let videoPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(videoFilename).mov")
+                let depthPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(depthFilename).mov")
+                
+                videoAssetWriter = try! AVAssetWriter(outputURL: videoPath, fileType: .mov)
+                depthAssetWriter = try! AVAssetWriter(outputURL: depthPath, fileType: .mov)
+                
+                videoAssetWriterInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoSettings)
+                depthAssetWriterInput = AVAssetWriterInput(mediaType: .video, outputSettings: depthSetting)
+                
+                videoAssetWriterInput?.mediaTimeScale = CMTimeScale(bitPattern: 600)
+                depthAssetWriterInput?.mediaTimeScale = CMTimeScale(bitPattern: 600)
+                
+                videoAssetWriterInput?.expectsMediaDataInRealTime = true
+                depthAssetWriterInput?.expectsMediaDataInRealTime = true
+                
+                videoAssetWriterInput?.transform = CGAffineTransform(rotationAngle: .pi / 2)
+                depthAssetWriterInput?.transform = CGAffineTransform(rotationAngle: .pi / 2)
+                
+                videoAdapter = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: videoAssetWriterInput!)
+                depthAdapter = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: depthAssetWriterInput!)
+                
+                videoAssetWriter?.add(videoAssetWriterInput!)
+                depthAssetWriter?.add(depthAssetWriterInput!)
+                
+                videoAssetWriter?.startWriting()
+                videoAssetWriter?.startSession(atSourceTime: .zero)
+                depthAssetWriter?.startWriting()
+                depthAssetWriter?.startSession(atSourceTime: .zero)
+                
+                
+                captureState = .capturing
+                
+                _videoTime = videoTimestamp
+                _depthTime = depthTimestamp
+                
+                
+            case .capturing:
+                if (videoAssetWriterInput?.isReadyForMoreMediaData) == true {
+                    let time = CMTime(seconds: videoTimestamp - _videoTime, preferredTimescale: CMTimeScale(bitPattern: 600))
+                    let r = videoAdapter?.append(videoPixelBuffer, withPresentationTime: time)
+                    if !(r ?? false){
+                        print("video wrong")
+                    }
+                }
+                
+                if (depthAssetWriterInput?.isReadyForMoreMediaData) == true {
+                    let time = CMTime(seconds: depthTimestamp - _depthTime, preferredTimescale: CMTimeScale(bitPattern: 600))
+                    let r = depthAdapter?.append(depthPixelBuffer!, withPresentationTime: time)
+                    if !(r ?? false){
+                        print("depth wrong")
+                    }
+                } else {
+                    print("depth asset writer input failed")
+                }
+                break
+                
+            case .end:
+                if videoAssetWriterInput?.isReadyForMoreMediaData == true && videoAssetWriter?.status != .failed {
+                    videoAssetWriterInput?.markAsFinished()
+                    videoAssetWriter?.finishWriting(completionHandler: { [weak self] in
+                        self?.videoDidEnd = true
+                        if self?.depthDidEnd ?? false {
+                            self?.videoDidEnd = false
+                            self?.depthDidEnd = false
+                            self?.captureState = .idle
+                            DispatchQueue.main.sync {
+                                self?.videoRecordCompletionBlock!(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(self?.videoFilename ?? "video").mov"), nil)
+                            }
+                        }
+                        self?.videoAssetWriter = nil
+                        self?.videoAssetWriterInput = nil
+                    })
+                }
+                
+                if depthAssetWriterInput?.isReadyForMoreMediaData == true && depthAssetWriter?.status != .failed {
+                    depthAssetWriterInput?.markAsFinished()
+                    depthAssetWriter?.finishWriting(completionHandler: { [weak self] in
+                        self?.depthDidEnd = true
+                        if self?.videoDidEnd ?? false {
+                            self?.videoDidEnd = false
+                            self?.depthDidEnd = false
+                            self?.captureState = .idle
+                            DispatchQueue.main.sync {
+                                self?.videoRecordCompletionBlock!(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(self?.videoFilename ?? "video").mov"), nil)
+                            }
+                        }
+                        self?.depthAssetWriter = nil
+                        self?.depthAssetWriterInput = nil
+                    })
+                }
+                
+            default:
+                break
+            }
+        } else {
+            guard
+                let syncedVideoData: AVCaptureSynchronizedSampleBufferData = synchronizedDataCollection.synchronizedData(for: videoOutput) as? AVCaptureSynchronizedSampleBufferData else {
+                return
+            }
+            
+            if syncedVideoData.sampleBufferWasDropped {
+                return
+            }
+            
+            guard
+                let videoPixelBuffer = CMSampleBufferGetImageBuffer(syncedVideoData.sampleBuffer)
+            else {
+                return
+            }
+            
+            let videoTimestamp = syncedVideoData.timestamp.seconds
+            
+            switch captureState {
+            case .start:
+                if videoFilename == "" {
+                    let filename = UUID().uuidString
+                    videoFilename = filename
+                }
+                
+                let videoPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(videoFilename).mov")
+                
+                videoAssetWriter = try! AVAssetWriter(outputURL: videoPath, fileType: .mov)
+                videoAssetWriterInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoSettings)
+                videoAssetWriterInput?.mediaTimeScale = CMTimeScale(bitPattern: 600)
+                videoAssetWriterInput?.expectsMediaDataInRealTime = true
+                videoAssetWriterInput?.transform = CGAffineTransform(rotationAngle: .pi / 2)
+                videoAdapter = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: videoAssetWriterInput!)
+                videoAssetWriter?.add(videoAssetWriterInput!)
+                videoAssetWriter?.startWriting()
+                videoAssetWriter?.startSession(atSourceTime: .zero)
+                
+                captureState = .capturing
+                
+                _videoTime = videoTimestamp
+                
+                
+            case .capturing:
+                if (videoAssetWriterInput?.isReadyForMoreMediaData) == true {
+                    let time = CMTime(seconds: videoTimestamp - _videoTime, preferredTimescale: CMTimeScale(bitPattern: 600))
+                    let r = videoAdapter?.append(videoPixelBuffer, withPresentationTime: time)
+                    if !(r ?? false){
+                        print("video wrong")
+                    }
+                }
+                
+                break
+                
+            case .end:
+                if videoAssetWriterInput?.isReadyForMoreMediaData == true && videoAssetWriter?.status != .failed {
+                    videoAssetWriterInput?.markAsFinished()
+                    videoAssetWriter?.finishWriting(completionHandler: { [weak self] in
+                        self?.videoDidEnd = true
                         self?.videoDidEnd = false
-                        self?.depthDidEnd = false
                         self?.captureState = .idle
                         DispatchQueue.main.sync {
                             self?.videoRecordCompletionBlock!(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(self?.videoFilename ?? "video").mov"), nil)
                         }
-                    }
-                    self?.videoAssetWriter = nil
-                    self?.videoAssetWriterInput = nil
-                })
+                        
+                        self?.videoAssetWriter = nil
+                        self?.videoAssetWriterInput = nil
+                    })
+                }
+                
+            default:
+                break
             }
-            
-            if depthAssetWriterInput?.isReadyForMoreMediaData == true && depthAssetWriter?.status != .failed {
-                depthAssetWriterInput?.markAsFinished()
-                depthAssetWriter?.finishWriting(completionHandler: { [weak self] in
-                    self?.depthDidEnd = true
-                    if self?.videoDidEnd ?? false {
-                        self?.videoDidEnd = false
-                        self?.depthDidEnd = false
-                        self?.captureState = .idle
-                        DispatchQueue.main.sync {
-                            self?.videoRecordCompletionBlock!(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(self?.videoFilename ?? "video").mov"), nil)
-                        }
-                    }
-                    self?.depthAssetWriter = nil
-                    self?.depthAssetWriterInput = nil
-                })
-            }
-            
-        default:
-            break
         }
-        
     }
 }
 

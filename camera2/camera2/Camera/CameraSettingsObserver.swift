@@ -31,11 +31,34 @@ class CameraSettingsObserver: NSObject {
 //        captureVideoOutput = output
         super.init()
         
-        guard capDev.isExposureModeSupported(.custom) else {
-            print("exposure mode unsupported")
+//        guard capDev.isExposureModeSupported(.custom) else {
+//            print("custom exposure mode unsupported")
+//            return
+//        }
+        guard capDev.isExposureModeSupported(.autoExpose) else {
+            print("auto exposure mode unsupported")
+            return
+        }
+        guard capDev.isExposureModeSupported(.continuousAutoExposure) else {
+            print("c auto exposure mode unsupported")
+            return
+        }
+        guard capDev.isExposureModeSupported(.locked) else {
+            print("locked exposure mode unsupported")
             return
         }
         
+        do {
+            try captureDevice.lockForConfiguration()
+            print(captureDevice.minExposureTargetBias)
+            print(captureDevice.maxExposureTargetBias)
+            captureDevice.setExposureTargetBias(0)
+            captureDevice.unlockForConfiguration()
+        } catch {
+            return
+        }
+        
+        /*
         observationIso = observe(\.cameraSettings.iso, options: [.new]) { object, change in
             do {
                 try self.captureDevice.lockForConfiguration()
@@ -63,6 +86,7 @@ class CameraSettingsObserver: NSObject {
             } catch {return}
             
         }
+         */
         observationTint = observe(\.cameraSettings?.tint, options: [.new]) { object, change in
             do {
                 try self.captureDevice.lockForConfiguration()

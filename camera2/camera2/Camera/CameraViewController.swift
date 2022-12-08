@@ -17,13 +17,11 @@ class CameraViewController: UIViewController,
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var depthImageView: UIImageView!
-    @IBOutlet weak var trashButton: UIButton!
+    @IBOutlet weak var trueDepthImageView: UIImageView!
     @IBOutlet weak var videoButton: UIButton!
-    @IBOutlet weak var buttonView: UIStackView!
     @IBOutlet weak var refreshSessionButton: UIButton!
     @IBOutlet weak var sessionLabel: UILabel!
     @IBOutlet weak var sessionTextField: UITextField!
-    @IBOutlet weak var sessionView: UIStackView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var settingsLabel: UILabel!
     @IBOutlet weak var deviceTableView: DeviceStatusTableView!
@@ -50,7 +48,7 @@ class CameraViewController: UIViewController,
         
         sessionTextField.delegate = self
         camera = Camera()
-        camera.configure(videoImageView: imageView, depthImageView: depthImageView, delegate: self)
+        camera.configure(videoImageView: imageView, trueDepthImageView: trueDepthImageView, depthImageView: depthImageView)
         cameraSettings.monitoringData()
         
         deviceTableView.delegate = self
@@ -192,8 +190,6 @@ class CameraViewController: UIViewController,
         onVideoStateDidUpdate()
     }
 
-    @IBAction func onTrash(_ sender: Any) {
-    }
     
     @IBAction func refreshSession(_ sender: UIButton) {
         SessionConfig.updateSession(updateIndex: false)

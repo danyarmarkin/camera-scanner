@@ -32,7 +32,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if section == 0 {return 2}
-        return 8
+        return 9
     }
 
     
@@ -44,26 +44,40 @@ class SettingsTableViewController: UITableViewController {
             cell.delegate = self
             return cell
         case [1, 0]:
-            return tableView.dequeueReusableCell(withIdentifier: "configuration_profiles_cell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "configuration_profiles_cell", for: indexPath)
+            cell.accessoryType = .disclosureIndicator
+            return cell
         case [1, 1]:
-            let cell =  tableView.dequeueReusableCell(withIdentifier: "focus_cell", for: indexPath) as! FocusTableViewCell
-            cell.configure()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "camera_cell", for: indexPath)
+            cell.accessoryType = .disclosureIndicator
             return cell
         case [1, 2]:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "stabilization_cell", for: indexPath) as! StabilizationTableViewCell
+            let cell =  tableView.dequeueReusableCell(withIdentifier: "focus_cell", for: indexPath) as! FocusTableViewCell
             cell.configure()
+            cell.accessoryType = .disclosureIndicator
             return cell
         case [1, 3]:
-            return tableView.dequeueReusableCell(withIdentifier: "server_cell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "stabilization_cell", for: indexPath) as! StabilizationTableViewCell
+            cell.configure()
+            cell.accessoryType = .disclosureIndicator
+            return cell
         case [1, 4]:
-            return tableView.dequeueReusableCell(withIdentifier: "naming_cell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "server_cell", for: indexPath)
+            cell.accessoryType = .disclosureIndicator
+            return cell
         case [1, 5]:
-            return tableView.dequeueReusableCell(withIdentifier: "syncronization_cell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "naming_cell", for: indexPath)
+            cell.accessoryType = .disclosureIndicator
+            return cell
         case [1, 6]:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "syncronization_cell", for: indexPath)
+            cell.accessoryType = .disclosureIndicator
+            return cell
+        case [1, 7]:
             let cell = tableView.dequeueReusableCell(withIdentifier: "bit_rate_cell", for: indexPath) as! BitRateTableViewCell
             cell.configure()
             return cell
-        case [1, 7]:
+        case [1, 8]:
             let cell = tableView.dequeueReusableCell(withIdentifier: "serial_null_cell", for: indexPath) as! SerialNullTableViewCell
             cell.delegate = self
             return cell

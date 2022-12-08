@@ -192,6 +192,68 @@ class ConfigurationProfiles {
     }
 }
 
+class CameraTypeConfig {
+    static let defalts = UserDefaults.standard
+    static let key = "com.kanistra.camera2.camera-data.camera-type"
+    static let cameraTypeKey = "com.kanistra.camera2.camera-data.camera-type.notification"
+    
+    static func setCameraType(_ type: AVCaptureDevice.DeviceType) {
+        if #available(iOS 15.4, *) {
+            switch type {
+            case .builtInWideAngleCamera:
+                defalts.set("wide", forKey: key)
+                break
+            case .builtInUltraWideCamera:
+                defalts.set("ultra_wide", forKey: key)
+                break
+            case .builtInDualCamera:
+                defalts.set("dual", forKey: key)
+                break
+            case .builtInDualWideCamera:
+                defalts.set("dual_wide", forKey: key)
+                break
+            case .builtInLiDARDepthCamera:
+                defalts.set("lidar", forKey: key)
+                break
+            case .builtInTelephotoCamera:
+                defalts.set("telephoto", forKey: key)
+                break
+            default:
+                defalts.set("wide", forKey: key)
+            }
+        } else {
+            defalts.set("wide", forKey: key)
+        }
+        
+        NotificationCenter.default.post(name: NSNotification.Name(cameraTypeKey), object: nil)
+    }
+    
+    static func getCameraType() -> AVCaptureDevice.DeviceType {
+        let type = defalts.string(forKey: key)
+        switch type {
+        case "wide":
+            return .builtInWideAngleCamera
+        case "ultra_wide":
+            return .builtInUltraWideCamera
+        case "dual":
+            return .builtInDualCamera
+        case "dual_wide":
+            return .builtInDualWideCamera
+        case "lidar":
+            if #available(iOS 15.4, *) {
+                return .builtInLiDARDepthCamera
+            } else {
+                return .builtInWideAngleCamera
+            }
+        case "telephoto":
+            return .builtInTelephotoCamera
+            
+        default:
+            return .builtInWideAngleCamera
+        }
+    }
+}
+
 class FocusConfig {
     static let defalts = UserDefaults.standard
     static let key = "com.kanistra.camera2.camera-data.focus-range-restriction"

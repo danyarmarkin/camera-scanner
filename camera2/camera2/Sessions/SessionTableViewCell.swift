@@ -75,7 +75,7 @@ extension SessionTableViewCell {
         generator.requestedTimeToleranceBefore = CMTime.zero
         generator.requestedTimeToleranceAfter = CMTime.zero
         do {
-            let cgImage = try generator.copyCGImage(at: CMTimeMake(value: Int64(1), timescale: 1000), actualTime: nil)
+            let cgImage = try generator.copyCGImage(at: CMTimeMake(value: Int64(1), timescale: 10), actualTime: nil)
             let image = UIImage(cgImage: cgImage)
             return image
         } catch {

@@ -85,6 +85,8 @@
 		ECD5782E27513271007F7532 /* FocusPrioritizationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5782D27513271007F7532 /* FocusPrioritizationTableViewController.swift */; };
 		ECD578302751354E007F7532 /* FocusPrioritizationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5782F2751354E007F7532 /* FocusPrioritizationTableViewCell.swift */; };
 		ECD5783227514BB3007F7532 /* FocusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD5783127514BB3007F7532 /* FocusTableViewCell.swift */; };
+		ECE03584293095B200B07AB3 /* CameraTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE03583293095B200B07AB3 /* CameraTypeTableViewCell.swift */; };
+		ECE03586293095CA00B07AB3 /* CameraTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE03585293095CA00B07AB3 /* CameraTypeTableViewController.swift */; };
 		ECEA0D7928BEB4CF00DC22B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA0D7828BEB4CF00DC22B3 /* AppDelegate.swift */; };
 		ECEA0D7B28BEB4CF00DC22B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA0D7A28BEB4CF00DC22B3 /* SceneDelegate.swift */; };
 		ECEA0D7D28BEB4CF00DC22B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA0D7C28BEB4CF00DC22B3 /* ViewController.swift */; };
@@ -245,6 +247,8 @@
 		ECD5782D27513271007F7532 /* FocusPrioritizationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPrioritizationTableViewController.swift; sourceTree = "<group>"; };
 		ECD5782F2751354E007F7532 /* FocusPrioritizationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPrioritizationTableViewCell.swift; sourceTree = "<group>"; };
 		ECD5783127514BB3007F7532 /* FocusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTableViewCell.swift; sourceTree = "<group>"; };
+		ECE03583293095B200B07AB3 /* CameraTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTypeTableViewCell.swift; sourceTree = "<group>"; };
+		ECE03585293095CA00B07AB3 /* CameraTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTypeTableViewController.swift; sourceTree = "<group>"; };
 		ECEA0D7628BEB4CF00DC22B3 /* camera3000x4000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = camera3000x4000.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECEA0D7828BEB4CF00DC22B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECEA0D7A28BEB4CF00DC22B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -544,6 +548,7 @@
 		ECD57810274955CA007F7532 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				ECE035822930958800B07AB3 /* Camera Type Settings */,
 				EC6D5BF827566870001538F1 /* Stabilization Mode */,
 				ECD5782C2751324E007F7532 /* Focus Settings */,
 				ECD5782B2751170E007F7532 /* Naming Settings */,
@@ -596,6 +601,15 @@
 				ECD5783127514BB3007F7532 /* FocusTableViewCell.swift */,
 			);
 			path = "Focus Settings";
+			sourceTree = "<group>";
+		};
+		ECE035822930958800B07AB3 /* Camera Type Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ECE03583293095B200B07AB3 /* CameraTypeTableViewCell.swift */,
+				ECE03585293095CA00B07AB3 /* CameraTypeTableViewController.swift */,
+			);
+			path = "Camera Type Settings";
 			sourceTree = "<group>";
 		};
 		ECEA0D7728BEB4CF00DC22B3 /* camera3000x4000 */ = {
@@ -1065,6 +1079,7 @@
 				EC14E4C328ECD19F00CEB379 /* ConnectionDeviceTableViewCell.swift in Sources */,
 				ECA5E16227382E8700A84E40 /* Camera.swift in Sources */,
 				ECD5782A274EA21C007F7532 /* SettingsObserver.swift in Sources */,
+				ECE03584293095B200B07AB3 /* CameraTypeTableViewCell.swift in Sources */,
 				EC8C2EF5273FB2CB0082FE8E /* SessionsTableViewController.swift in Sources */,
 				ECA5E168273832C200A84E40 /* Session.swift in Sources */,
 				ECA5E16027382D8600A84E40 /* CameraViewController.swift in Sources */,
@@ -1081,6 +1096,7 @@
 				ECD5781427495D3A007F7532 /* FastSettingsTableViewCell.swift in Sources */,
 				ECD57818274966CB007F7532 /* ShutterCollectionViewCell.swift in Sources */,
 				EC8C2EF9273FB2F00082FE8E /* ExportAllSessionsTableViewCell.swift in Sources */,
+				ECE03586293095CA00B07AB3 /* CameraTypeTableViewController.swift in Sources */,
 				ECD066C827615AAD00E054E6 /* TabBarViewController.swift in Sources */,
 				EC282FAC2770D52A009CF2CB /* DeviceStatusCell.swift in Sources */,
 				ECA5E16A273839ED00A84E40 /* CaptureDevice.swift in Sources */,
